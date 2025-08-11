@@ -172,6 +172,11 @@ Thumbs.db
 *.db
 *.sqlite
 *.sqlite3
+plantdex.db
+
+# Docker
+.dockerignore
+docker-compose.override.yml
 
 # Logs
 *.log

@@ -50,23 +50,51 @@ PlantDex เป็นแพลตฟอร์มข้อมูลตลาด�
 - Python 3.8+
 - PostgreSQL
 - Redis
+- Docker & Docker Compose (optional)
 
-### Frontend Setup / การตั้งค่าส่วนหน้า
+### Quick Start / เริ่มต้นเร็ว
 
+```bash
+# Clone repository
+git clone https://github.com/NuttWarunyu/plantdex.git
+cd plantdex
+
+# Install all dependencies
+make install
+
+# Setup environment
+cp .env.example .env
+# Edit .env with your configuration
+
+# Start development servers
+make dev
+```
+
+### Manual Setup / การตั้งค่าด้วยตนเอง
+
+#### Frontend Setup / การตั้งค่าส่วนหน้า
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-### Backend Setup / การตั้งค่าส่วนหลัง
-
+#### Backend Setup / การตั้งค่าส่วนหลัง
 ```bash
 cd backend
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn main:app --reload
+```
+
+### Docker Setup / การตั้งค่าด้วย Docker
+```bash
+# Start all services
+make docker-up
+
+# Stop all services
+make docker-down
 ```
 
 ## 🌐 Languages / ภาษา
