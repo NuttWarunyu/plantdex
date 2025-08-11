@@ -11,7 +11,8 @@ import {
   BarChart3, 
   User, 
   ShoppingCart,
-  Menu
+  Menu,
+  Upload
 } from "lucide-react";
 
 export function Header() {
@@ -45,6 +46,11 @@ export function Header() {
             <Link href="/trends" className="nav-item text-sm font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
               <span className="flexible-text">{t('header.nav.trends')}</span>
             </Link>
+            <Link href="/plant-exchange" className="nav-item flex items-center space-x-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
+              <Upload className="h-4 w-4 flex-shrink-0" />
+              <span className="flexible-text">Plant Exchange</span>
+            </Link>
+
             {/* Pricing temporarily hidden - will be available in future updates */}
             {/* <Link href="/pricing" className="nav-item text-sm font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
               <span className="flexible-text">{t('header.nav.pricing')}</span>
