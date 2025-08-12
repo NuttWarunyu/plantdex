@@ -27,10 +27,13 @@ class Settings(BaseSettings):
     BACKEND_CORS_ORIGINS: List[str] = [
         "http://localhost:3000", 
         "http://localhost:8000",
-        "https://plantdex-frontend-mapoh682q-nuttwarunyus-projects.vercel.app",
+        "https://plantdex-frontend.vercel.app",
         "https://plantdex-frontend-git-main-nuttwarunyus-projects.vercel.app",
-        "https://plantdex-frontend-chbf9j6n4-nuttwarunyus-projects.vercel.app"
+        "https://plantdex-frontend-mapoh682q-nuttwarunyus-projects.vercel.app"
     ]
+
+    # Remove this from Pydantic model - we'll handle it manually
+    # BACKEND_CORS_ORIGINS: List[str] = Field(default_factory=list)
 
     @property
     def cors_origins(self) -> List[str]:
@@ -38,10 +41,11 @@ class Settings(BaseSettings):
         if hasattr(self, '_cors_origins'):
             return self._cors_origins
         
+        # Get from environment variable directly (not through Pydantic)
         cors_env = os.getenv("BACKEND_CORS_ORIGINS")
         print(f"DEBUG: BACKEND_CORS_ORIGINS env var: {repr(cors_env)}")
         
-        if cors_env:
+        if cors_env and cors_env.strip():
             try:
                 # Handle comma-separated string
                 if "," in cors_env:
