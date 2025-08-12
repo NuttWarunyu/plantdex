@@ -38,19 +38,32 @@ class Settings(BaseSettings):
         if hasattr(self, '_cors_origins'):
             return self._cors_origins
         
-        # Try to get from environment variable
         cors_env = os.getenv("BACKEND_CORS_ORIGINS")
+        print(f"DEBUG: BACKEND_CORS_ORIGINS env var: {repr(cors_env)}")
+        
         if cors_env:
             try:
-                # Parse comma-separated string
-                origins = [origin.strip() for origin in cors_env.split(",")]
-                self._cors_origins = origins
-                return origins
-            except Exception:
-                pass
+                # Handle comma-separated string
+                if "," in cors_env:
+                    origins = [origin.strip() for origin in cors_env.split(",") if origin.strip()]
+                else:
+                    # Single origin
+                    origins = [cors_env.strip()] if cors_env.strip() else []
+                
+                print(f"DEBUG: Parsed origins: {origins}")
+                
+                # Validate origins are not empty
+                if origins:
+                    self._cors_origins = origins
+                    print(f"DEBUG: Using parsed origins: {origins}")
+                    return origins
+            except Exception as e:
+                print(f"Warning: Failed to parse BACKEND_CORS_ORIGINS: {e}")
+                print(f"Using default CORS origins")
         
         # Fallback to default
         self._cors_origins = self.BACKEND_CORS_ORIGINS
+        print(f"DEBUG: Using default origins: {self._cors_origins}")
         return self._cors_origins
     
     # Production settings
