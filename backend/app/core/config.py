@@ -38,12 +38,27 @@ class Settings(BaseSettings):
         
         if cors_env and cors_env.strip():
             try:
+                # Clean up the environment variable - remove "Value:" prefix and ";" suffix
+                cleaned_env = cors_env.replace("Value:", "").replace(";", "").strip()
+                print(f"DEBUG: Cleaned env var: {repr(cleaned_env)}")
+                
                 # Handle comma-separated string
-                if "," in cors_env:
-                    origins = [origin.strip() for origin in cors_env.split(",") if origin.strip()]
+                if "," in cleaned_env:
+                    origins = []
+                    for origin in cleaned_env.split(","):
+                        origin_clean = origin.strip()
+                        if origin_clean:
+                            # Ensure proper URL format
+                            if not origin_clean.startswith("http"):
+                                origin_clean = "https://" + origin_clean
+                            origins.append(origin_clean)
                 else:
                     # Single origin
-                    origins = [cors_env.strip()] if cors_env.strip() else []
+                    origin_clean = cleaned_env.strip()
+                    if origin_clean:
+                        if not origin_clean.startswith("http"):
+                            origin_clean = "https://" + origin_clean
+                        origins = [origin_clean]
                 
                 print(f"DEBUG: Parsed origins: {origins}")
                 
