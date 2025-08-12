@@ -1,0 +1,5 @@
+seller_id,warranty_period,warranty_coverage,warranty_conditions,return_policy,refund_policy,return_period
+1,7_days,DOA_only,unboxing_video_required,return_7_days,refund_partial,7
+2,14_days,DOA_tissue_culture_contamination,lab_report_required,return_14_days,refund_full,14
+3,7_days,DOA_transit_damage,photo_proof_required,return_7_days,refund_partial,7
+4,7_days,DOA_only,photo_unboxing_required,return_7_days,refund_partial,7

@@ -1,0 +1,21 @@
+plant_id,best_planting_season,blooming_season,dormancy_period,seasonal_care,seasonal_watering,seasonal_fertilizing
+1,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+2,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+3,May-Sep,rare_spadix,cool_season_possible,Warm temps; avoid soggy soil; reduce water in cool season,increase_in_hot,balanced_weakly
+4,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+5,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+6,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+7,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+8,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+9,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+10,May-Sep,rare_spadix,cool_season_possible,Warm temps; avoid soggy soil; reduce water in cool season,increase_in_hot,balanced_weakly
+11,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+12,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+13,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+14,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+15,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+16,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+17,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+18,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+19,May-Sep,rare_spadix,none,"Stable warmth, high humidity; flush salts monthly",increase_in_hot,balanced_weakly
+20,May-Sep,none,Nov-Feb,Reduce watering in dormancy; store bulbs dry if foliage dies back,increase_in_hot,balanced_weakly

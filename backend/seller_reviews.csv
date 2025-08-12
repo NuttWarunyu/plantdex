@@ -1,0 +1,5 @@
+seller_id,reviewer_id,overall_rating,review_text,product_quality,shipping_speed,customer_service,packaging_quality,value_for_money,order_id,plant_id,is_verified_purchase
+1,1001,4.6,"Quality plants, good packing",4.7,4.5,4.6,4.7,4.5,ORD-TH-001,1,True
+2,1002,4.4,"TC plants healthy, slow shipping",4.6,3.8,4.2,4.4,4.0,ORD-TH-002,2,True
+3,1003,4.3,Exporter reliable,4.4,4.2,4.2,4.5,4.3,ORD-TH-003,6,True
+4,1004,4.1,Affordable variegates,4.2,4.0,4.0,4.2,4.1,ORD-TH-004,5,True

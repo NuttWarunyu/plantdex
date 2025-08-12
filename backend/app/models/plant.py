@@ -53,5 +53,13 @@ class Plant(Base):
     prices = relationship("PlantPrice", back_populates="plant")
     market_trends = relationship("MarketTrend", back_populates="plant")
     
+    # New detailed relationships
+    images = relationship("PlantImage", back_populates="plant")
+    propagations = relationship("PlantPropagation", back_populates="plant")
+    pest_diseases = relationship("PlantPestDisease", back_populates="plant")
+    seasonal_infos = relationship("PlantSeasonalInfo", back_populates="plant")
+    shipping_infos = relationship("PlantShippingInfo", back_populates="plant")
+    prices_detailed = relationship("PlantPriceDetailed")
+    
     def __repr__(self):
         return f"<Plant(id={self.id}, scientific_name='{self.scientific_name}', common_name_th='{self.common_name_th}')>" 

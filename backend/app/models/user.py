@@ -56,6 +56,14 @@ class Seller(Base):
     user = relationship("User", back_populates="seller_profile")
     plant_listings = relationship("PlantListing", back_populates="seller")
     
+    # New detailed relationships
+    business_details = relationship("SellerBusinessDetails", back_populates="seller", uselist=False)
+    shipping_policies = relationship("SellerShippingPolicy", back_populates="seller")
+    warranty_policies = relationship("SellerWarrantyPolicy", back_populates="seller")
+    payment_policies = relationship("SellerPaymentPolicy", back_populates="seller")
+    reviews = relationship("SellerReview", back_populates="seller")
+    prices_detailed = relationship("PlantPriceDetailed")
+    
     def __repr__(self):
         return f"<Seller(id={self.id}, business_name='{self.business_name}', user_id={self.user_id})>"
 

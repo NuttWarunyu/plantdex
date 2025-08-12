@@ -1,0 +1,5 @@
+seller_id,shipping_methods,shipping_zones,free_shipping_threshold,packaging_fee,insurance_fee,processing_time,delivery_time
+1,"kerry,thailand_post,grab",TH_all,free_over_3000,60.0,0.0,1-3_days,1-5_days
+2,"inhouse_courier,thailand_post",TH_and_export,free_over_5000,80.0,0.0,3-7_days,5-14_days
+3,"air_cargo,DHL,EMS",export_focus,free_over_10000,120.0,150.0,3-5_days,5-10_days
+4,"thailand_post,EMS",TH_and_export,free_over_3000,70.0,0.0,2-4_days,4-7_days

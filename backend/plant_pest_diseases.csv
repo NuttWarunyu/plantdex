@@ -1,0 +1,61 @@
+plant_id,pest_or_disease,type,symptoms,prevention,treatment,severity,season_risk
+1,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+1,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+1,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+2,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+2,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+2,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+3,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+3,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+3,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+4,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+4,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+4,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+5,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+5,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+5,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+6,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+6,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+6,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+7,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+7,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+7,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+8,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+8,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+8,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+9,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+9,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+9,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+10,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+10,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+10,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+11,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+11,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+11,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+12,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+12,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+12,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+13,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+13,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+13,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+14,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+14,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+14,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+15,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+15,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+15,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+16,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+16,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+16,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+17,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+17,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+17,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+18,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+18,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+18,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+19,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+19,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+19,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy
+20,spider_mites,insect,"stippling, webbing",increase_humidity; neem_oil,miticide_if_severe,moderate,hot_dry
+20,thrips,insect,"silvering, deformed_new_growth",yellow_sticky_traps; quarantine,systemic_insecticide_spinosad,high,hot
+20,root_rot,disease,"yellowing, mushy_roots",well_drained_mix; adjust_watering,trim_roots; fungicide,high,rainy

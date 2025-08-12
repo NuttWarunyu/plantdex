@@ -1,10 +1,12 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from "@/lib/language-context";
+import { marketApi, plantsApi, MarketTrend, PlantPriceIndex, TrendingPlant, Plant, handleApiError } from "@/lib/api";
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -13,11 +15,141 @@ import {
   Target,
   Lightbulb,
   ArrowUpRight,
-  Clock
+  Clock,
+  Loader2
 } from "lucide-react";
 
 export default function TrendsPage() {
   const { t } = useLanguage();
+  const [timeframe, setTimeframe] = useState("4weeks");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  const [marketTrends, setMarketTrends] = useState<MarketTrend[]>([]);
+  const [priceIndices, setPriceIndices] = useState<PlantPriceIndex[]>([]);
+  const [trendingPlants, setTrendingPlants] = useState<TrendingPlant[]>([]);
+  const [plants, setPlants] = useState<Plant[]>([]);
+
+  // Fetch data from backend
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch all plants for reference
+        const plantsData = await plantsApi.getAll();
+        setPlants(plantsData);
+
+        // Fetch market trends
+        const trendsData = await marketApi.getTrends({ limit: 50 });
+        setMarketTrends(trendsData.trends);
+
+        // Fetch price indices
+        const indicesData = await marketApi.getPriceIndex();
+        setPriceIndices(indicesData.price_indices);
+
+        // Fetch trending plants
+        const trendingData = await marketApi.getTrendingPlants({ limit: 20 });
+        setTrendingPlants(trendingData.trending_plants);
+
+      } catch (err) {
+        setError(handleApiError(err));
+        console.error("Failed to fetch trends data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [timeframe]);
+
+  const getPlantName = (plantId: number): string => {
+    const plant = plants.find(p => p.id === plantId);
+    return plant ? plant.common_name_th : `พืช ID: ${plantId}`;
+  };
+
+  const getPlantCategory = (plantId: number): string => {
+    const plant = plants.find(p => p.id === plantId);
+    return plant ? plant.category : 'unknown';
+  };
+
+  const getTrendDirection = (trend: string): 'up' | 'down' | 'stable' => {
+    if (trend.includes('up') || trend.includes('rise')) return 'up';
+    if (trend.includes('down') || trend.includes('fall')) return 'down';
+    return 'stable';
+  };
+
+  const getSentimentIcon = (trendDirection: string | null | undefined) => {
+    if (!trendDirection) return <BarChart3 className="h-4 w-4 text-blue-600" />;
+    
+    switch (trendDirection.toLowerCase()) {
+      case 'up': return <TrendingUp className="h-4 w-4 text-green-600" />;
+      case 'down': return <TrendingDown className="h-4 w-4 text-red-600" />;
+      case 'stable': return <BarChart3 className="h-4 w-4 text-blue-600" />;
+      default: return <BarChart3 className="h-4 w-4 text-blue-600" />;
+    }
+  };
+
+  const getSentimentColor = (trendDirection: string | null | undefined): string => {
+    if (!trendDirection) return 'text-blue-600';
+    
+    switch (trendDirection.toLowerCase()) {
+      case 'up': return 'text-green-600';
+      case 'down': return 'text-red-600';
+      case 'stable': return 'text-blue-600';
+      default: return 'text-gray-600';
+    }
+  };
+
+  const getSentimentLabel = (trendDirection: string | null | undefined): string => {
+    if (!trendDirection) return 'ไม่ระบุ';
+    
+    switch (trendDirection.toLowerCase()) {
+      case 'up': return 'ขึ้น';
+      case 'down': return 'ลง';
+      case 'stable': return 'คงที่';
+      default: return trendDirection;
+    }
+  };
+
+  // Calculate insights from real data
+  const totalTrends = marketTrends.length;
+  const upTrends = marketTrends.filter(t => t.trend_direction === 'up').length;
+  const downTrends = marketTrends.filter(t => t.trend_direction === 'down').length;
+  const stableTrends = marketTrends.filter(t => t.trend_direction === 'stable').length;
+  
+  const upPercentage = totalTrends > 0 ? Math.round((upTrends / totalTrends) * 100) : 0;
+  const confidenceScore = totalTrends > 0 ? Math.round((upTrends + stableTrends) / totalTrends * 100) : 0;
+
+  // Get latest price index
+  const latestPriceIndex = priceIndices.length > 0 ? priceIndices[0] : null;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-green-600" />
+          <p className="text-gray-600">กำลังโหลดข้อมูลเทรนด์...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 text-6xl mb-4">❌</div>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">เกิดข้อผิดพลาด</h3>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <Button onClick={() => window.location.reload()}>
+            ลองใหม่
+          </Button>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -26,26 +158,26 @@ export default function TrendsPage() {
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{t('trends.header.title')}</h1>
+              <h1 className="text-3xl font-bold text-gray-900">เทรนด์ตลาดพืช</h1>
               <p className="text-gray-600 mt-2">
-                {t('trends.header.subtitle')}
+                ข้อมูลเทรนด์และวิเคราะห์ตลาดพืชในประเทศไทย
               </p>
             </div>
             <div className="flex space-x-3">
-              <Select defaultValue="3months">
+              <Select value={timeframe} onValueChange={setTimeframe}>
                 <SelectTrigger className="w-40">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1month">{t('trends.timeframe.1month')}</SelectItem>
-                  <SelectItem value="3months">{t('trends.timeframe.3months')}</SelectItem>
-                  <SelectItem value="6months">{t('trends.timeframe.6months')}</SelectItem>
-                  <SelectItem value="1year">{t('trends.timeframe.1year')}</SelectItem>
+                  <SelectItem value="1week">1 สัปดาห์</SelectItem>
+                  <SelectItem value="4weeks">4 สัปดาห์</SelectItem>
+                  <SelectItem value="3months">3 เดือน</SelectItem>
+                  <SelectItem value="6months">6 เดือน</SelectItem>
                 </SelectContent>
               </Select>
               <Button>
                 <ArrowUpRight className="h-4 w-4 mr-2" />
-                {t('trends.actions.exportReport')}
+                ส่งออกรายงาน
               </Button>
             </div>
           </div>
@@ -58,13 +190,13 @@ export default function TrendsPage() {
           <Card className="border-l-4 border-l-green-500">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">
-                {t('trends.insights.sentiment.title')}
+                ความรู้สึกตลาด
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">{t('trends.insights.sentiment.value')}</div>
+              <div className="text-2xl font-bold text-green-600">{upPercentage}%</div>
               <div className="text-sm text-gray-600 mt-1">
-                {t('trends.insights.sentiment.description')}
+                เทรนด์บวกจากทั้งหมด {totalTrends} รายการ
               </div>
             </CardContent>
           </Card>
@@ -72,13 +204,13 @@ export default function TrendsPage() {
           <Card className="border-l-4 border-l-blue-500">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">
-                {t('trends.insights.confidence.title')}
+                ความเชื่อมั่น
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{t('trends.insights.confidence.value')}</div>
+              <div className="text-2xl font-bold text-blue-600">{confidenceScore}%</div>
               <div className="text-sm text-gray-600 mt-1">
-                {t('trends.insights.confidence.description')}
+                ระดับความเชื่อมั่นในข้อมูล
               </div>
             </CardContent>
           </Card>
@@ -86,149 +218,53 @@ export default function TrendsPage() {
           <Card className="border-l-4 border-l-purple-500">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">
-                {t('trends.insights.nextUpdate.title')}
+                ดัชนีราคารวม
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-purple-600">{t('trends.insights.nextUpdate.value')}</div>
+              <div className="text-2xl font-bold text-purple-600">
+                {latestPriceIndex ? latestPriceIndex.overall_index.toFixed(2) : 'N/A'}
+              </div>
               <div className="text-sm text-gray-600 mt-1">
-                {t('trends.insights.nextUpdate.description')}
+                อัปเดตล่าสุด: {latestPriceIndex ? new Date(latestPriceIndex.index_date).toLocaleDateString('th-TH') : 'N/A'}
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Trend Categories */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {/* Rising Stars */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
-                {t('trends.categories.risingStars.title')}
-              </CardTitle>
-              <CardDescription>
-                {t('trends.categories.risingStars.description')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {[
-                  { name: "Monstera Thai Constellation", growth: "+45%", confidence: t('trends.confidence.high'), reason: t('trends.reasons.rareVariety') },
-                  { name: "Philodendron Pink Princess", growth: "+38%", confidence: t('trends.confidence.high'), reason: t('trends.reasons.socialMedia') },
-                  { name: "Anthurium Crystallinum", growth: "+32%", confidence: t('trends.confidence.medium'), reason: t('trends.reasons.collectorInterest') },
-                  { name: "Alocasia Dragon Scale", growth: "+28%", confidence: t('trends.confidence.medium'), reason: t('trends.reasons.uniqueFoliage') },
-                  { name: "Calathea White Fusion", growth: "+25%", confidence: t('trends.confidence.high'), reason: t('trends.reasons.aestheticAppeal') },
-                ].map((plant, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
-                    <div className="flex-1">
-                      <div className="font-medium">{plant.name}</div>
-                      <div className="text-sm text-gray-600">{plant.reason}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-lg font-bold text-green-600">{plant.growth}</div>
-                      <Badge variant="outline" className="text-xs">
-                        {plant.confidence}
-                      </Badge>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Declining Trends */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <TrendingDown className="h-5 w-5 mr-2 text-red-600" />
-                {t('trends.categories.declining.title')}
-              </CardTitle>
-              <CardDescription>
-                {t('trends.categories.declining.description')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {[
-                  { name: "Spider Plant", decline: "-18%", confidence: t('trends.confidence.medium'), reason: t('trends.reasons.marketSaturation') },
-                  { name: "Pothos Golden", decline: "-15%", confidence: t('trends.confidence.high'), reason: t('trends.reasons.oversupply') },
-                  { name: "Snake Plant", decline: "-12%", confidence: t('trends.confidence.medium'), reason: t('trends.reasons.priceCompetition') },
-                  { name: "Peace Lily", decline: "-8%", confidence: t('trends.confidence.low'), reason: t('trends.reasons.seasonalDip') },
-                  { name: "ZZ Plant", decline: "-5%", confidence: t('trends.confidence.low'), reason: t('trends.reasons.marketCorrection') },
-                ].map((plant, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
-                    <div className="flex-1">
-                      <div className="font-medium">{plant.name}</div>
-                      <div className="text-sm text-gray-600">{plant.reason}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-lg font-bold text-red-600">{plant.decline}</div>
-                      <Badge variant="outline" className="text-xs">
-                        {plant.confidence}
-                      </Badge>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Seasonal Analysis */}
+        {/* Market Trends */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center">
-              <Calendar className="h-5 w-5 mr-2" />
-              {t('trends.seasonal.title')}
+              <BarChart3 className="h-5 w-5 mr-2" />
+              เทรนด์ตลาดล่าสุด
             </CardTitle>
             <CardDescription>
-              {t('trends.seasonal.description')}
+              ข้อมูลเทรนด์ตลาด 4 สัปดาห์ล่าสุด
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  month: t('trends.seasonal.january.month'),
-                  trend: t('trends.seasonal.january.trend'),
-                  reason: t('trends.seasonal.january.reason'),
-                  confidence: "92%",
-                  recommendations: ["Monstera", "Fiddle Leaf Fig", "ZZ Plant"]
-                },
-                {
-                  month: t('trends.seasonal.february.month'),
-                  trend: t('trends.seasonal.february.trend'),
-                  reason: t('trends.seasonal.february.reason'),
-                  confidence: "88%",
-                  recommendations: ["Anthurium", "Orchids", "Rose plants"]
-                },
-                {
-                  month: t('trends.seasonal.march.month'),
-                  trend: t('trends.seasonal.march.trend'),
-                  reason: t('trends.seasonal.march.reason'),
-                  confidence: "85%",
-                  recommendations: ["Succulents", "Herbs", "Flowering plants"]
-                }
-              ].map((forecast, index) => (
-                <div key={index} className="p-4 border rounded-lg">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-semibold text-lg">{forecast.month}</h3>
-                    <Badge variant="secondary">{forecast.confidence}</Badge>
-                  </div>
-                  <div className="text-sm text-gray-600 mb-3">
-                    <div className="font-medium mb-1">{forecast.trend}</div>
-                    <div>{forecast.reason}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium mb-2">{t('trends.seasonal.recommended')}:</div>
-                    <div className="flex flex-wrap gap-1">
-                      {forecast.recommendations.map((plant, plantIndex) => (
-                        <Badge key={plantIndex} variant="outline" className="text-xs">
-                          {plant}
-                        </Badge>
-                      ))}
+            <div className="space-y-4">
+              {marketTrends.slice(0, 10).map((trend) => (
+                <div key={trend.id} className="flex items-center justify-between p-4 border rounded-lg">
+                  <div className="flex-1">
+                    <div className="font-medium">{getPlantName(trend.plant_id)}</div>
+                    <div className="text-sm text-gray-600">
+                      สัปดาห์: {new Date(trend.week_start).toLocaleDateString('th-TH')} | 
+                      ความต้องการ: {trend.demand_score}/10
                     </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex items-center space-x-2">
+                      {getSentimentIcon(trend.trend_direction)}
+                      <Badge variant="outline" className={getSentimentColor(trend.trend_direction)}>
+                        {getSentimentLabel(trend.trend_direction)}
+                      </Badge>
+                    </div>
+                    <div className="text-sm text-gray-500 mt-1">
+                       {trend.trend_direction === 'up' ? 'ราคาขึ้น' : 
+                        trend.trend_direction === 'down' ? 'ราคาลง' : 'ราคาคงที่'}
+                     </div>
                   </div>
                 </div>
               ))}
@@ -236,110 +272,158 @@ export default function TrendsPage() {
           </CardContent>
         </Card>
 
-        {/* AI Insights */}
+        {/* Trending Plants */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
+              พืชยอดนิยม
+            </CardTitle>
+            <CardDescription>
+              อันดับพืชยอดนิยมตามความนิยมและอัตราการเติบโต
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {trendingPlants.slice(0, 12).map((trending) => (
+                <div key={trending.id} className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="font-medium text-sm">
+                      #{trending.rank} {getPlantName(trending.plant_id)}
+                    </div>
+                    <Badge variant="default" className="text-xs">
+                      {trending.popularity_score}/10
+                    </Badge>
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    อัตราการเติบโต: {trending.growth_rate > 0 ? '+' : ''}{trending.growth_rate}%
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    สัปดาห์: {new Date(trending.week_start).toLocaleDateString('th-TH')}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Price Index Analysis */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <BarChart3 className="h-5 w-5 mr-2" />
+              ดัชนีราคาพืช
+            </CardTitle>
+            <CardDescription>
+              การเปลี่ยนแปลงดัชนีราคาตามหมวดหมู่พืช
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {latestPriceIndex ? [
+                { name: 'รวม', value: latestPriceIndex.overall_index || 0, color: 'text-blue-600' },
+                { name: 'Philodendron', value: latestPriceIndex.philodendron_index || 0, color: 'text-green-600' },
+                { name: 'Monstera', value: latestPriceIndex.monstera_index || 0, color: 'text-purple-600' },
+                { name: 'Alocasia', value: latestPriceIndex.alocasia_index || 0, color: 'text-orange-600' },
+              ].map((category, index) => (
+                <div key={index} className="p-4 border rounded-lg text-center">
+                  <div className={`text-2xl font-bold ${category.color}`}>
+                    {typeof category.value === 'number' ? category.value.toFixed(2) : '0.00'}
+                  </div>
+                  <div className="text-sm text-gray-600">{category.name}</div>
+                </div>
+              )) : (
+                // Fallback when no price index data
+                <>
+                  <div className="p-4 border rounded-lg text-center">
+                    <div className="text-2xl font-bold text-gray-400">0.00</div>
+                    <div className="text-sm text-gray-600">รวม</div>
+                  </div>
+                  <div className="p-4 border rounded-lg text-center">
+                    <div className="text-2xl font-bold text-gray-400">0.00</div>
+                    <div className="text-sm text-gray-600">Philodendron</div>
+                  </div>
+                  <div className="p-4 border rounded-lg text-center">
+                    <div className="text-2xl font-bold text-gray-400">0.00</div>
+                    <div className="text-sm text-gray-600">Monstera</div>
+                  </div>
+                  <div className="p-4 border rounded-lg text-center">
+                    <div className="text-2xl font-bold text-gray-400">0.00</div>
+                    <div className="text-sm text-gray-600">Alocasia</div>
+                  </div>
+                </>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Category Performance */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Market Opportunities */}
+          {/* Top Categories */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Target className="h-5 w-5 mr-2 text-blue-600" />
-                {t('trends.insights.opportunities.title')}
+                หมวดหมู่ยอดนิยม
               </CardTitle>
               <CardDescription>
-                {t('trends.insights.opportunities.description')}
+                หมวดหมู่พืชที่มีความนิยมสูงสุด
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {[
-                  {
-                    opportunity: t('trends.opportunities.rareMarket.name'),
-                    potential: t('trends.potential.high'),
-                    description: t('trends.opportunities.rareMarket.description'),
-                    action: t('trends.opportunities.rareMarket.action')
-                  },
-                  {
-                    opportunity: t('trends.opportunities.b2b.name'),
-                    potential: t('trends.potential.medium'),
-                    description: t('trends.opportunities.b2b.description'),
-                    action: t('trends.opportunities.b2b.action')
-                  },
-                  {
-                    opportunity: t('trends.opportunities.export.name'),
-                    potential: t('trends.potential.high'),
-                    description: t('trends.opportunities.export.description'),
-                    action: t('trends.opportunities.export.action')
-                  },
-                  {
-                    opportunity: t('trends.opportunities.careServices.name'),
-                    potential: t('trends.potential.medium'),
-                    description: t('trends.opportunities.careServices.description'),
-                    action: t('trends.opportunities.careServices.action')
-                  }
-                ].map((opp, index) => (
-                  <div key={index} className="p-3 border rounded-lg">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="font-medium">{opp.opportunity}</div>
-                      <Badge variant={opp.potential === t('trends.potential.high') ? "default" : "secondary"}>
-                        {opp.potential}
-                      </Badge>
+                {['philodendron', 'monstera', 'alocasia', 'anthurium', 'calathea'].map((category, index) => {
+                  const categoryPlants = plants.filter(p => p.category === category);
+                  const trendingCount = categoryPlants.filter(p => p.is_trending).length;
+                  
+                  return (
+                    <div key={category} className="flex items-center justify-between p-3 border rounded-lg">
+                      <div className="flex-1">
+                        <div className="font-medium capitalize">{category}</div>
+                        <div className="text-sm text-gray-600">
+                          พืชทั้งหมด: {categoryPlants.length} | ยอดนิยม: {trendingCount}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <Badge variant="outline">
+                          {Math.round((trendingCount / Math.max(categoryPlants.length, 1)) * 100)}%
+                        </Badge>
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-600 mb-2">{opp.description}</div>
-                    <div className="text-sm font-medium text-blue-600">{opp.action}</div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </CardContent>
           </Card>
 
-          {/* Risk Factors */}
+          {/* Market Sentiment */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Lightbulb className="h-5 w-5 mr-2 text-yellow-600" />
-                {t('trends.insights.risks.title')}
+                ความรู้สึกตลาด
               </CardTitle>
               <CardDescription>
-                {t('trends.insights.risks.description')}
+                สรุปความรู้สึกตลาดโดยรวม
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {[
-                  {
-                    risk: t('trends.risks.climateChange.name'),
-                    severity: t('trends.severity.high'),
-                    description: t('trends.risks.climateChange.description'),
-                    mitigation: t('trends.risks.climateChange.mitigation')
-                  },
-                  {
-                    risk: t('trends.risks.supplyChain.name'),
-                    severity: t('trends.severity.medium'),
-                    description: t('trends.risks.supplyChain.description'),
-                    mitigation: t('trends.risks.supplyChain.mitigation')
-                  },
-                  {
-                    risk: t('trends.risks.regulatory.name'),
-                    severity: t('trends.severity.low'),
-                    description: t('trends.risks.regulatory.description'),
-                    mitigation: t('trends.risks.regulatory.mitigation')
-                  },
-                  {
-                    risk: t('trends.risks.marketSaturation.name'),
-                    severity: t('trends.severity.medium'),
-                    description: t('trends.risks.marketSaturation.description'),
-                    mitigation: t('trends.risks.marketSaturation.mitigation')
-                  }
-                ].map((risk, index) => (
-                  <div key={index} className="p-3 border rounded-lg">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="font-medium">{risk.risk}</div>
-                      <Badge variant={risk.severity === t('trends.severity.high') ? "destructive" : risk.severity === t('trends.severity.medium') ? "secondary" : "outline"}>
-                        {risk.severity}
-                      </Badge>
+                  { sentiment: 'up', count: upTrends, color: 'text-green-600', bg: 'bg-green-50' },
+                  { sentiment: 'stable', count: stableTrends, color: 'text-blue-600', bg: 'bg-blue-50' },
+                  { sentiment: 'down', count: downTrends, color: 'text-red-600', bg: 'bg-red-50' },
+                ].map((item, index) => (
+                  <div key={index} className={`flex items-center justify-between p-3 rounded-lg ${item.bg}`}>
+                    <div className="flex-1">
+                      <div className="font-medium capitalize">{item.sentiment === 'up' ? 'ขึ้น' : item.sentiment === 'down' ? 'ลง' : 'คงที่'}</div>
+                      <div className="text-sm text-gray-600">
+                        {item.count} รายการ
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-600 mb-2">{risk.description}</div>
-                    <div className="text-sm font-medium text-green-600">{risk.mitigation}</div>
+                    <div className={`text-lg font-bold ${item.color}`}>
+                      {totalTrends > 0 ? Math.round((item.count / totalTrends) * 100) : 0}%
+                    </div>
                   </div>
                 ))}
               </div>

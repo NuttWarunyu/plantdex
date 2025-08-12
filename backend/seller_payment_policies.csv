@@ -1,0 +1,5 @@
+seller_id,payment_methods,installment_available,installment_terms,down_payment_percentage,bulk_discount,bulk_discount_rates,member_discount
+1,"bank_transfer,promptpay,credit_card",True,3mo_0%,20.0,yes,5%_10%_15%_for_5_10_20_units,member_5%
+2,"bank_transfer,credit_card",False,,0.0,volume_discount,3%_for_10+,member_3%
+3,"bank_transfer,paypal",False,,30.0,volume_discount,5%_for_20+,none
+4,"bank_transfer,promptpay",False,,0.0,none,,member_2%

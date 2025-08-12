@@ -1,0 +1,241 @@
+plant_id,seller_id,base_price,currency,price_type,height,width,pot_size,leaf_count,maturity_level,quality_grade,variegation_level,health_score,seasonal_multiplier,peak_season,off_season,province,city,local_market_factor,platform,seller_type,verification_status,rating,review_count
+1,2,15741,THB,retail,30,18.0,8inch,12,intermediate,B,high,96,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,67
+1,2,18102,THB,retail,30,18.0,6inch,2,intermediate,A,medium,95,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.3,367
+1,2,20463,THB,retail,80,48.0,3inch,5,intermediate,AA,high,94,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,64
+1,2,10931,THB,retail,40,24.0,6inch,12,mature,B,low,90,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.0,16
+1,2,15085,THB,retail,20,12.0,6inch,12,juvenile,A,medium,88,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,104
+1,2,17052,THB,retail,40,24.0,3inch,5,juvenile,AA,medium,92,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.6,259
+1,2,10931,THB,retail,80,48.0,8inch,10,intermediate,B,none,95,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.0,308
+1,2,15085,THB,retail,20,12.0,6inch,1,intermediate,A,medium,85,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.4,256
+1,2,17052,THB,retail,30,18.0,8inch,9,juvenile,AA,high,87,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.5,432
+1,2,13117,THB,retail,40,24.0,4inch,9,mature,B,low,91,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,261
+1,2,18102,THB,retail,100,60.0,4inch,6,mature,A,high,88,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.3,309
+1,2,20463,THB,retail,20,12.0,3inch,5,mature,AA,medium,90,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,210
+2,3,15108,THB,retail,40,24.0,6inch,1,juvenile,B,low,90,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.0,389
+2,3,17374,THB,retail,40,24.0,3inch,8,mature,A,none,86,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,252
+2,3,23568,THB,retail,100,60.0,6inch,9,intermediate,AA,medium,86,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.5,341
+2,3,12590,THB,retail,40,24.0,6inch,3,mature,B,none,89,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.8,68
+2,3,17374,THB,retail,100,60.0,3inch,1,juvenile,A,high,87,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.4,236
+2,3,16367,THB,retail,40,24.0,8inch,12,juvenile,AA,low,86,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.8,470
+2,3,15108,THB,retail,20,12.0,4inch,11,mature,B,high,90,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.3,91
+2,3,14478,THB,retail,80,48.0,8inch,9,mature,A,none,96,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.3,386
+2,3,19640,THB,retail,80,48.0,6inch,3,mature,AA,medium,98,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.7,261
+2,3,18130,THB,retail,80,48.0,4inch,5,juvenile,B,high,91,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,206
+2,3,20849,THB,retail,40,24.0,3inch,6,juvenile,A,high,91,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.6,91
+2,3,19640,THB,retail,40,24.0,4inch,12,juvenile,AA,low,86,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,399
+3,4,19752,THB,retail,100,60.0,4inch,1,juvenile,B,low,85,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.5,38
+3,4,22715,THB,retail,60,36.0,3inch,1,mature,A,low,97,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.5,438
+3,4,25678,THB,retail,20,12.0,8inch,2,mature,AA,low,90,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.0,214
+3,4,16460,THB,retail,60,36.0,8inch,1,mature,B,none,86,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.6,72
+3,4,18929,THB,retail,40,24.0,8inch,7,intermediate,A,low,91,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.1,201
+3,4,21398,THB,retail,80,48.0,4inch,10,mature,AA,low,94,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.4,329
+3,4,16460,THB,retail,60,36.0,3inch,11,mature,B,none,86,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.5,449
+3,4,18929,THB,retail,20,12.0,4inch,9,mature,A,low,86,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.3,217
+3,4,21398,THB,retail,40,24.0,3inch,12,mature,AA,none,92,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.5,105
+3,4,19752,THB,retail,100,60.0,3inch,1,intermediate,B,low,94,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.9,77
+3,4,22715,THB,retail,20,12.0,6inch,11,juvenile,A,none,98,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.8,50
+3,4,25678,THB,retail,30,18.0,4inch,6,intermediate,AA,none,93,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.8,184
+4,1,41356,THB,retail,20,12.0,6inch,7,mature,B,low,93,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.0,155
+4,1,47559,THB,retail,80,48.0,6inch,9,mature,A,none,90,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,230
+4,1,53762,THB,retail,40,24.0,6inch,8,intermediate,AA,low,90,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.9,205
+4,1,34463,THB,retail,60,36.0,4inch,11,intermediate,B,low,97,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,114
+4,1,39632,THB,retail,40,24.0,4inch,6,juvenile,A,low,95,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.2,117
+4,1,44802,THB,retail,30,18.0,8inch,2,juvenile,AA,low,89,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.8,29
+4,1,34463,THB,retail,20,12.0,3inch,10,juvenile,B,none,92,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,324
+4,1,39632,THB,retail,30,18.0,6inch,11,intermediate,A,none,89,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.7,353
+4,1,44802,THB,retail,60,36.0,8inch,4,mature,AA,none,92,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,63
+4,1,41356,THB,retail,80,48.0,8inch,5,juvenile,B,low,94,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.2,301
+4,1,47559,THB,retail,100,60.0,8inch,6,mature,A,none,97,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.6,320
+4,1,53762,THB,retail,100,60.0,8inch,9,intermediate,AA,low,94,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,407
+5,2,24720,THB,retail,20,12.0,6inch,5,intermediate,B,none,96,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.7,106
+5,2,28428,THB,retail,30,18.0,4inch,10,intermediate,A,low,85,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.3,87
+5,2,32136,THB,retail,60,36.0,3inch,10,mature,AA,none,93,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.5,437
+5,2,20600,THB,retail,60,36.0,6inch,3,mature,B,low,92,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,51
+5,2,23690,THB,retail,80,48.0,3inch,4,juvenile,A,none,92,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,65
+5,2,26780,THB,retail,100,60.0,6inch,9,intermediate,AA,low,90,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,202
+5,2,20600,THB,retail,80,48.0,3inch,4,intermediate,B,none,95,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,317
+5,2,23690,THB,retail,40,24.0,8inch,6,intermediate,A,low,86,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.3,162
+5,2,26780,THB,retail,60,36.0,8inch,8,juvenile,AA,low,95,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.6,211
+5,2,24720,THB,retail,80,48.0,4inch,3,mature,B,low,96,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.2,24
+5,2,28428,THB,retail,60,36.0,4inch,11,juvenile,A,low,91,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,119
+5,2,32136,THB,retail,20,12.0,4inch,9,juvenile,AA,low,97,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.2,350
+6,3,16929,THB,retail,20,12.0,4inch,9,juvenile,B,high,88,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.7,369
+6,3,16223,THB,retail,40,24.0,3inch,5,juvenile,A,low,89,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.0,302
+6,3,18339,THB,retail,30,18.0,4inch,12,mature,AA,low,87,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.7,45
+6,3,11756,THB,retail,60,36.0,6inch,2,mature,B,none,95,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,124
+6,3,13519,THB,retail,60,36.0,6inch,2,mature,A,low,93,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,203
+6,3,18339,THB,retail,20,12.0,8inch,4,intermediate,AA,medium,96,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.3,215
+6,3,14107,THB,retail,60,36.0,4inch,1,mature,B,medium,97,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.4,468
+6,3,13519,THB,retail,20,12.0,3inch,4,mature,A,low,95,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.0,487
+6,3,18339,THB,retail,30,18.0,6inch,10,intermediate,AA,high,89,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.6,235
+6,3,14107,THB,retail,40,24.0,3inch,2,juvenile,B,none,86,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.7,257
+6,3,19468,THB,retail,40,24.0,4inch,11,mature,A,medium,86,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.1,131
+6,3,22007,THB,retail,100,60.0,8inch,1,mature,AA,high,87,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.1,333
+7,4,34668,THB,retail,40,24.0,3inch,9,intermediate,B,low,89,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,217
+7,4,39868,THB,retail,40,24.0,3inch,9,mature,A,low,89,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.5,111
+7,4,54082,THB,retail,80,48.0,8inch,9,mature,AA,medium,91,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.6,242
+7,4,34668,THB,retail,60,36.0,8inch,6,juvenile,B,high,95,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.3,99
+7,4,39868,THB,retail,80,48.0,6inch,10,juvenile,A,medium,88,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.9,359
+7,4,37557,THB,retail,80,48.0,3inch,8,intermediate,AA,none,93,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,83
+7,4,28890,THB,retail,20,12.0,8inch,3,intermediate,B,low,96,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.9,243
+7,4,39868,THB,retail,80,48.0,4inch,10,juvenile,A,medium,93,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,432
+7,4,37557,THB,retail,20,12.0,6inch,8,juvenile,AA,none,88,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,50
+7,4,41602,THB,retail,60,36.0,4inch,12,juvenile,B,high,89,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.7,434
+7,4,47842,THB,retail,100,60.0,6inch,1,intermediate,A,medium,89,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,469
+7,4,45068,THB,retail,30,18.0,4inch,12,mature,AA,low,92,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,151
+8,1,26208,THB,retail,80,48.0,4inch,8,intermediate,B,low,93,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.4,451
+8,1,30139,THB,retail,80,48.0,6inch,10,intermediate,A,low,92,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.5,185
+8,1,40884,THB,retail,30,18.0,8inch,4,intermediate,AA,medium,86,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,460
+8,1,21840,THB,retail,100,60.0,6inch,6,mature,B,low,89,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.1,335
+8,1,30139,THB,retail,40,24.0,3inch,10,intermediate,A,medium,89,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.2,453
+8,1,28392,THB,retail,100,60.0,3inch,11,mature,AA,none,96,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.2,416
+8,1,26208,THB,retail,30,18.0,4inch,2,juvenile,B,medium,97,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,435
+8,1,25116,THB,retail,100,60.0,8inch,3,mature,A,low,89,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.1,151
+8,1,28392,THB,retail,60,36.0,3inch,8,juvenile,AA,none,94,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,84
+8,1,26208,THB,retail,60,36.0,4inch,2,juvenile,B,low,97,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.8,420
+8,1,36167,THB,retail,80,48.0,6inch,7,intermediate,A,high,89,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.6,205
+8,1,40884,THB,retail,20,12.0,6inch,7,mature,AA,high,87,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.3,420
+9,2,14021,THB,retail,40,24.0,6inch,6,intermediate,B,none,96,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.6,195
+9,2,16124,THB,retail,60,36.0,3inch,8,mature,A,low,85,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,19
+9,2,18227,THB,retail,20,12.0,6inch,1,intermediate,AA,low,89,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,367
+9,2,11684,THB,retail,20,12.0,3inch,3,intermediate,B,low,87,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,377
+9,2,13437,THB,retail,20,12.0,8inch,1,mature,A,none,89,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.8,486
+9,2,15189,THB,retail,20,12.0,4inch,2,juvenile,AA,none,85,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,409
+9,2,11684,THB,retail,20,12.0,8inch,12,juvenile,B,low,91,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.3,71
+9,2,13437,THB,retail,60,36.0,6inch,9,mature,A,low,98,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.6,360
+9,2,15189,THB,retail,80,48.0,8inch,1,intermediate,AA,low,86,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.7,16
+9,2,14021,THB,retail,20,12.0,3inch,5,intermediate,B,low,89,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,131
+9,2,16124,THB,retail,40,24.0,6inch,7,intermediate,A,low,90,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.9,124
+9,2,18227,THB,retail,40,24.0,3inch,8,mature,AA,low,97,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.1,213
+10,3,28440,THB,retail,20,12.0,6inch,5,intermediate,B,low,89,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.8,308
+10,3,32706,THB,retail,100,60.0,8inch,11,mature,A,none,92,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.8,258
+10,3,44366,THB,retail,100,60.0,8inch,9,mature,AA,medium,86,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.0,93
+10,3,23700,THB,retail,30,18.0,8inch,4,juvenile,B,none,93,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,68
+10,3,27255,THB,retail,60,36.0,6inch,2,intermediate,A,none,92,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.1,494
+10,3,36972,THB,retail,40,24.0,8inch,8,intermediate,AA,high,94,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.6,204
+10,3,28440,THB,retail,30,18.0,6inch,9,juvenile,B,medium,88,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,322
+10,3,32706,THB,retail,40,24.0,4inch,3,mature,A,high,98,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.1,429
+10,3,30810,THB,retail,20,12.0,3inch,8,mature,AA,none,89,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.4,262
+10,3,28440,THB,retail,30,18.0,4inch,3,juvenile,B,none,92,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.9,167
+10,3,32706,THB,retail,20,12.0,6inch,5,mature,A,low,97,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,276
+10,3,36972,THB,retail,40,24.0,8inch,3,mature,AA,none,85,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.2,500
+11,4,22613,THB,retail,30,18.0,4inch,3,mature,B,none,91,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.8,434
+11,4,26005,THB,retail,30,18.0,6inch,7,juvenile,A,low,86,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.1,88
+11,4,29397,THB,retail,20,12.0,4inch,3,mature,AA,none,97,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.1,308
+11,4,18844,THB,retail,30,18.0,4inch,8,intermediate,B,none,97,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.3,343
+11,4,21671,THB,retail,80,48.0,4inch,4,intermediate,A,none,96,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.0,242
+11,4,24497,THB,retail,40,24.0,4inch,11,juvenile,AA,low,90,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.4,178
+11,4,18844,THB,retail,30,18.0,3inch,9,juvenile,B,none,88,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,335
+11,4,21671,THB,retail,100,60.0,3inch,2,juvenile,A,none,98,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,288
+11,4,24497,THB,retail,30,18.0,3inch,10,mature,AA,none,96,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.7,243
+11,4,22613,THB,retail,30,18.0,6inch,3,intermediate,B,none,85,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,309
+11,4,26005,THB,retail,80,48.0,6inch,10,mature,A,low,92,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,175
+11,4,29397,THB,retail,20,12.0,8inch,2,intermediate,AA,low,92,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.9,443
+12,1,28188,THB,retail,40,24.0,4inch,3,intermediate,B,none,98,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.3,178
+12,1,32416,THB,retail,40,24.0,4inch,5,mature,A,none,85,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.6,227
+12,1,36644,THB,retail,20,12.0,6inch,5,mature,AA,low,91,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.6,174
+12,1,23490,THB,retail,30,18.0,8inch,10,mature,B,low,92,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.8,477
+12,1,27013,THB,retail,80,48.0,8inch,9,mature,A,none,90,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.3,201
+12,1,30537,THB,retail,30,18.0,8inch,6,juvenile,AA,none,97,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,277
+12,1,23490,THB,retail,80,48.0,4inch,12,juvenile,B,none,92,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.1,467
+12,1,27013,THB,retail,60,36.0,3inch,10,juvenile,A,low,94,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.3,278
+12,1,30537,THB,retail,80,48.0,3inch,8,mature,AA,none,86,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,42
+12,1,28188,THB,retail,80,48.0,6inch,3,mature,B,none,97,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,265
+12,1,32416,THB,retail,80,48.0,6inch,8,mature,A,none,91,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.7,89
+12,1,36644,THB,retail,60,36.0,4inch,7,intermediate,AA,low,85,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,500
+13,2,14009,THB,retail,100,60.0,4inch,6,juvenile,B,low,98,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.7,425
+13,2,19332,THB,retail,40,24.0,4inch,12,intermediate,A,high,93,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.1,379
+13,2,18211,THB,retail,40,24.0,4inch,2,intermediate,AA,none,90,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.6,167
+13,2,14009,THB,retail,60,36.0,4inch,5,juvenile,B,high,88,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,177
+13,2,13425,THB,retail,80,48.0,4inch,5,intermediate,A,none,88,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,338
+13,2,18211,THB,retail,80,48.0,6inch,3,juvenile,AA,medium,96,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.4,147
+13,2,11674,THB,retail,20,12.0,8inch,9,juvenile,B,low,94,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,108
+13,2,13425,THB,retail,40,24.0,6inch,4,mature,A,low,96,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.1,275
+13,2,18211,THB,retail,30,18.0,6inch,3,mature,AA,high,95,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,310
+13,2,14009,THB,retail,20,12.0,6inch,7,juvenile,B,none,92,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.0,393
+13,2,19332,THB,retail,40,24.0,6inch,3,intermediate,A,medium,87,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.2,137
+13,2,21854,THB,retail,30,18.0,3inch,1,intermediate,AA,medium,95,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,499
+14,3,38215,THB,retail,30,18.0,8inch,5,mature,B,medium,90,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,64
+14,3,43947,THB,retail,20,12.0,8inch,11,intermediate,A,high,95,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.7,284
+14,3,41399,THB,retail,40,24.0,4inch,6,juvenile,AA,low,87,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.7,43
+14,3,26538,THB,retail,100,60.0,4inch,5,juvenile,B,low,87,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,368
+14,3,36622,THB,retail,40,24.0,6inch,3,mature,A,high,87,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.4,385
+14,3,34499,THB,retail,60,36.0,6inch,9,juvenile,AA,low,88,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.6,59
+14,3,31846,THB,retail,30,18.0,4inch,7,mature,B,medium,93,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.5,170
+14,3,36622,THB,retail,40,24.0,6inch,3,intermediate,A,high,91,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.0,35
+14,3,34499,THB,retail,40,24.0,4inch,12,mature,AA,none,85,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.1,397
+14,3,31846,THB,retail,60,36.0,3inch,10,intermediate,B,low,98,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.3,59
+14,3,36622,THB,retail,60,36.0,8inch,4,intermediate,A,none,87,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,32
+14,3,49679,THB,retail,40,24.0,6inch,12,mature,AA,medium,90,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.7,272
+15,4,33695,THB,retail,60,36.0,4inch,9,intermediate,B,low,91,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,402
+15,4,38749,THB,retail,100,60.0,4inch,9,mature,A,none,86,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.4,311
+15,4,43803,THB,retail,80,48.0,3inch,6,mature,AA,none,91,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.8,492
+15,4,28079,THB,retail,30,18.0,8inch,12,mature,B,none,98,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.2,240
+15,4,32291,THB,retail,80,48.0,6inch,3,mature,A,none,96,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,422
+15,4,36503,THB,retail,20,12.0,4inch,10,mature,AA,low,95,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.4,34
+15,4,28079,THB,retail,80,48.0,6inch,2,intermediate,B,low,94,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.7,454
+15,4,32291,THB,retail,60,36.0,3inch,9,mature,A,low,96,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,64
+15,4,36503,THB,retail,20,12.0,3inch,3,mature,AA,none,85,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.9,36
+15,4,33695,THB,retail,20,12.0,8inch,8,intermediate,B,low,92,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.9,385
+15,4,38749,THB,retail,40,24.0,3inch,5,mature,A,low,88,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.7,15
+15,4,43803,THB,retail,30,18.0,6inch,8,intermediate,AA,low,94,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.3,490
+16,1,18316,THB,retail,60,36.0,3inch,9,juvenile,B,low,93,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.8,345
+16,1,21063,THB,retail,20,12.0,4inch,3,juvenile,A,none,97,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.3,23
+16,1,23810,THB,retail,60,36.0,8inch,9,intermediate,AA,low,92,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.3,24
+16,1,15263,THB,retail,30,18.0,6inch,7,mature,B,none,85,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.5,194
+16,1,17552,THB,retail,30,18.0,3inch,11,juvenile,A,low,96,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.7,341
+16,1,19842,THB,retail,80,48.0,3inch,1,intermediate,AA,low,98,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.2,158
+16,1,15263,THB,retail,60,36.0,4inch,6,juvenile,B,none,91,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,322
+16,1,17552,THB,retail,30,18.0,4inch,9,mature,A,low,95,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.7,328
+16,1,19842,THB,retail,80,48.0,6inch,6,intermediate,AA,low,86,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.9,14
+16,1,18316,THB,retail,30,18.0,6inch,11,mature,B,none,88,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.7,375
+16,1,21063,THB,retail,20,12.0,6inch,9,mature,A,none,98,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,457
+16,1,23810,THB,retail,20,12.0,3inch,4,juvenile,AA,none,90,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.6,154
+17,2,15042,THB,retail,30,18.0,3inch,1,intermediate,B,low,85,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.1,334
+17,2,17298,THB,retail,30,18.0,8inch,6,mature,A,low,97,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.0,497
+17,2,19555,THB,retail,80,48.0,3inch,6,juvenile,AA,none,95,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.0,240
+17,2,12535,THB,retail,100,60.0,4inch,4,mature,B,low,90,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.9,90
+17,2,14415,THB,retail,100,60.0,3inch,2,mature,A,low,89,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.6,185
+17,2,16296,THB,retail,80,48.0,4inch,9,juvenile,AA,low,94,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.0,135
+17,2,12535,THB,retail,100,60.0,4inch,2,mature,B,none,91,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.3,303
+17,2,14415,THB,retail,60,36.0,3inch,1,mature,A,none,85,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.3,106
+17,2,16296,THB,retail,100,60.0,4inch,5,intermediate,AA,none,89,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.4,131
+17,2,15042,THB,retail,100,60.0,6inch,4,intermediate,B,low,86,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.6,453
+17,2,17298,THB,retail,80,48.0,3inch,10,juvenile,A,none,89,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.1,59
+17,2,19555,THB,retail,60,36.0,3inch,6,mature,AA,low,86,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.2,472
+18,3,25583,THB,retail,100,60.0,3inch,4,intermediate,B,none,85,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.2,362
+18,3,29420,THB,retail,20,12.0,4inch,6,intermediate,A,low,86,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.4,23
+18,3,33258,THB,retail,30,18.0,8inch,8,juvenile,AA,low,98,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.1,166
+18,3,21319,THB,retail,40,24.0,8inch,7,mature,B,low,96,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.6,479
+18,3,24517,THB,retail,80,48.0,6inch,3,intermediate,A,none,98,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.9,398
+18,3,27715,THB,retail,30,18.0,8inch,2,juvenile,AA,none,98,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.2,283
+18,3,21319,THB,retail,20,12.0,4inch,4,mature,B,none,90,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,466
+18,3,24517,THB,retail,60,36.0,3inch,3,juvenile,A,low,93,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.4,383
+18,3,27715,THB,retail,40,24.0,6inch,11,mature,AA,low,98,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,283
+18,3,25583,THB,retail,20,12.0,8inch,11,mature,B,none,85,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.3,122
+18,3,29420,THB,retail,100,60.0,3inch,5,juvenile,A,none,98,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.7,336
+18,3,33258,THB,retail,20,12.0,8inch,12,mature,AA,low,95,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.8,398
+19,4,2339,THB,retail,30,18.0,8inch,1,mature,B,low,92,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.1,11
+19,4,2690,THB,retail,20,12.0,6inch,8,mature,A,low,96,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.6,232
+19,4,3040,THB,retail,40,24.0,3inch,10,intermediate,AA,low,94,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.7,386
+19,4,1949,THB,retail,30,18.0,4inch,11,mature,B,none,89,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.6,439
+19,4,2241,THB,retail,30,18.0,8inch,12,intermediate,A,low,92,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.8,269
+19,4,2534,THB,retail,40,24.0,6inch,3,mature,AA,low,90,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.8,349
+19,4,1949,THB,retail,80,48.0,6inch,1,juvenile,B,low,98,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.2,168
+19,4,2241,THB,retail,60,36.0,4inch,9,intermediate,A,low,97,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.6,291
+19,4,2534,THB,retail,80,48.0,8inch,7,mature,AA,none,86,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.7,314
+19,4,2339,THB,retail,60,36.0,4inch,2,juvenile,B,low,96,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.4,188
+19,4,2690,THB,retail,20,12.0,8inch,5,intermediate,A,low,87,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,468
+19,4,3040,THB,retail,20,12.0,4inch,11,intermediate,AA,none,89,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.7,116
+20,1,4330,THB,retail,30,18.0,8inch,5,mature,B,medium,90,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.8,302
+20,1,4980,THB,retail,20,12.0,6inch,1,juvenile,A,medium,95,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.4,464
+20,1,5629,THB,retail,20,12.0,8inch,8,mature,AA,medium,86,1.2,May-Sep,Nov-Feb,Bangkok,city_na,1.0,facebook,marketplace,platform_verified,4.7,143
+20,1,3608,THB,retail,60,36.0,4inch,6,intermediate,B,high,91,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.4,474
+20,1,4150,THB,retail,60,36.0,8inch,4,intermediate,A,high,92,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.3,72
+20,1,3909,THB,retail,60,36.0,3inch,4,juvenile,AA,none,87,1.0,May-Sep,Nov-Feb,Bangkok,city_na,1.0,shopee,marketplace,platform_verified,4.2,335
+20,1,3007,THB,retail,40,24.0,8inch,2,mature,B,low,86,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.8,276
+20,1,3458,THB,retail,20,12.0,4inch,6,mature,A,none,88,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.0,261
+20,1,3909,THB,retail,80,48.0,3inch,2,mature,AA,none,90,1.0,May-Sep,Nov-Feb,Chiang Mai,city_na,1.0,lazada,marketplace,platform_verified,4.7,60
+20,1,3608,THB,retail,30,18.0,6inch,2,intermediate,B,low,96,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.3,305
+20,1,4980,THB,retail,40,24.0,3inch,4,intermediate,A,high,91,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.5,463
+20,1,4691,THB,retail,20,12.0,6inch,5,intermediate,AA,low,91,1.2,May-Sep,Nov-Feb,Pathum Thani,city_na,1.0,nursery_offline,nursery,platform_verified,4.1,312

@@ -1,0 +1,5 @@
+province,city,climate_data,soil_data,cultivation_data
+Bangkok,Bangkok,tropical_savanna_avg28C_RH70-80,loam_clay_mix_good_drain,shaded_balcony_greenhouse_common
+Chiang Mai,Mueang Chiang Mai,tropical_savanna_cooler_winter,loam_sandy,shadehouse_elevated
+Pathum Thani,Khlong Luang,hot_humid,peaty_loam,commercial_greenhouse_TC
+Nakhon Pathom,Mueang,hot_humid,loam,nursery_row_houses

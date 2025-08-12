@@ -1,0 +1,21 @@
+plant_id,date,social_media_metrics,search_trends,influencer_data,news_sentiment
+1,2025-08-12,"{'hashtag_count': 286304, 'engagement_rate': 3.39}",{'google_trend_index': 88},{'top_kols': 9},{'sentiment': 'neutral_to_positive'}
+2,2025-08-12,"{'hashtag_count': 252512, 'engagement_rate': 5.75}",{'google_trend_index': 68},{'top_kols': 14},{'sentiment': 'neutral_to_positive'}
+3,2025-08-12,"{'hashtag_count': 42535, 'engagement_rate': 5.51}",{'google_trend_index': 45},{'top_kols': 15},{'sentiment': 'neutral_to_positive'}
+4,2025-08-12,"{'hashtag_count': 5086, 'engagement_rate': 5.75}",{'google_trend_index': 82},{'top_kols': 8},{'sentiment': 'neutral_to_positive'}
+5,2025-08-12,"{'hashtag_count': 415805, 'engagement_rate': 0.6}",{'google_trend_index': 58},{'top_kols': 2},{'sentiment': 'neutral_to_positive'}
+6,2025-08-12,"{'hashtag_count': 130178, 'engagement_rate': 1.48}",{'google_trend_index': 47},{'top_kols': 13},{'sentiment': 'neutral_to_positive'}
+7,2025-08-12,"{'hashtag_count': 37014, 'engagement_rate': 1.95}",{'google_trend_index': 27},{'top_kols': 13},{'sentiment': 'neutral_to_positive'}
+8,2025-08-12,"{'hashtag_count': 457454, 'engagement_rate': 2.45}",{'google_trend_index': 31},{'top_kols': 0},{'sentiment': 'neutral_to_positive'}
+9,2025-08-12,"{'hashtag_count': 54649, 'engagement_rate': 4.56}",{'google_trend_index': 88},{'top_kols': 9},{'sentiment': 'neutral_to_positive'}
+10,2025-08-12,"{'hashtag_count': 155406, 'engagement_rate': 4.34}",{'google_trend_index': 27},{'top_kols': 5},{'sentiment': 'neutral_to_positive'}
+11,2025-08-12,"{'hashtag_count': 403900, 'engagement_rate': 1.18}",{'google_trend_index': 65},{'top_kols': 17},{'sentiment': 'neutral_to_positive'}
+12,2025-08-12,"{'hashtag_count': 409599, 'engagement_rate': 2.66}",{'google_trend_index': 31},{'top_kols': 1},{'sentiment': 'neutral_to_positive'}
+13,2025-08-12,"{'hashtag_count': 119665, 'engagement_rate': 3.84}",{'google_trend_index': 21},{'top_kols': 0},{'sentiment': 'neutral_to_positive'}
+14,2025-08-12,"{'hashtag_count': 329498, 'engagement_rate': 0.87}",{'google_trend_index': 59},{'top_kols': 4},{'sentiment': 'neutral_to_positive'}
+15,2025-08-12,"{'hashtag_count': 295666, 'engagement_rate': 2.59}",{'google_trend_index': 59},{'top_kols': 18},{'sentiment': 'neutral_to_positive'}
+16,2025-08-12,"{'hashtag_count': 372901, 'engagement_rate': 5.07}",{'google_trend_index': 68},{'top_kols': 2},{'sentiment': 'neutral_to_positive'}
+17,2025-08-12,"{'hashtag_count': 5142, 'engagement_rate': 0.58}",{'google_trend_index': 69},{'top_kols': 0},{'sentiment': 'neutral_to_positive'}
+18,2025-08-12,"{'hashtag_count': 471789, 'engagement_rate': 1.82}",{'google_trend_index': 88},{'top_kols': 0},{'sentiment': 'neutral_to_positive'}
+19,2025-08-12,"{'hashtag_count': 81465, 'engagement_rate': 5.54}",{'google_trend_index': 69},{'top_kols': 3},{'sentiment': 'neutral_to_positive'}
+20,2025-08-12,"{'hashtag_count': 172553, 'engagement_rate': 4.87}",{'google_trend_index': 42},{'top_kols': 2},{'sentiment': 'neutral_to_positive'}

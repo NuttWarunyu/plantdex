@@ -1,0 +1,61 @@
+plant_id,image_type,image_url,image_alt,image_order,is_primary
+1,main,https://images.unsplash.com/photo-plant-1,Monstera Thai Constellation - main,1,True
+1,gallery,https://images.unsplash.com/photo-plant-1-2,Monstera Thai Constellation - gallery 1,2,False
+1,guide,https://images.unsplash.com/photo-plant-1-3,Monstera Thai Constellation - care guide,3,False
+2,main,https://images.unsplash.com/photo-plant-2,Philodendron Pink Princess - main,1,True
+2,gallery,https://images.unsplash.com/photo-plant-2-2,Philodendron Pink Princess - gallery 1,2,False
+2,guide,https://images.unsplash.com/photo-plant-2-3,Philodendron Pink Princess - care guide,3,False
+3,main,https://images.unsplash.com/photo-plant-3,Alocasia Dragon Scale - main,1,True
+3,gallery,https://images.unsplash.com/photo-plant-3-2,Alocasia Dragon Scale - gallery 1,2,False
+3,guide,https://images.unsplash.com/photo-plant-3-3,Alocasia Dragon Scale - care guide,3,False
+4,main,https://images.unsplash.com/photo-plant-4,Anthurium Crystallinum - main,1,True
+4,gallery,https://images.unsplash.com/photo-plant-4-2,Anthurium Crystallinum - gallery 1,2,False
+4,guide,https://images.unsplash.com/photo-plant-4-3,Anthurium Crystallinum - care guide,3,False
+5,main,https://images.unsplash.com/photo-plant-5,Calathea White Fusion - main,1,True
+5,gallery,https://images.unsplash.com/photo-plant-5-2,Calathea White Fusion - gallery 1,2,False
+5,guide,https://images.unsplash.com/photo-plant-5-3,Calathea White Fusion - care guide,3,False
+6,main,https://images.unsplash.com/photo-plant-6,Monstera Albo Borsigiana - main,1,True
+6,gallery,https://images.unsplash.com/photo-plant-6-2,Monstera Albo Borsigiana - gallery 1,2,False
+6,guide,https://images.unsplash.com/photo-plant-6-3,Monstera Albo Borsigiana - care guide,3,False
+7,main,https://images.unsplash.com/photo-plant-7,Philodendron White Knight - main,1,True
+7,gallery,https://images.unsplash.com/photo-plant-7-2,Philodendron White Knight - gallery 1,2,False
+7,guide,https://images.unsplash.com/photo-plant-7-3,Philodendron White Knight - care guide,3,False
+8,main,https://images.unsplash.com/photo-plant-8,Philodendron Spiritus Sancti - main,1,True
+8,gallery,https://images.unsplash.com/photo-plant-8-2,Philodendron Spiritus Sancti - gallery 1,2,False
+8,guide,https://images.unsplash.com/photo-plant-8-3,Philodendron Spiritus Sancti - care guide,3,False
+9,main,https://images.unsplash.com/photo-plant-9,Anthurium Warocqueanum (Queen) - main,1,True
+9,gallery,https://images.unsplash.com/photo-plant-9-2,Anthurium Warocqueanum (Queen) - gallery 1,2,False
+9,guide,https://images.unsplash.com/photo-plant-9-3,Anthurium Warocqueanum (Queen) - care guide,3,False
+10,main,https://images.unsplash.com/photo-plant-10,Alocasia Frydek Variegata - main,1,True
+10,gallery,https://images.unsplash.com/photo-plant-10-2,Alocasia Frydek Variegata - gallery 1,2,False
+10,guide,https://images.unsplash.com/photo-plant-10-3,Alocasia Frydek Variegata - care guide,3,False
+11,main,https://images.unsplash.com/photo-plant-11,Syngonium Albo - main,1,True
+11,gallery,https://images.unsplash.com/photo-plant-11-2,Syngonium Albo - gallery 1,2,False
+11,guide,https://images.unsplash.com/photo-plant-11-3,Syngonium Albo - care guide,3,False
+12,main,https://images.unsplash.com/photo-plant-12,Syngonium Mojito - main,1,True
+12,gallery,https://images.unsplash.com/photo-plant-12-2,Syngonium Mojito - gallery 1,2,False
+12,guide,https://images.unsplash.com/photo-plant-12-3,Syngonium Mojito - care guide,3,False
+13,main,https://images.unsplash.com/photo-plant-13,Hoya Compacta Variegata - main,1,True
+13,gallery,https://images.unsplash.com/photo-plant-13-2,Hoya Compacta Variegata - gallery 1,2,False
+13,guide,https://images.unsplash.com/photo-plant-13-3,Hoya Compacta Variegata - care guide,3,False
+14,main,https://images.unsplash.com/photo-plant-14,Hoya Kerrii Variegata - main,1,True
+14,gallery,https://images.unsplash.com/photo-plant-14-2,Hoya Kerrii Variegata - gallery 1,2,False
+14,guide,https://images.unsplash.com/photo-plant-14-3,Hoya Kerrii Variegata - care guide,3,False
+15,main,https://images.unsplash.com/photo-plant-15,Scindapsus Treubii Moonlight - main,1,True
+15,gallery,https://images.unsplash.com/photo-plant-15-2,Scindapsus Treubii Moonlight - gallery 1,2,False
+15,guide,https://images.unsplash.com/photo-plant-15-3,Scindapsus Treubii Moonlight - care guide,3,False
+16,main,https://images.unsplash.com/photo-plant-16,Scindapsus Pictus Exotica - main,1,True
+16,gallery,https://images.unsplash.com/photo-plant-16-2,Scindapsus Pictus Exotica - gallery 1,2,False
+16,guide,https://images.unsplash.com/photo-plant-16-3,Scindapsus Pictus Exotica - care guide,3,False
+17,main,https://images.unsplash.com/photo-plant-17,Epipremnum Pinnatum Cebu Blue - main,1,True
+17,gallery,https://images.unsplash.com/photo-plant-17-2,Epipremnum Pinnatum Cebu Blue - gallery 1,2,False
+17,guide,https://images.unsplash.com/photo-plant-17-3,Epipremnum Pinnatum Cebu Blue - care guide,3,False
+18,main,https://images.unsplash.com/photo-plant-18,Epipremnum aureum Manjula - main,1,True
+18,gallery,https://images.unsplash.com/photo-plant-18-2,Epipremnum aureum Manjula - gallery 1,2,False
+18,guide,https://images.unsplash.com/photo-plant-18-3,Epipremnum aureum Manjula - care guide,3,False
+19,main,https://images.unsplash.com/photo-plant-19,Aglaonema Pictum Tricolor - main,1,True
+19,gallery,https://images.unsplash.com/photo-plant-19-2,Aglaonema Pictum Tricolor - gallery 1,2,False
+19,guide,https://images.unsplash.com/photo-plant-19-3,Aglaonema Pictum Tricolor - care guide,3,False
+20,main,https://images.unsplash.com/photo-plant-20,Caladium Carolyn Whorton Variegata - main,1,True
+20,gallery,https://images.unsplash.com/photo-plant-20-2,Caladium Carolyn Whorton Variegata - gallery 1,2,False
+20,guide,https://images.unsplash.com/photo-plant-20-3,Caladium Carolyn Whorton Variegata - care guide,3,False

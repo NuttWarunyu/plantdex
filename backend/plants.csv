@@ -1,0 +1,21 @@
+id,common_name,scientific_name,family,category,rarity_score,trending_score,light,water,humidity,temp_min_c,temp_max_c,soil,notes
+1,Monstera Thai Constellation,Monstera deliciosa 'Thai Constellation',Araceae,Aroid,8,9,bright_indirect,moderate,high,18,32,airy_aroid_mix,Variegated tissue culture cultivar from Thailand; stable cream variegation
+2,Philodendron Pink Princess,Philodendron erubescens 'Pink Princess',Araceae,Aroid,7,9,bright_indirect,moderate,high,18,32,airy_aroid_mix,Pink variegation; revert risk if low light
+3,Alocasia Dragon Scale,Alocasia baginda 'Dragon Scale',Araceae,Aroid,7,8,bright_indirect,evenly_moist,high,20,30,well_drained_peatlite,Sensitive to overwatering; dormancy possible
+4,Anthurium Crystallinum,Anthurium crystallinum,Araceae,Aroid,6,8,bright_indirect,moderate,high,18,30,chunky_epiphytic_mix,Velvet leaves; needs high humidity
+5,Calathea White Fusion,Goeppertia lietzei 'White Fusion',Marantaceae,Prayer Plant,7,8,medium_indirect,evenly_moist,high,18,28,peaty_loam,Prone to browning if low humidity
+6,Monstera Albo Borsigiana,Monstera deliciosa var. borsigiana 'Albo Variegata',Araceae,Aroid,9,8,bright_indirect,moderate,high,18,32,airy_aroid_mix,Sectoral variegation; unstable
+7,Philodendron White Knight,Philodendron 'White Knight',Araceae,Aroid,7,7,bright_indirect,moderate,high,18,30,airy_aroid_mix,"White variegation, red petioles"
+8,Philodendron Spiritus Sancti,Philodendron spiritus-sancti,Araceae,Aroid,10,7,bright_indirect,moderate,high,20,32,chunky_epiphytic_mix,Ultra-rare long-lobed species
+9,Anthurium Warocqueanum (Queen),Anthurium warocqueanum,Araceae,Aroid,9,8,bright_indirect,moderate,very_high,18,28,chunky_epiphytic_mix,Very high humidity requirement
+10,Alocasia Frydek Variegata,Alocasia micholitziana 'Frydek' variegata,Araceae,Aroid,8,8,bright_indirect,evenly_moist,high,20,30,well_drained_peatlite,Variegated velvet leaves
+11,Syngonium Albo,Syngonium podophyllum 'Albo Variegata',Araceae,Aroid,6,8,bright_indirect,moderate,medium_high,18,30,peaty_loam,Fast grower; variegation may revert
+12,Syngonium Mojito,Syngonium podophyllum 'Mojito',Araceae,Aroid,5,7,bright_indirect,moderate,medium_high,18,30,peaty_loam,Speckled variegation
+13,Hoya Compacta Variegata,Hoya carnosa compacta 'Variegata',Apocynaceae,Hoya,6,7,bright_indirect,light,medium,18,32,well_drained_cactus_mix,Slow grower; likes to dry between waterings
+14,Hoya Kerrii Variegata,Hoya kerrii variegata,Apocynaceae,Hoya,6,6,bright_indirect,light,medium,18,32,well_drained_cactus_mix,Heart-shaped leaves
+15,Scindapsus Treubii Moonlight,Scindapsus treubii 'Moonlight',Araceae,Aroid,5,7,medium_bright,moderate,medium,18,30,peaty_loam,Silver sheen leaves
+16,Scindapsus Pictus Exotica,Scindapsus pictus 'Exotica',Araceae,Aroid,4,6,medium_bright,moderate,medium,18,30,peaty_loam,Popular trailing silver pothos
+17,Epipremnum Pinnatum Cebu Blue,Epipremnum pinnatum 'Cebu Blue',Araceae,Aroid,4,6,medium_bright,moderate,medium,18,32,peaty_loam,Fenestrates when climbing
+18,Epipremnum aureum Manjula,Epipremnum aureum 'Manjula',Araceae,Aroid,5,7,medium_bright,moderate,medium,18,32,peaty_loam,TC cultivar with marbled variegation
+19,Aglaonema Pictum Tricolor,Aglaonema pictum 'Tricolor',Araceae,Aglaonema,8,7,medium_indirect,moderate,medium_high,18,30,peaty_loam,Camouflage pattern leaves
+20,Caladium Carolyn Whorton Variegata,Caladium 'Carolyn Whorton' variegata,Araceae,Caladium,6,6,bright_indirect,evenly_moist,high,20,32,rich_well_drained,Seasonal dormancy

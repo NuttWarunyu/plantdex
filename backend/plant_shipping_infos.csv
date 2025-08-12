@@ -1,0 +1,21 @@
+plant_id,fragility_level,packaging_requirements,max_shipping_distance,shipping_preparation,special_handling,temperature_control,humidity_control
+1,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+2,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+3,medium_high,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+4,high,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+5,medium_high,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+6,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+7,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+8,high,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+9,high,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+10,medium_high,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+11,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+12,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+13,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+14,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+15,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+16,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+17,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+18,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+19,medium,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
+20,medium_high,"plastic_pot_taped, cocopeat_wrap, stake_support, ventilated_box",1500,"withhold_water_24h, secure_nodes, wrap_foliage","handle_upright, avoid_leaf_crush",cool_pack_if>32C,moist_wrap
