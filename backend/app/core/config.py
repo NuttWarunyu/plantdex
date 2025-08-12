@@ -24,7 +24,13 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     
     # CORS
-    BACKEND_CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8000"]
+    BACKEND_CORS_ORIGINS: List[str] = [
+        "http://localhost:3000", 
+        "http://localhost:8000",
+        "https://plantdex-frontend-mapoh682q-nuttwarunyus-projects.vercel.app",
+        "https://plantdex-frontend-git-main-nuttwarunyus-projects.vercel.app",
+        "https://plantdex-frontend-chbf9j6n4-nuttwarunyus-projects.vercel.app"
+    ]
     
     # Production settings
     @property
