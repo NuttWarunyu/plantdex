@@ -31,6 +31,27 @@ class Settings(BaseSettings):
         "https://plantdex-frontend-git-main-nuttwarunyus-projects.vercel.app",
         "https://plantdex-frontend-chbf9j6n4-nuttwarunyus-projects.vercel.app"
     ]
+
+    @property
+    def cors_origins(self) -> List[str]:
+        """Parse CORS origins from environment variable or use default"""
+        if hasattr(self, '_cors_origins'):
+            return self._cors_origins
+        
+        # Try to get from environment variable
+        cors_env = os.getenv("BACKEND_CORS_ORIGINS")
+        if cors_env:
+            try:
+                # Parse comma-separated string
+                origins = [origin.strip() for origin in cors_env.split(",")]
+                self._cors_origins = origins
+                return origins
+            except Exception:
+                pass
+        
+        # Fallback to default
+        self._cors_origins = self.BACKEND_CORS_ORIGINS
+        return self._cors_origins
     
     # Production settings
     @property
