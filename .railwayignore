@@ -1,0 +1,9 @@
+# Ignore files for Railway deployment
+frontend/
+node_modules/
+.git/
+.env
+*.log
+__pycache__/
+*.pyc
+.DS_Store 
