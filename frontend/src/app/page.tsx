@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from "../lib/language-context";
+import { useLanguage } from "@/lib/language-context";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
