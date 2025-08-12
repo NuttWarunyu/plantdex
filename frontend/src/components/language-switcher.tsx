@@ -1,11 +1,13 @@
 "use client";
 
-import { useLanguage } from "../lib/language-context";
+// import { useLanguage } from "../lib/language-context";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 
 export function LanguageSwitcher() {
-  const { language, setLanguage } = useLanguage();
+  // const { language, setLanguage } = useLanguage(); // ปิดชั่วคราว
+  const language: string = 'th'; // ตั้งเป็นไทย
+  const setLanguage = (lang: string) => {}; // ฟังก์ชันเปล่า
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'th' : 'en');

@@ -3,7 +3,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "../../lib/language-context";
+// import { useLanguage } from "../../lib/language-context";
+
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -14,7 +15,25 @@ import {
 } from "lucide-react";
 
 export default function MarketPage() {
-  const { t } = useLanguage();
+  // const { t } = useLanguage(); // ปิดชั่วคราว
+  const t = (key: string) => {
+    // Hardcode ภาษาไทย
+    const thaiTexts: Record<string, string> = {
+      'market.title': 'ตลาดพืช',
+      'market.subtitle': 'ติดตามราคาและเทรนด์พืชในตลาด',
+      'market.lastUpdated': 'อัปเดตล่าสุด',
+      'market.exportData': 'ส่งออกข้อมูล',
+      'market.plantPriceIndex.title': 'ดัชนีราคาพืช',
+      'market.plantPriceIndex.updated': 'อัปเดตแล้ว',
+      'market.plantPriceIndex.overall': 'รวมทั้งหมด',
+      'market.plantPriceIndex.indoor': 'ในร่ม',
+      'market.plantPriceIndex.outdoor': 'กลางแจ้ง',
+      'market.plantPriceIndex.fromLastWeek': 'จากสัปดาห์ที่แล้ว',
+      'market.plantPriceIndex.succulent': 'พืชอวบน้ำ',
+      'market.plantPriceIndex.rare': 'หายาก'
+    };
+    return thaiTexts[key] || key;
+  };
   
   return (
     <div className="min-h-screen bg-gray-50">

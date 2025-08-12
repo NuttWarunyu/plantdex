@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { useLanguage } from "../../lib/language-context";
+// import { useLanguage } from "../../lib/language-context";
 import { 
   Search, 
   BarChart3, 
@@ -15,7 +15,20 @@ import {
 } from "lucide-react";
 
 export function Header() {
-  const { t } = useLanguage();
+  // const { t } = useLanguage(); // ปิดชั่วคราว
+  const t = (key: string) => {
+    // Hardcode ภาษาไทย
+    const thaiTexts: Record<string, string> = {
+      'header.home': 'หน้าแรก',
+      'header.market': 'ตลาด',
+      'header.plants': 'พืช',
+      'header.trends': 'เทรนด์',
+      'header.exchange': 'แลกเปลี่ยน',
+      'header.pricing': 'ราคา',
+      'header.search.placeholder': 'ค้นหาพืช...'
+    };
+    return thaiTexts[key] || key;
+  };
   
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

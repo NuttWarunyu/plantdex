@@ -1,11 +1,31 @@
 "use client";
 
-import { useLanguage } from "../../lib/language-context";
+// import { useLanguage } from "../../lib/language-context";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function TestLanguagePage() {
-  const { t, language, setLanguage } = useLanguage();
+  // const { t, language, setLanguage } = useLanguage(); // ปิดชั่วคราว
+  const language: string = 'th'; // ตั้งเป็นไทย
+  const setLanguage = (lang: string) => {}; // ฟังก์ชันเปล่า
+  const t = (key: string) => {
+    // Hardcode ภาษาไทย
+    const thaiTexts: Record<string, string> = {
+      'test.title': 'หน้าทดสอบภาษา',
+      'test.description': 'หน้านี้สำหรับทดสอบการทำงานของระบบภาษา',
+      'test.current': 'ภาษาปัจจุบัน',
+      'test.change': 'เปลี่ยนภาษา',
+      'header.nav.market': 'ตลาด',
+      'header.nav.plants': 'พืช',
+      'header.nav.trends': 'เทรนด์',
+      'header.nav.pricing': 'ราคา',
+      'header.cart': 'ตะกร้า',
+      'header.signIn': 'เข้าสู่ระบบ',
+      'header.getStarted': 'เริ่มต้นใช้งาน',
+      'home.features.subtitle': 'ทุกสิ่งที่คุณต้องการสำหรับการติดตามตลาดพืช'
+    };
+    return thaiTexts[key] || key;
+  };
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'th' : 'en');

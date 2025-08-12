@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useLanguage } from "../../lib/language-context";
+// import { useLanguage } from "../../lib/language-context";
 import { marketApi, plantsApi, MarketTrend, PlantPriceIndex, TrendingPlant, Plant, handleApiError } from "../../lib/api";
 import { 
   TrendingUp, 
@@ -20,7 +20,19 @@ import {
 } from "lucide-react";
 
 export default function TrendsPage() {
-  const { t } = useLanguage();
+  // const { t } = useLanguage(); // ปิดชั่วคราว
+  const t = (key: string) => {
+    // Hardcode ภาษาไทย
+    const thaiTexts: Record<string, string> = {
+      'trends.title': 'เทรนด์ตลาด',
+      'trends.subtitle': 'ติดตามเทรนด์และความเคลื่อนไหวในตลาดพืช',
+      'trends.period.week': 'สัปดาห์',
+      'trends.period.month': 'เดือน',
+      'trends.period.quarter': 'ไตรมาส',
+      'trends.period.year': 'ปี'
+    };
+    return thaiTexts[key] || key;
+  };
   const [timeframe, setTimeframe] = useState("4weeks");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
