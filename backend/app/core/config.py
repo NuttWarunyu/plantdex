@@ -23,17 +23,8 @@ class Settings(BaseSettings):
     # API
     API_V1_STR: str = "/api/v1"
     
-    # CORS
-    BACKEND_CORS_ORIGINS: List[str] = [
-        "http://localhost:3000", 
-        "http://localhost:8000",
-        "https://plantdex-frontend.vercel.app",
-        "https://plantdex-frontend-git-main-nuttwarunyus-projects.vercel.app",
-        "https://plantdex-frontend-mapoh682q-nuttwarunyus-projects.vercel.app"
-    ]
-
-    # Remove this from Pydantic model - we'll handle it manually
-    # BACKEND_CORS_ORIGINS: List[str] = Field(default_factory=list)
+    # CORS - handled manually via cors_origins property
+    # No Pydantic field for BACKEND_CORS_ORIGINS to avoid parsing errors
 
     @property
     def cors_origins(self) -> List[str]:
@@ -65,8 +56,15 @@ class Settings(BaseSettings):
                 print(f"Warning: Failed to parse BACKEND_CORS_ORIGINS: {e}")
                 print(f"Using default CORS origins")
         
-        # Fallback to default
-        self._cors_origins = self.BACKEND_CORS_ORIGINS
+        # Fallback to default hardcoded origins
+        default_origins = [
+            "http://localhost:3000", 
+            "http://localhost:8000",
+            "https://plantdex-frontend.vercel.app",
+            "https://plantdex-frontend-git-main-nuttwarunyus-projects.vercel.app",
+            "https://plantdex-frontend-mapoh682q-nuttwarunyus-projects.vercel.app"
+        ]
+        self._cors_origins = default_origins
         print(f"DEBUG: Using default origins: {self._cors_origins}")
         return self._cors_origins
     
