@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "../../lib/language-context";
+import { marketApi, PlantPriceIndex, handleApiError } from "../../lib/api";
+import { useState, useEffect } from "react";
 
 import { 
   TrendingUp, 
@@ -16,6 +18,27 @@ import {
 
 export default function MarketPage() {
   const { t } = useLanguage();
+  const [priceIndices, setPriceIndices] = useState<PlantPriceIndex[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch price indices from API
+  useEffect(() => {
+    const fetchPriceIndices = async () => {
+      try {
+        setLoading(true);
+        const response = await marketApi.getPriceIndex();
+        setPriceIndices(response.price_indices);
+      } catch (err) {
+        const errorMessage = handleApiError(err);
+        setError(errorMessage);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPriceIndices();
+  }, []);
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -44,12 +67,28 @@ export default function MarketPage() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Plant Price Index */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">{t('market.plantPriceIndex.title')}</h2>
-            <Badge variant="secondary">{t('market.plantPriceIndex.updated')}</Badge>
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">กำลังโหลดข้อมูล...</p>
           </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
+            <p className="text-red-800">เกิดข้อผิดพลาด: {error}</p>
+          </div>
+        )}
+
+        {/* Plant Price Index */}
+        {!loading && !error && (
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">{t('market.plantPriceIndex.title')}</h2>
+              <Badge variant="secondary">{t('market.plantPriceIndex.updated')}</Badge>
+            </div>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <Card>
@@ -113,6 +152,7 @@ export default function MarketPage() {
             </Card>
           </div>
         </div>
+        )}
 
         {/* Trending Plants */}
         <div className="mb-8">

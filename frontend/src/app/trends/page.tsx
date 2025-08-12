@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from "../../lib/language-context";
-// import { marketApi, plantsApi, MarketTrend, PlantPriceIndex, TrendingPlant, Plant, handleApiError } from "../../lib/api";
+import { marketApi, plantsApi, MarketTrend, PlantPriceIndex, TrendingPlant, Plant, handleApiError } from "../../lib/api";
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -22,112 +22,46 @@ import {
 export default function TrendsPage() {
   const { t } = useLanguage();
   
-  // Mock data types
-  interface MarketTrend {
-    id: number;
-    plant_id: number;
-    trend_direction: string;
-    confidence_score: number;
-    created_at: string;
-    week_start: string;
-    demand_score: number;
-  }
-  
-  interface PlantPriceIndex {
-    id: number;
-    category: string;
-    value: number;
-    change_percentage: number;
-    period: string;
-    overall_index: number;
-    index_date: string;
-    philodendron_index: number;
-    monstera_index: number;
-    alocasia_index: number;
-  }
-  
-  interface TrendingPlant {
-    id: number;
-    plant_id: number;
-    trend_score: number;
-    search_volume: number;
-    price_change: number;
-    rank: number;
-    popularity_score: number;
-    growth_rate: number;
-    week_start: string;
-  }
-  
-  interface Plant {
-    id: number;
-    common_name_th: string;
-    category: string;
-    is_trending: boolean;
-  }
-  
-  // Mock data
-  const mockMarketTrends: MarketTrend[] = [
-    {
-      id: 1,
-      plant_id: 1,
-      trend_direction: 'up',
-      confidence_score: 0.85,
-      created_at: '2024-01-15',
-      week_start: '2024-01-15',
-      demand_score: 8
-    }
-  ];
-  
-  const mockPriceIndices: PlantPriceIndex[] = [
-    {
-      id: 1,
-      category: 'indoor',
-      value: 1250.50,
-      change_percentage: 2.3,
-      period: 'week',
-      overall_index: 1250.50,
-      index_date: '2024-01-15',
-      philodendron_index: 1280.75,
-      monstera_index: 1350.25,
-      alocasia_index: 1180.50
-    }
-  ];
-  
-  const mockTrendingPlants: TrendingPlant[] = [
-    {
-      id: 1,
-      plant_id: 1,
-      trend_score: 0.92,
-      search_volume: 1500,
-      price_change: 5.2,
-      rank: 1,
-      popularity_score: 9,
-      growth_rate: 15.5,
-      week_start: '2024-01-15'
-    }
-  ];
-  
-  const mockPlants: Plant[] = [
-    {
-      id: 1,
-      common_name_th: 'ฟิโลเดนดรอน',
-      category: 'philodendron',
-      is_trending: true
-    }
-  ];
-  
   const [timeframe, setTimeframe] = useState("4weeks");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  const [marketTrends, setMarketTrends] = useState<MarketTrend[]>(mockMarketTrends);
-  const [priceIndices, setPriceIndices] = useState<PlantPriceIndex[]>(mockPriceIndices);
-  const [trendingPlants, setTrendingPlants] = useState<TrendingPlant[]>(mockTrendingPlants);
-  const [plants, setPlants] = useState<Plant[]>(mockPlants);
+  const [marketTrends, setMarketTrends] = useState<MarketTrend[]>([]);
+  const [priceIndices, setPriceIndices] = useState<PlantPriceIndex[]>([]);
+  const [trendingPlants, setTrendingPlants] = useState<TrendingPlant[]>([]);
+  const [plants, setPlants] = useState<Plant[]>([]);
 
-  // Mock data loaded
+  // Fetch data from API
   useEffect(() => {
-    // Data already loaded from mock data
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch market trends
+        const trendsResponse = await marketApi.getTrends({ limit: 10 });
+        setMarketTrends(trendsResponse.trends);
+        
+        // Fetch price indices
+        const priceResponse = await marketApi.getPriceIndex();
+        setPriceIndices(priceResponse.price_indices);
+        
+        // Fetch trending plants
+        const trendingResponse = await marketApi.getTrendingPlants({ limit: 10 });
+        setTrendingPlants(trendingResponse.trending_plants);
+        
+        // Fetch plants for reference
+        const plantsData = await plantsApi.getAll({ limit: 100 });
+        setPlants(plantsData);
+        
+      } catch (err) {
+        const errorMessage = handleApiError(err);
+        setError(errorMessage);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [timeframe]);
 
   const getPlantName = (plantId: number): string => {

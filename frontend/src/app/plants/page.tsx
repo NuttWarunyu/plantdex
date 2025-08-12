@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from "../../lib/language-context";
-// import { plantsApi, Plant, PlantPrice, handleApiError } from "../../lib/api";
+import { plantsApi, Plant, PlantPrice, handleApiError } from "../../lib/api";
 import { 
   Search, 
   Filter, 
@@ -25,52 +25,29 @@ export default function PlantsPage() {
   const [selectedCareLevel, setSelectedCareLevel] = useState("all");
   const [selectedTrending, setSelectedTrending] = useState("all");
   
-  // Mock data types
-  interface Plant {
-    id: number;
-    common_name_th: string;
-    common_name_en: string;
-    scientific_name: string;
-    category: string;
-    care_level: string;
-    image_url?: string;
-    is_trending?: boolean;
-    description_th?: string;
-    description_en?: string;
-  }
-  
-  // Mock data
-  const mockPlants: Plant[] = [
-    {
-      id: 1,
-      common_name_th: 'ฟิโลเดนดรอน',
-      common_name_en: 'Philodendron',
-      scientific_name: 'Philodendron sp.',
-      category: 'philodendron',
-      care_level: 'easy',
-      image_url: 'https://via.placeholder.com/300x200?text=Philodendron',
-      is_trending: true,
-      description_th: 'พืชในร่มที่ดูแลง่าย เหมาะสำหรับผู้เริ่มต้น',
-      description_en: 'Easy-care indoor plant, perfect for beginners'
-    },
-    {
-      id: 2,
-      common_name_th: 'มอนสเตอร่า',
-      common_name_en: 'Monstera',
-      scientific_name: 'Monstera deliciosa',
-      category: 'monstera',
-      care_level: 'moderate',
-      image_url: 'https://via.placeholder.com/300x200?text=Monstera',
-      is_trending: true,
-      description_th: 'พืชที่มีใบสวยงาม เป็นที่นิยมในปัจจุบัน',
-      description_en: 'Beautiful leaf plant, currently trending'
-    }
-  ];
-  
-  const [plants, setPlants] = useState<Plant[]>(mockPlants);
-  const [filteredPlants, setFilteredPlants] = useState<Plant[]>(mockPlants);
-  const [loading, setLoading] = useState(false);
+  const [plants, setPlants] = useState<Plant[]>([]);
+  const [filteredPlants, setFilteredPlants] = useState<Plant[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Fetch plants from API
+  useEffect(() => {
+    const fetchPlants = async () => {
+      try {
+        setLoading(true);
+        const plantsData = await plantsApi.getAll();
+        setPlants(plantsData);
+        setFilteredPlants(plantsData);
+      } catch (err) {
+        const errorMessage = handleApiError(err);
+        setError(errorMessage);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlants();
+  }, []);
 
   // Filter plants based on search query
   useEffect(() => {
