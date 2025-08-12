@@ -1,6 +1,6 @@
 "use client";
 
-// import { useLanguage } from "../../lib/language-context";
+import { useLanguage } from "../../lib/language-context";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -26,18 +26,7 @@ import { useState } from "react";
 type UserRole = 'seller' | 'buyer';
 
 export default function PlantExchangePage() {
-  // const { t } = useLanguage(); // ปิดชั่วคราว
-  const t = (key: string) => {
-    // Hardcode ภาษาไทย
-    const thaiTexts: Record<string, string> = {
-      'exchange.title': 'แลกเปลี่ยนพืช',
-      'exchange.subtitle': 'แลกเปลี่ยนพืชกับผู้ปลูกคนอื่น',
-      'exchange.login.required': 'กรุณาเข้าสู่ระบบเพื่อแลกเปลี่ยนพืช',
-      'exchange.login.button': 'เข้าสู่ระบบ',
-      'exchange.register.button': 'สมัครสมาชิก'
-    };
-    return thaiTexts[key] || key;
-  };
+  const { t } = useLanguage();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // TODO: Replace with actual auth state
   const [userRole, setUserRole] = useState<UserRole>('seller');
 

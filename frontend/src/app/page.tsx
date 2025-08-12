@@ -1,29 +1,11 @@
 "use client";
 
-// import { useLanguage } from "../lib/language-context";
+import { useLanguage } from "../lib/language-context";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function HomePage() {
-  // const { language, setLanguage, t } = useLanguage(); // ปิดชั่วคราว
-  const language: string = 'th'; // ตั้งเป็นไทย
-  const setLanguage = (lang: string) => {}; // ฟังก์ชันเปล่า
-  const t = (key: string) => {
-    // Hardcode ภาษาไทย
-    const thaiTexts: Record<string, string> = {
-      'home.hero.title': 'PlantDex',
-      'home.hero.subtitle': 'ตลาดหุ้นสำหรับพืช - ข้อมูลราคาแบบเรียลไทม์ เทรนด์ และข้อมูลตลาดสำหรับอุตสาหกรรมพืชในประเทศไทย',
-      'home.hero.explore': 'สำรวจตลาด',
-      'home.hero.demo': 'ดูตัวอย่าง',
-      'home.features.title': 'คุณสมบัติหลัก',
-      'home.features.subtitle': 'ทุกสิ่งที่คุณต้องการสำหรับการติดตามตลาดพืช',
-      'home.features.marketData.title': 'ข้อมูลตลาด',
-      'home.features.marketData.description': 'ติดตามราคาและเทรนด์พืชในตลาดแบบเรียลไทม์',
-      'home.features.plantDatabase.title': 'ฐานข้อมูลพืช',
-      'home.features.plantDatabase.description': 'ข้อมูลครบถ้วนเกี่ยวกับพืชทุกชนิด'
-    };
-    return thaiTexts[key] || key;
-  };
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">

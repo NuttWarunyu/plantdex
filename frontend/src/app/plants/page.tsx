@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-// import { useLanguage } from "../../lib/language-context";
+import { useLanguage } from "../../lib/language-context";
 // import { plantsApi, Plant, PlantPrice, handleApiError } from "../../lib/api";
 import { 
   Search, 
@@ -19,21 +19,7 @@ import {
 } from "lucide-react";
 
 export default function PlantsPage() {
-  // const { t } = useLanguage(); // ปิดชั่วคราว
-  const t = (key: string) => {
-    // Hardcode ภาษาไทย
-    const thaiTexts: Record<string, string> = {
-      'plants.title': 'ฐานข้อมูลพืช',
-      'plants.subtitle': 'ค้นหาและดูข้อมูลพืชทุกชนิด',
-      'plants.search.placeholder': 'ค้นหาพืช...',
-      'plants.filter.all': 'ทั้งหมด',
-      'plants.filter.indoor': 'ในร่ม',
-      'plants.filter.outdoor': 'กลางแจ้ง',
-      'plants.filter.succulent': 'พืชอวบน้ำ',
-      'plants.filter.rare': 'หายาก'
-    };
-    return thaiTexts[key] || key;
-  };
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedCareLevel, setSelectedCareLevel] = useState("all");

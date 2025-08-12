@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
-// import { LanguageProvider } from "../lib/language-context";
+import { LanguageProvider } from "../lib/language-context";
 
 const notoSans = Noto_Sans({ 
   subsets: ["latin", "latin-ext"],
@@ -22,14 +22,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-lang="en">
+    <html lang="th" data-lang="th">
       <body className={`${notoSans.className} ${notoSans.variable}`}>
-        <div className="min-h-screen bg-background">
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-        </div>
+        <LanguageProvider>
+          <div className="min-h-screen bg-background">
+            <Header />
+            <main className="flex-1">
+              {children}
+            </main>
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );
