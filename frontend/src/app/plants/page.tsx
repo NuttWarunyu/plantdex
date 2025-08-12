@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useLanguage } from "@/lib/language-context";
-import { plantsApi, Plant, PlantPrice, handleApiError } from "@/lib/api";
+import { useLanguage } from "../../lib/language-context";
+import { plantsApi, Plant, PlantPrice, handleApiError } from "../../lib/api";
 import { 
   Search, 
   Filter, 

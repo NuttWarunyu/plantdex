@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "../../lib/language-context";
 import { 
   Search, 
   BarChart3, 
