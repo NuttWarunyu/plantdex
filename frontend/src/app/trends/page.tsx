@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useLanguage } from "@/lib/language-context";
-import { marketApi, plantsApi, MarketTrend, PlantPriceIndex, TrendingPlant, Plant, handleApiError } from "@/lib/api";
+import { useLanguage } from "../../lib/language-context";
+import { marketApi, plantsApi, MarketTrend, PlantPriceIndex, TrendingPlant, Plant, handleApiError } from "../../lib/api";
 import { 
   TrendingUp, 
   TrendingDown, 
