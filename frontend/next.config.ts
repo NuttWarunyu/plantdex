@@ -1,11 +1,22 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  webpack: (config) => {
+  experimental: {
+    esmExternals: true,
+  },
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': require('path').resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src'),
     };
+    
+    // Ensure proper module resolution
+    config.resolve.modules = [
+      path.resolve(__dirname, 'src'),
+      'node_modules',
+    ];
+    
     return config;
   },
 };
