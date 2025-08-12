@@ -65,11 +65,16 @@ export default function PlantsPage() {
 
   const getCategoryLabel = (category: string) => {
     const categoryMap: { [key: string]: string } = {
-      'philodendron': 'Philodendron',
-      'monstera': 'Monstera',
-      'alocasia': 'Alocasia',
-      'anthurium': 'Anthurium',
-      'calathea': 'Calathea',
+      'indoor': 'ไม้ในร่ม',
+      'outdoor': 'ไม้นอกบ้าน',
+      'tropical': 'ไม้เมืองร้อน',
+      'succulent': 'ไม้อวบน้ำ',
+      'cactus': 'กระบองเพชร',
+      'orchid': 'กล้วยไม้',
+      'herb': 'สมุนไพร',
+      'tree': 'ไม้ยืนต้น',
+      'shrub': 'ไม้พุ่ม',
+      'vine': 'ไม้เลื้อย',
       'other': 'อื่นๆ'
     };
     return categoryMap[category] || category;
@@ -246,12 +251,10 @@ export default function PlantsPage() {
                     <CardTitle className="text-lg leading-tight">
                       {plant.common_name_th}
                     </CardTitle>
-                    <CardDescription className="text-sm italic">
+                    <CardDescription className="text-sm italic text-gray-600">
                       {plant.scientific_name}
                     </CardDescription>
-                    <CardDescription className="text-sm text-gray-500">
-                      {plant.common_name_en}
-                    </CardDescription>
+                    {/* Remove duplicate English name display */}
                   </div>
                   <Badge variant="outline" className="text-xs">
                     {getCareLevelLabel(plant.care_level)}
