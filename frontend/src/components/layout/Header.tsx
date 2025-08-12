@@ -10,7 +10,6 @@ import {
   Search, 
   BarChart3, 
   User, 
-  ShoppingCart,
   Menu,
   Upload
 } from "lucide-react";
@@ -63,10 +62,6 @@ export function Header() {
             
             {/* Desktop Buttons */}
             <div className="hidden md:flex items-center space-x-2">
-              <Button variant="ghost" size="sm" className="btn-text whitespace-nowrap">
-                <ShoppingCart className="h-4 w-4 mr-2 flex-shrink-0" />
-                <span className="flexible-text">{t('header.cart')}</span>
-              </Button>
               <Button variant="outline" size="sm" className="btn-text whitespace-nowrap">
                 <User className="h-4 w-4 mr-2 flex-shrink-0" />
                 <span className="flexible-text">{t('header.signIn')}</span>
@@ -78,9 +73,6 @@ export function Header() {
             
             {/* Mobile Buttons */}
             <div className="md:hidden flex items-center space-x-2">
-              <Button variant="ghost" size="sm" className="px-2">
-                <ShoppingCart className="h-4 w-4" />
-              </Button>
               <Button variant="outline" size="sm" className="px-2">
                 <User className="h-4 w-4" />
               </Button>

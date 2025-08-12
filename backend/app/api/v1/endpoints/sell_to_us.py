@@ -4,9 +4,9 @@ from typing import List, Optional
 from datetime import datetime
 import json
 
-from ...core.database import get_db
-from ...models.sell_to_us import PlantSubmission, PlantSubmissionStatus
-from ...schemas.sell_to_us import PlantSubmissionCreate, PlantSubmissionResponse, PlantSubmissionUpdate
+from app.core.database import get_db
+from app.models.sell_to_us import PlantSubmission, PlantSubmissionStatus
+from app.schemas.sell_to_us import PlantSubmissionCreate, PlantSubmissionResponse, PlantSubmissionUpdate
 
 router = APIRouter()
 
