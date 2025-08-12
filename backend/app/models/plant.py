@@ -15,6 +15,16 @@ class PlantCategory(str, enum.Enum):
     HERB = "herb"
     FRUIT = "fruit"
     ORNAMENTAL = "ornamental"
+    # Add missing values for CSV import
+    ORCHID = "orchid"
+    TREE = "tree"
+    SHRUB = "shrub"
+    VINE = "vine"
+    GARDEN = "garden"
+    WATER = "water"
+    ROCK = "rock"
+    BORDER = "border"
+    OTHER = "other"
 
 class CareLevel(str, enum.Enum):
     EASY = "easy"

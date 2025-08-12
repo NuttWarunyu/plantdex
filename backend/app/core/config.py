@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     
     # CORS - handled manually via cors_origins property
     # No Pydantic field for BACKEND_CORS_ORIGINS to avoid parsing errors
+    backend_cors_origins: Optional[str] = None  # Add this field to fix validation error
 
     @property
     def cors_origins(self) -> List[str]:
