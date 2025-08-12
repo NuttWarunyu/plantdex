@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "../../lib/language-context";
 import { 
   TrendingUp, 
   TrendingDown, 
