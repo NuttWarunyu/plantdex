@@ -18,7 +18,7 @@ async def import_plants_from_csv(
         print("🌱 เริ่ม import ข้อมูลพืชจาก CSV...")
         
         # อ่านข้อมูลจาก CSV
-        csv_file = 'plant_data/plantdex_master_1-118.csv'
+        csv_file = 'backend/plant_data/plantdex_master_1-118.csv'
         
         if not os.path.exists(csv_file):
             raise HTTPException(status_code=404, detail=f"CSV file not found: {csv_file}")
