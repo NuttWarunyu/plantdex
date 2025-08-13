@@ -33,7 +33,7 @@ async def import_plants_from_csv(
             'orchid': PlantCategory.ORCHID,
             'herb': PlantCategory.HERB,
             'tree': PlantCategory.TREE,
-            'shrub': PlantCategory.SHRUB,
+            'shrub': PlantCategory.SHRUB,  # เพิ่ม shrub
             'vine': PlantCategory.VINE,
             'garden': PlantCategory.GARDEN,
             'water': PlantCategory.WATER,
@@ -83,6 +83,9 @@ async def import_plants_from_csv(
                     csv_category = row['category'].lower()
                     mapped_category = category_mapping.get(csv_category, PlantCategory.OTHER)
                     
+                    # Debug logging
+                    print(f"DEBUG: CSV category: '{csv_category}' -> Mapped: {mapped_category}")
+                    
                     # แปลงค่า care_level
                     csv_care_level = row['care_level'].lower()
                     mapped_care_level = care_level_mapping.get(csv_care_level, CareLevel.MODERATE)
@@ -116,6 +119,8 @@ async def import_plants_from_csv(
                     
                 except Exception as e:
                     print(f"❌ เกิดข้อผิดพลาดกับพืช: {row.get('scientific_name', 'Unknown')} - {e}")
+                    print(f"  Category: {row.get('category', 'N/A')}")
+                    print(f"  Care Level: {row.get('care_level', 'N/A')}")
                     continue
             
             db.commit()
