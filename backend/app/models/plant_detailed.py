@@ -209,8 +209,8 @@ class PlantPriceDetailed(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     
     # Relationships
-    plant = relationship("Plant")
-    seller = relationship("Seller")
+    plant = relationship("Plant", overlaps="prices_detailed")
+    seller = relationship("Seller", overlaps="prices_detailed")
 
 # ===== SELLER DETAILED MODELS =====
 

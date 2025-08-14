@@ -62,7 +62,7 @@ class Seller(Base):
     warranty_policies = relationship("SellerWarrantyPolicy", back_populates="seller")
     payment_policies = relationship("SellerPaymentPolicy", back_populates="seller")
     reviews = relationship("SellerReview", back_populates="seller")
-    prices_detailed = relationship("PlantPriceDetailed")
+    prices_detailed = relationship("PlantPriceDetailed", overlaps="seller")
     
     def __repr__(self):
         return f"<Seller(id={self.id}, business_name='{self.business_name}', user_id={self.user_id})>"
