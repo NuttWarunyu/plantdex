@@ -76,18 +76,21 @@ class AIService {
 
   private createValidationPrompt(csvData: PlantDataRow[]): string {
     const sampleData = csvData.slice(0, 3); // ใช้แค่ 3 แถวแรกเป็นตัวอย่าง
+    const headers = Object.keys(csvData[0] || {});
     
     return `
+    คุณเป็น AI ที่เชี่ยวชาญในการตรวจสอบข้อมูลพืช CSV กรุณาตรวจสอบและตอบกลับแบบละเอียด
+
     ข้อมูล CSV ที่ต้องตรวจสอบ:
     
-    Headers: ${Object.keys(csvData[0] || {}).join(', ')}
+    Headers ที่พบ: ${headers.join(', ')}
     
-    Sample Data:
+    Sample Data (3 แถวแรก):
     ${JSON.stringify(sampleData, null, 2)}
     
-    ข้อมูลที่ต้องการ:
-    - scientific_name (ชื่อวิทยาศาสตร์ - ต้องมี)
-    - common_name_th (ชื่อไทย - ต้องมี)
+    ข้อมูลที่ต้องการ (Database Schema):
+    - scientific_name (ชื่อวิทยาศาสตร์ - ต้องมี, ไม่ว่าง)
+    - common_name_th (ชื่อไทย - ต้องมี, ไม่ว่าง)
     - common_name_en (ชื่ออังกฤษ - ควรมี)
     - category (หมวดหมู่ - ต้องตรงกับ: indoor, outdoor, tropical, succulent, cactus, orchid, herb, tree, shrub, vine, garden, water, rock, border, other)
     - care_level (ระดับการดูแล - ต้องตรงกับ: easy, moderate, difficult)
@@ -98,16 +101,16 @@ class AIService {
     - water_needs (ความต้องการน้ำ)
     - light_needs (ความต้องการแสง)
     - humidity_needs (ความต้องการความชื้น)
-    - temperature_min (อุณหภูมิต่ำสุด)
-    - temperature_max (อุณหภูมิสูงสุด)
+    - temperature_min (อุณหภูมิต่ำสุด - ต้องเป็นตัวเลข)
+    - temperature_max (อุณหภูมิสูงสุด - ต้องเป็นตัวเลข)
     - growth_rate (อัตราการเติบโต)
-    - max_height (ความสูงสูงสุด)
-    - max_width (ความกว้างสูงสุด)
-    - is_poisonous (เป็นพิษหรือไม่ - boolean)
-    - is_rare (หายากหรือไม่ - boolean)
-    - is_trending (เป็นที่นิยมหรือไม่ - boolean)
-    
-    ตอบกลับในรูปแบบ JSON นี้:
+    - max_height (ความสูงสูงสุด - ต้องเป็นตัวเลข)
+    - max_width (ความกว้างสูงสุด - ต้องเป็นตัวเลข)
+    - is_poisonous (เป็นพิษหรือไม่ - ต้องเป็น true/false หรือ 1/0)
+    - is_rare (หายากหรือไม่ - ต้องเป็น true/false หรือ 1/0)
+    - is_trending (เป็นที่นิยมหรือไม่ - ต้องเป็น true/false หรือ 1/0)
+
+    กรุณาตรวจสอบและตอบกลับในรูปแบบ JSON นี้:
     {
       "isValid": boolean,
       "cleanedData": [...],
@@ -115,12 +118,22 @@ class AIService {
         "totalRows": number,
         "validRows": number,
         "invalidRows": number,
-        "errors": [...],
-        "warnings": [...],
-        "suggestions": [...]
+        "errors": [
+          "รายละเอียดข้อผิดพลาดแต่ละรายการ เช่น: Row 1: Missing scientific_name, Row 2: Invalid category 'unknown'"
+        ],
+        "warnings": [
+          "รายละเอียดคำเตือนแต่ละรายการ เช่น: Row 3: common_name_en is empty, Row 5: temperature_min is not a number"
+        ],
+        "suggestions": [
+          "รายละเอียดคำแนะนำแต่ละรายการ เช่น: Map 'plant_name' to 'scientific_name', Convert 'yes/no' to true/false for boolean fields"
+        ]
       },
-      "fieldMapping": {...}
+      "fieldMapping": {
+        "csv_header": "database_field"
+      }
     }
+
+    หมายเหตุ: กรุณาตรวจสอบทุกแถวและให้รายละเอียดข้อผิดพลาด คำเตือน และคำแนะนำที่ชัดเจน
     `;
   }
 
