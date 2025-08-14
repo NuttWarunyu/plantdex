@@ -1,6 +1,6 @@
 interface ValidationResult {
   isValid: boolean;
-  cleanedData: any[];
+  cleanedData: PlantDataRow[];
   validationReport: {
     totalRows: number;
     validRows: number;
@@ -13,7 +13,7 @@ interface ValidationResult {
 }
 
 interface PlantDataRow {
-  [key: string]: any;
+  [key: string]: string | number | boolean | null;
 }
 
 class AIService {
@@ -124,23 +124,31 @@ class AIService {
     `;
   }
 
-  private parseAIResponse(aiResponse: any, originalData: PlantDataRow[]): ValidationResult {
+  private parseAIResponse(aiResponse: Record<string, unknown>, originalData: PlantDataRow[]): ValidationResult {
     try {
       // ใช้ข้อมูลที่ AI แก้ไขแล้ว หรือข้อมูลเดิมถ้า AI ไม่สามารถแก้ไขได้
       const cleanedData = aiResponse.cleanedData || originalData;
       
+      const validationReport = aiResponse.validationReport as {
+        validRows?: number;
+        invalidRows?: number;
+        errors?: string[];
+        warnings?: string[];
+        suggestions?: string[];
+      } | undefined;
+
       return {
-        isValid: aiResponse.isValid || false,
-        cleanedData,
-        validationReport: aiResponse.validationReport || {
+        isValid: Boolean(aiResponse.isValid) || false,
+        cleanedData: Array.isArray(aiResponse.cleanedData) ? aiResponse.cleanedData as PlantDataRow[] : originalData,
+        validationReport: {
           totalRows: originalData.length,
-          validRows: 0,
-          invalidRows: originalData.length,
-          errors: ['AI validation failed'],
-          warnings: [],
-          suggestions: []
+          validRows: validationReport?.validRows || 0,
+          invalidRows: validationReport?.invalidRows || originalData.length,
+          errors: validationReport?.errors || ['AI validation failed'],
+          warnings: validationReport?.warnings || [],
+          suggestions: validationReport?.suggestions || []
         },
-        fieldMapping: aiResponse.fieldMapping || {}
+        fieldMapping: typeof aiResponse.fieldMapping === 'object' && aiResponse.fieldMapping !== null ? aiResponse.fieldMapping as Record<string, string> : {}
       };
     } catch (error) {
       console.error('Error parsing AI response:', error);

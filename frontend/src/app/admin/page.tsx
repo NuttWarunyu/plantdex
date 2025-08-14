@@ -95,7 +95,7 @@ export default function AdminPage() {
   };
 
   // อัพโหลดข้อมูลที่ผ่าน validation แล้ว
-  const uploadValidatedData = async (cleanedData: any[]) => {
+  const uploadValidatedData = async (cleanedData: Record<string, string | number | boolean | null>[]) => {
     setUploading(true);
     setError(null);
     
@@ -129,7 +129,7 @@ export default function AdminPage() {
   };
 
   // แปลงข้อมูลกลับเป็น CSV
-  const convertToCSV = (data: any[]): string => {
+  const convertToCSV = (data: Record<string, string | number | boolean | null>[]): string => {
     if (data.length === 0) return '';
     
     const headers = Object.keys(data[0]);
