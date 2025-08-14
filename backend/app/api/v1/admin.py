@@ -7,7 +7,7 @@ import csv
 import os
 from typing import List, Dict, Any
 
-router = APIRouter(prefix="/admin", tags=["admin"])
+router = APIRouter(tags=["admin"])
 
 @router.post("/plants/import-csv")
 async def import_plants_from_csv(
