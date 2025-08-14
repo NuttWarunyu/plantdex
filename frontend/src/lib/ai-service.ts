@@ -79,36 +79,55 @@ class AIService {
     const headers = Object.keys(csvData[0] || {});
     
     return `
-    คุณเป็น AI ที่เชี่ยวชาญในการตรวจสอบข้อมูลพืช CSV กรุณาตรวจสอบและตอบกลับแบบละเอียด
+    คุณเป็น AI ที่เชี่ยวชาญในการจัดฟอร์มข้อมูลพืช CSV ให้ตรงกับ database schema
 
-    ข้อมูล CSV ที่ต้องตรวจสอบ:
+    ข้อมูล CSV ที่ต้องจัดฟอร์ม:
     
     Headers ที่พบ: ${headers.join(', ')}
     
-    Sample Data (3 แถวแรก):
+    Sample Data (3 แถวแรก - ไม่รวม headers):
     ${JSON.stringify(sampleData, null, 2)}
     
-    ข้อมูลที่ต้องการ (Database Schema):
-    - scientific_name (ชื่อวิทยาศาสตร์ - ต้องมี, ไม่ว่าง, เป็นชื่อวิทยาศาสตร์ที่ถูกต้อง)
-    - common_name_th (ชื่อไทย - ต้องมี, ไม่ว่าง)
-    - common_name_en (ชื่ออังกฤษ - ควรมี แต่ไม่บังคับ)
-    - category (หมวดหมู่ - ต้องตรงกับ: indoor, outdoor, tropical, succulent, cactus, orchid, herb, tree, shrub, vine, garden, water, rock, border, other)
-    - care_level (ระดับการดูแล - ต้องตรงกับ: easy, moderate, difficult)
-    - origin_country (ประเทศต้นกำเนิด - ไม่บังคับ)
-    - description_th (คำอธิบายภาษาไทย - ไม่บังคับ)
-    - description_en (คำอธิบายภาษาอังกฤษ - ไม่บังคับ)
-    - care_instructions (คำแนะนำการดูแล - ไม่บังคับ)
-    - water_needs (ความต้องการน้ำ - ไม่บังคับ)
-    - light_needs (ความต้องการแสง - ไม่บังคับ)
-    - humidity_needs (ความต้องการความชื้น - ไม่บังคับ)
-    - temperature_min (อุณหภูมิต่ำสุด - ต้องเป็นตัวเลขหรือ null)
-    - temperature_max (อุณหภูมิสูงสุด - ต้องเป็นตัวเลขหรือ null)
-    - growth_rate (อัตราการเติบโต - ไม่บังคับ)
-    - max_height (ความสูงสูงสุด - ต้องเป็นตัวเลขหรือ null)
-    - max_width (ความกว้างสูงสุด - ต้องเป็นตัวเลขหรือ null)
-    - is_poisonous (เป็นพิษหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
-    - is_rare (หายากหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
-    - is_trending (เป็นที่นิยมหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
+    หมายเหตุสำคัญ: 
+    - แถวแรกเป็น headers ไม่ใช่ข้อมูล อย่านับเป็นแถวข้อมูล
+    - AI ต้องจัดเรียง columns ให้ตรงตามลำดับที่กำหนดใน schema ข้างต้น
+    - ข้อมูลที่ส่งกลับต้องมี structure ที่ถูกต้องและพร้อมใช้งาน
+    
+    ข้อมูลที่ต้องการ (Database Schema - จัดเรียงตามลำดับที่ต้องการ):
+    
+    REQUIRED FIELDS (ต้องมี):
+    1. scientific_name (ชื่อวิทยาศาสตร์ - ต้องมี, ไม่ว่าง)
+    2. common_name_th (ชื่อไทย - ต้องมี, ไม่ว่าง)
+    
+    CATEGORY & CARE:
+    3. category (หมวดหมู่ - ต้องตรงกับ: indoor, outdoor, tropical, succulent, cactus, orchid, herb, tree, shrub, vine, garden, water, rock, border, other)
+    4. care_level (ระดับการดูแล - ต้องตรงกับ: easy, moderate, difficult)
+    
+    DESCRIPTIONS:
+    5. description_th (คำอธิบายภาษาไทย - ไม่บังคับ)
+    6. description_en (คำอธิบายภาษาอังกฤษ - ไม่บังคับ)
+    7. care_instructions (คำแนะนำการดูแล - ไม่บังคับ)
+    
+    NAMES & ORIGIN:
+    8. common_name_en (ชื่ออังกฤษ - ไม่บังคับ)
+    9. origin_country (ประเทศต้นกำเนิด - ไม่บังคับ)
+    
+    CARE REQUIREMENTS:
+    10. water_needs (ความต้องการน้ำ - ไม่บังคับ)
+    11. light_needs (ความต้องการแสง - ไม่บังคับ)
+    12. humidity_needs (ความต้องการความชื้น - ไม่บังคับ)
+    
+    PHYSICAL PROPERTIES:
+    13. temperature_min (อุณหภูมิต่ำสุด - ต้องเป็นตัวเลขหรือ null)
+    14. temperature_max (อุณหภูมิสูงสุด - ต้องเป็นตัวเลขหรือ null)
+    15. growth_rate (อัตราการเติบโต - ไม่บังคับ)
+    16. max_height (ความสูงสูงสุด - ต้องเป็นตัวเลขหรือ null)
+    17. max_width (ความกว้างสูงสุด - ต้องเป็นตัวเลขหรือ null)
+    
+    BOOLEAN FLAGS:
+    18. is_poisonous (เป็นพิษหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
+    19. is_rare (หายากหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
+    20. is_trending (เป็นที่นิยมหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
 
     หมายเหตุ:
     - ฟิลด์ที่ "ต้องมี" คือ scientific_name และ common_name_th เท่านั้น
@@ -116,7 +135,7 @@ class AIService {
     - ฟิลด์ตัวเลข (temperature, height, width) ต้องเป็นตัวเลขหรือ null
     - ฟิลด์ boolean (is_poisonous, is_rare, is_trending) ต้องเป็น true/false, 1/0, หรือ null
 
-    กรุณาตรวจสอบและตอบกลับในรูปแบบ JSON นี้:
+    กรุณาจัดฟอร์มข้อมูลและตอบกลับในรูปแบบ JSON นี้:
     {
       "isValid": boolean,
       "cleanedData": [...],
@@ -125,13 +144,13 @@ class AIService {
         "validRows": number,
         "invalidRows": number,
         "errors": [
-          "รายละเอียดข้อผิดพลาดแต่ละรายการ เช่น: Row 1: Missing scientific_name, Row 2: Invalid category 'unknown'"
+          "รายละเอียดข้อผิดพลาดที่แก้ไขไม่ได้ เช่น: Row 1: Cannot determine scientific_name from available data"
         ],
         "warnings": [
-          "รายละเอียดคำเตือนแต่ละรายการ เช่น: Row 3: common_name_en is empty, Row 5: temperature_min is not a number"
+          "รายละเอียดการแปลงข้อมูล เช่น: Row 3: Converted 'True' to 'true', Row 5: Mapped 'plant_name' to 'scientific_name'"
         ],
         "suggestions": [
-          "รายละเอียดคำแนะนำแต่ละรายการ เช่น: Map 'plant_name' to 'scientific_name', Convert 'True/False' to 'true/false' for boolean fields, Fill missing scientific_name with appropriate value"
+          "รายละเอียดการปรับปรุงข้อมูล เช่น: Filled missing common_name_en with 'N/A', Converted temperature strings to numbers"
         ]
       },
       "fieldMapping": {
@@ -140,11 +159,16 @@ class AIService {
     }
 
     หมายเหตุ: 
-    - กรุณาตรวจสอบทุกแถวและให้รายละเอียดข้อผิดพลาด คำเตือน และคำแนะนำที่ชัดเจน
+    - กรุณาจัดฟอร์มข้อมูลทุกแถวให้ตรงกับ database schema ข้างต้น
+    - แถวแรกเป็น headers ไม่ใช่ข้อมูล อย่านับเป็นแถวข้อมูล
+    - จัดฟอร์มข้อมูลให้อัตโนมัติ: แปลง types, map fields, เติมข้อมูลที่ขาด
     - ถ้า scientific_name ว่าง ให้เติมด้วยชื่อวิทยาศาสตร์ที่เหมาะสมจากข้อมูลที่มี
-    - ถ้า category เป็น 'indoor' ให้ถือว่าถูกต้อง (ไม่ใช่ error)
-    - ฟิลด์ที่ไม่บังคับสามารถเป็น null ได้
     - แปลง boolean fields จาก 'True'/'False' เป็น 'true'/'false'
+    - แปลง string numbers เป็น number types
+    - จัดเรียง columns ตามลำดับที่กำหนดใน schema ข้างต้น
+    - validationReport.totalRows ควรเป็นจำนวนแถวข้อมูลจริง (ไม่รวม headers)
+    - เป้าหมาย: ส่งข้อมูลที่พร้อมใช้งานกลับมา ไม่ใช่แค่รายงานปัญหา
+    - ข้อมูลที่ส่งกลับต้องมี columns ครบตาม schema และเรียงลำดับถูกต้อง
     `;
   }
 
