@@ -36,7 +36,7 @@ class AIService {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'gpt-4',
+          model: 'gpt-3.5-turbo', // ใช้ GPT-3.5-turbo เพื่อประหยัดค่าใช้จ่าย
           messages: [
             {
               role: 'system',
@@ -55,7 +55,7 @@ class AIService {
             }
           ],
           temperature: 0.1,
-          max_tokens: 4000
+          max_tokens: 2000 // ลด tokens เพื่อประหยัดค่าใช้จ่าย
         })
       });
 
@@ -206,7 +206,7 @@ class AIService {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'gpt-4',
+          model: 'gpt-3.5-turbo', // ใช้ GPT-3.5-turbo เพื่อประหยัดค่าใช้จ่าย
           messages: [
             {
               role: 'system',
@@ -218,7 +218,7 @@ class AIService {
             }
           ],
           temperature: 0.1,
-          max_tokens: 1000
+          max_tokens: 500 // ลด tokens เพื่อประหยัดค่าใช้จ่าย
         })
       });
 
