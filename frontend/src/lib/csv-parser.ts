@@ -1,6 +1,6 @@
 export interface CSVParseResult {
   headers: string[];
-  data: Record<string, any>[];
+  data: Record<string, string | number | boolean | null>[];
   totalRows: number;
   errors: string[];
 }
@@ -47,7 +47,7 @@ export class CSVParser {
     }
 
     // Parse data rows
-    const data: Record<string, any>[] = [];
+    const data: Record<string, string | number | boolean | null>[] = [];
     for (let i = 1; i < lines.length; i++) {
       try {
         const values = this.parseCSVLine(lines[i]);
@@ -57,7 +57,7 @@ export class CSVParser {
           continue;
         }
 
-        const row: Record<string, any> = {};
+        const row: Record<string, string | number | boolean | null> = {};
         headers.forEach((header, index) => {
           row[header.trim()] = values[index]?.trim() || '';
         });
@@ -98,9 +98,9 @@ export class CSVParser {
     return result.map(value => value.replace(/^"|"$/g, '').trim());
   }
 
-  static convertToDatabaseFormat(data: Record<string, any>[], fieldMapping: Record<string, string>): Record<string, any>[] {
+  static convertToDatabaseFormat(data: Record<string, string | number | boolean | null>[], fieldMapping: Record<string, string>): Record<string, string | number | boolean | null>[] {
     return data.map(row => {
-      const convertedRow: Record<string, any> = {};
+      const convertedRow: Record<string, string | number | boolean | null> = {};
       
       Object.entries(fieldMapping).forEach(([csvHeader, dbField]) => {
         if (row[csvHeader] !== undefined) {
@@ -112,7 +112,7 @@ export class CSVParser {
     });
   }
 
-  static validateRequiredFields(data: Record<string, any>[], requiredFields: string[]): string[] {
+  static validateRequiredFields(data: Record<string, string | number | boolean | null>[], requiredFields: string[]): string[] {
     const errors: string[] = [];
     
     data.forEach((row, index) => {
@@ -126,9 +126,9 @@ export class CSVParser {
     return errors;
   }
 
-  static cleanData(data: Record<string, any>[]): Record<string, any>[] {
+  static cleanData(data: Record<string, string | number | boolean | null>[]): Record<string, string | number | boolean | null>[] {
     return data.map(row => {
-      const cleanedRow: Record<string, any> = {};
+      const cleanedRow: Record<string, string | number | boolean | null> = {};
       
       Object.entries(row).forEach(([key, value]) => {
         if (typeof value === 'string') {
