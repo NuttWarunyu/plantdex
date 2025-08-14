@@ -1,27 +1,30 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, File, UploadFile
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.models.plant import Plant, PlantCategory, CareLevel
 from app.schemas.plant import PlantCreate, PlantUpdate
 import csv
-import os
+import io
 from typing import List, Dict, Any
 
 router = APIRouter(tags=["admin"])
 
 @router.post("/plants/import-csv")
 async def import_plants_from_csv(
+    file: UploadFile = File(...),
     db: Session = Depends(get_db)
 ):
-    """Import plants from CSV file"""
+    """Import plants from uploaded CSV file"""
     try:
-        print("🌱 เริ่ม import ข้อมูลพืชจาก CSV...")
+        print("🌱 เริ่ม import ข้อมูลพืชจาก CSV ที่อัพโหลด...")
         
-        # อ่านข้อมูลจาก CSV
-        csv_file = 'backend/plant_data/plantdex_master_1-118.csv'
+        # ตรวจสอบไฟล์
+        if not file.filename.endswith('.csv'):
+            raise HTTPException(status_code=400, detail="ไฟล์ต้องเป็น CSV เท่านั้น")
         
-        if not os.path.exists(csv_file):
-            raise HTTPException(status_code=404, detail=f"CSV file not found: {csv_file}")
+        # อ่านข้อมูลจากไฟล์ที่อัพโหลด
+        content = await file.read()
+        csv_text = content.decode('utf-8')
         
         # แปลงค่า category ให้ตรงกับ enum
         category_mapping = {
@@ -65,75 +68,76 @@ async def import_plants_from_csv(
         plants_added = 0
         plants_skipped = 0
         
-        with open(csv_file, 'r', encoding='utf-8') as file:
-            reader = csv.DictReader(file)
-            
-            for row in reader:
-                try:
-                    # ตรวจสอบว่าพืชมีอยู่แล้วหรือไม่
-                    existing_plant = db.query(Plant).filter(
-                        Plant.scientific_name == row['scientific_name']
-                    ).first()
-                    
-                    if existing_plant:
-                        plants_skipped += 1
-                        continue
-                    
-                    # แปลงค่า category
-                    csv_category = row['category'].lower()
-                    mapped_category = category_mapping.get(csv_category, PlantCategory.OTHER)
-                    
-                    # Debug logging
-                    print(f"DEBUG: CSV category: '{csv_category}' -> Mapped: {mapped_category}")
-                    
-                    # แปลงค่า care_level
-                    csv_care_level = row['care_level'].lower()
-                    mapped_care_level = care_level_mapping.get(csv_care_level, CareLevel.MODERATE)
-                    
-                    # สร้างพืชใหม่
-                    plant = Plant(
-                        scientific_name=row['scientific_name'],
-                        common_name_th=row['common_name_th'],
-                        common_name_en=row['common_name_en'],
-                        category=mapped_category,
-                        care_level=mapped_care_level,
-                        origin_country=row['origin_country'],
-                        description_th=row['description_th'],
-                        description_en=row['description_en'],
-                        care_instructions=row['care_instructions'],
-                        water_needs=row['water_needs'],
-                        light_needs=row['light_needs'],
-                        humidity_needs=row['humidity_needs'],
-                        temperature_min=parse_float(row['temperature_min']),
-                        temperature_max=parse_float(row['temperature_max']),
-                        growth_rate=row['growth_rate'],
-                        max_height=parse_float(row['max_height']),
-                        max_width=parse_float(row['max_width']),
-                        is_poisonous=parse_boolean(row['is_poisonous']),
-                        is_rare=parse_boolean(row['is_rare']),
-                        is_trending=parse_boolean(row['is_trending'])
-                    )
-                    
-                    db.add(plant)
-                    plants_added += 1
-                    
-                except Exception as e:
-                    print(f"❌ เกิดข้อผิดพลาดกับพืช: {row.get('scientific_name', 'Unknown')} - {e}")
-                    print(f"  Category: {row.get('category', 'N/A')}")
-                    print(f"  Care Level: {row.get('care_level', 'N/A')}")
+        # ใช้ StringIO แทนการเปิดไฟล์
+        csv_io = io.StringIO(csv_text)
+        reader = csv.DictReader(csv_io)
+        
+        for row in reader:
+            try:
+                # ตรวจสอบว่าพืชมีอยู่แล้วหรือไม่
+                existing_plant = db.query(Plant).filter(
+                    Plant.scientific_name == row['scientific_name']
+                ).first()
+                
+                if existing_plant:
+                    plants_skipped += 1
                     continue
-            
-            db.commit()
-            
-            total_plants = db.query(Plant).count()
-            
-            return {
-                "message": "Import completed successfully",
-                "plants_added": plants_added,
-                "plants_skipped": plants_skipped,
-                "total_plants": total_plants,
-                "status": "success"
-            }
+                
+                # แปลงค่า category
+                csv_category = row['category'].lower()
+                mapped_category = category_mapping.get(csv_category, PlantCategory.OTHER)
+                
+                # Debug logging
+                print(f"DEBUG: CSV category: '{csv_category}' -> Mapped: {mapped_category}")
+                
+                # แปลงค่า care_level
+                csv_care_level = row['care_level'].lower()
+                mapped_care_level = care_level_mapping.get(csv_care_level, CareLevel.MODERATE)
+                
+                # สร้างพืชใหม่
+                plant = Plant(
+                    scientific_name=row['scientific_name'],
+                    common_name_th=row['common_name_th'],
+                    common_name_en=row['common_name_en'],
+                    category=mapped_category,
+                    care_level=mapped_care_level,
+                    origin_country=row['origin_country'],
+                    description_th=row['description_th'],
+                    description_en=row['description_th'],
+                    care_instructions=row['care_instructions'],
+                    water_needs=row['water_needs'],
+                    light_needs=row['light_needs'],
+                    humidity_needs=row['humidity_needs'],
+                    temperature_min=parse_float(row['temperature_min']),
+                    temperature_max=parse_float(row['temperature_max']),
+                    growth_rate=row['growth_rate'],
+                    max_height=parse_float(row['max_height']),
+                    max_width=parse_float(row['max_width']),
+                    is_poisonous=parse_boolean(row['is_poisonous']),
+                    is_rare=parse_boolean(row['is_rare']),
+                    is_trending=parse_boolean(row['is_trending'])
+                )
+                
+                db.add(plant)
+                plants_added += 1
+                
+            except Exception as e:
+                print(f"❌ เกิดข้อผิดพลาดกับพืช: {row.get('scientific_name', 'Unknown')} - {e}")
+                print(f"  Category: {row.get('category', 'N/A')}")
+                print(f"  Care Level: {row.get('care_level', 'N/A')}")
+                continue
+        
+        db.commit()
+        
+        total_plants = db.query(Plant).count()
+        
+        return {
+            "message": "Import completed successfully",
+            "plants_added": plants_added,
+            "plants_skipped": plants_skipped,
+            "total_plants": total_plants,
+            "status": "success"
+        }
             
     except Exception as e:
         db.rollback()
