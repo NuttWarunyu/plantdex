@@ -40,6 +40,8 @@ export default function AdminPage() {
   const [validationResult, setValidationResult] = useState<ValidationResult | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [showValidation, setShowValidation] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [fixedData, setFixedData] = useState<Record<string, string | number | boolean | null>[]>([]);
   
   // AI Service
   const aiService = new AIService(process.env.NEXT_PUBLIC_OPENAI_API_KEY || '');
@@ -85,6 +87,10 @@ export default function AdminPage() {
       if (result.isValid) {
         // ถ้า validation ผ่าน ให้อัพโหลดเลย
         await uploadValidatedData(result.cleanedData);
+      } else {
+        // ถ้ามีปัญหา ให้แสดงข้อมูลที่แก้ไขแล้วและรอคอนเฟิร์ม
+        setFixedData(result.cleanedData);
+        setShowConfirmation(true);
       }
       
     } catch (err) {
@@ -92,6 +98,15 @@ export default function AdminPage() {
     } finally {
       setIsValidating(false);
     }
+  };
+
+  // คอนเฟิร์มการอัพโหลดข้อมูลที่แก้ไขแล้ว
+  const confirmUploadFixedData = async () => {
+    if (fixedData.length === 0) return;
+    
+    await uploadValidatedData(fixedData);
+    setShowConfirmation(false);
+    setFixedData([]);
   };
 
   // อัพโหลดข้อมูลที่ผ่าน validation แล้ว
@@ -424,6 +439,56 @@ export default function AdminPage() {
                       </ul>
                     </div>
                   )}
+                </div>
+              </AlertDescription>
+            </Alert>
+          )}
+
+          {/* แสดงข้อมูลที่แก้ไขแล้วและรอคอนเฟิร์ม */}
+          {showConfirmation && fixedData.length > 0 && (
+            <Alert className="border-blue-200 bg-blue-50">
+              <AlertTriangle className="h-4 w-4 text-blue-600" />
+              <AlertDescription>
+                <div className="font-medium text-blue-800">🤖 AI ได้แก้ไขข้อมูลแล้ว - รอการยืนยัน</div>
+                <div className="mt-2 space-y-1 text-sm text-blue-700">
+                  <div>📊 ข้อมูลที่แก้ไขแล้ว: {fixedData.length} แถว</div>
+                  <div>🔧 AI ได้แก้ไขปัญหาในข้อมูลให้แล้ว</div>
+                  <div className="mt-3">
+                    <strong>ข้อมูลตัวอย่างที่แก้ไขแล้ว:</strong>
+                    <div className="mt-2 p-2 bg-white rounded border text-xs max-h-32 overflow-y-auto">
+                      <pre className="whitespace-pre-wrap">
+                        {JSON.stringify(fixedData.slice(0, 2), null, 2)}
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex gap-2">
+                  <Button 
+                    onClick={confirmUploadFixedData}
+                    className="bg-green-600 hover:bg-green-700"
+                    disabled={isUploading}
+                  >
+                    {isUploading ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                        กำลังอัพโหลด...
+                      </>
+                    ) : (
+                      <>
+                        <CheckCircle className="w-4 h-4 mr-2" />
+                        ✅ ยืนยันและอัพโหลดข้อมูลที่แก้ไขแล้ว
+                      </>
+                    )}
+                  </Button>
+                  <Button 
+                    onClick={() => {
+                      setShowConfirmation(false);
+                      setFixedData([]);
+                    }}
+                    variant="outline"
+                  >
+                    ❌ ยกเลิก
+                  </Button>
                 </div>
               </AlertDescription>
             </Alert>

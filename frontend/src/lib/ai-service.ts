@@ -89,26 +89,32 @@ class AIService {
     ${JSON.stringify(sampleData, null, 2)}
     
     ข้อมูลที่ต้องการ (Database Schema):
-    - scientific_name (ชื่อวิทยาศาสตร์ - ต้องมี, ไม่ว่าง)
+    - scientific_name (ชื่อวิทยาศาสตร์ - ต้องมี, ไม่ว่าง, เป็นชื่อวิทยาศาสตร์ที่ถูกต้อง)
     - common_name_th (ชื่อไทย - ต้องมี, ไม่ว่าง)
-    - common_name_en (ชื่ออังกฤษ - ควรมี)
+    - common_name_en (ชื่ออังกฤษ - ควรมี แต่ไม่บังคับ)
     - category (หมวดหมู่ - ต้องตรงกับ: indoor, outdoor, tropical, succulent, cactus, orchid, herb, tree, shrub, vine, garden, water, rock, border, other)
     - care_level (ระดับการดูแล - ต้องตรงกับ: easy, moderate, difficult)
-    - origin_country (ประเทศต้นกำเนิด)
-    - description_th (คำอธิบายภาษาไทย)
-    - description_en (คำอธิบายภาษาอังกฤษ)
-    - care_instructions (คำแนะนำการดูแล)
-    - water_needs (ความต้องการน้ำ)
-    - light_needs (ความต้องการแสง)
-    - humidity_needs (ความต้องการความชื้น)
-    - temperature_min (อุณหภูมิต่ำสุด - ต้องเป็นตัวเลข)
-    - temperature_max (อุณหภูมิสูงสุด - ต้องเป็นตัวเลข)
-    - growth_rate (อัตราการเติบโต)
-    - max_height (ความสูงสูงสุด - ต้องเป็นตัวเลข)
-    - max_width (ความกว้างสูงสุด - ต้องเป็นตัวเลข)
-    - is_poisonous (เป็นพิษหรือไม่ - ต้องเป็น true/false หรือ 1/0)
-    - is_rare (หายากหรือไม่ - ต้องเป็น true/false หรือ 1/0)
-    - is_trending (เป็นที่นิยมหรือไม่ - ต้องเป็น true/false หรือ 1/0)
+    - origin_country (ประเทศต้นกำเนิด - ไม่บังคับ)
+    - description_th (คำอธิบายภาษาไทย - ไม่บังคับ)
+    - description_en (คำอธิบายภาษาอังกฤษ - ไม่บังคับ)
+    - care_instructions (คำแนะนำการดูแล - ไม่บังคับ)
+    - water_needs (ความต้องการน้ำ - ไม่บังคับ)
+    - light_needs (ความต้องการแสง - ไม่บังคับ)
+    - humidity_needs (ความต้องการความชื้น - ไม่บังคับ)
+    - temperature_min (อุณหภูมิต่ำสุด - ต้องเป็นตัวเลขหรือ null)
+    - temperature_max (อุณหภูมิสูงสุด - ต้องเป็นตัวเลขหรือ null)
+    - growth_rate (อัตราการเติบโต - ไม่บังคับ)
+    - max_height (ความสูงสูงสุด - ต้องเป็นตัวเลขหรือ null)
+    - max_width (ความกว้างสูงสุด - ต้องเป็นตัวเลขหรือ null)
+    - is_poisonous (เป็นพิษหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
+    - is_rare (หายากหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
+    - is_trending (เป็นที่นิยมหรือไม่ - ต้องเป็น true/false, 1/0, หรือ null)
+
+    หมายเหตุ:
+    - ฟิลด์ที่ "ต้องมี" คือ scientific_name และ common_name_th เท่านั้น
+    - ฟิลด์อื่นๆ ไม่บังคับ สามารถเป็น null หรือค่าว่างได้
+    - ฟิลด์ตัวเลข (temperature, height, width) ต้องเป็นตัวเลขหรือ null
+    - ฟิลด์ boolean (is_poisonous, is_rare, is_trending) ต้องเป็น true/false, 1/0, หรือ null
 
     กรุณาตรวจสอบและตอบกลับในรูปแบบ JSON นี้:
     {
@@ -125,7 +131,7 @@ class AIService {
           "รายละเอียดคำเตือนแต่ละรายการ เช่น: Row 3: common_name_en is empty, Row 5: temperature_min is not a number"
         ],
         "suggestions": [
-          "รายละเอียดคำแนะนำแต่ละรายการ เช่น: Map 'plant_name' to 'scientific_name', Convert 'yes/no' to true/false for boolean fields"
+          "รายละเอียดคำแนะนำแต่ละรายการ เช่น: Map 'plant_name' to 'scientific_name', Convert 'True/False' to 'true/false' for boolean fields, Fill missing scientific_name with appropriate value"
         ]
       },
       "fieldMapping": {
@@ -133,7 +139,12 @@ class AIService {
       }
     }
 
-    หมายเหตุ: กรุณาตรวจสอบทุกแถวและให้รายละเอียดข้อผิดพลาด คำเตือน และคำแนะนำที่ชัดเจน
+    หมายเหตุ: 
+    - กรุณาตรวจสอบทุกแถวและให้รายละเอียดข้อผิดพลาด คำเตือน และคำแนะนำที่ชัดเจน
+    - ถ้า scientific_name ว่าง ให้เติมด้วยชื่อวิทยาศาสตร์ที่เหมาะสมจากข้อมูลที่มี
+    - ถ้า category เป็น 'indoor' ให้ถือว่าถูกต้อง (ไม่ใช่ error)
+    - ฟิลด์ที่ไม่บังคับสามารถเป็น null ได้
+    - แปลง boolean fields จาก 'True'/'False' เป็น 'true'/'false'
     `;
   }
 
