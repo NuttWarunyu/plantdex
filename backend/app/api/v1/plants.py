@@ -8,7 +8,7 @@ import math
 
 router = APIRouter(tags=["plants"])
 
-@router.get("/plants/search")
+@router.get("/search")
 async def search_plants(
     q: str = Query("", description="Search query"),
     category: Optional[str] = Query(None, description="Plant category"),
@@ -116,7 +116,7 @@ async def search_plants(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Search failed: {str(e)}")
 
-@router.get("/plants/market-data")
+@router.get("/market-data")
 async def get_market_data(db: Session = Depends(get_db)):
     """Get market data and trends"""
     try:
@@ -187,7 +187,7 @@ async def get_market_data(db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get market data: {str(e)}")
 
-@router.get("/plants/quick-stats")
+@router.get("/quick-stats")
 async def get_quick_stats(db: Session = Depends(get_db)):
     """Get quick stats for homepage"""
     try:
