@@ -1,208 +1,231 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://plantdex-backend-production.up.railway.app';
+// API service for PlantDex
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export interface Plant {
   id: number;
-  common_name_th: string;
-  common_name_en: string;
   scientific_name: string;
+  common_name_th: string;
+  common_name_en?: string;
+  category?: string;
+  care_level?: string;
+  description_th?: string;
+  description_en?: string;
+  origin_country?: string;
+  water_needs?: string;
+  light_needs?: string;
+  humidity_needs?: string;
+  temperature_min?: number;
+  temperature_max?: number;
+  growth_rate?: string;
+  max_height?: number;
+  max_width?: number;
+  is_poisonous?: boolean;
+  is_rare?: boolean;
+  is_trending?: boolean;
+  investment_score?: number;
+}
+
+export interface SearchFilters {
+  query: string;
   category: string;
   care_level: string;
-  description_th: string;
-  description_en: string;
-  image_url: string;
-  is_trending: boolean;
-  created_at: string;
-  updated_at: string;
+  price_min?: number;
+  price_max?: number;
 }
 
-export interface PlantPrice {
-  id: number;
-  plant_id: number;
-  price: number;
-  currency: string;
-  source: string;
-  seller_location: string;
-  shipping_cost: number;
-  condition: string;
-  created_at: string;
+export interface SearchResponse {
+  plants: Plant[];
+  pagination: {
+    page: number;
+    limit: number;
+    total_count: number;
+    total_pages: number;
+  };
+  filters: {
+    query: string;
+    category: string | null;
+    care_level: string | null;
+  };
 }
 
-export interface MarketTrend {
-  id: number;
-  plant_id: number;
-  week_start: string;
-  demand_score: number;
-  trend_direction: string;
-  search_volume: number;
-  avg_price: number;
-  supply_score: number;
-  seasonal_factor: number;
-  sales_volume: number;
-  price_change_percent: number;
-  export_demand: number;
-  created_at: string;
+export interface MarketData {
+  market_summary: {
+    total_plants: number;
+    indoor_plants: number;
+    outdoor_plants: number;
+    market_health: string;
+  };
+  category_distribution: Record<string, number>;
+  care_level_distribution: Record<string, number>;
+  trending_plants: Plant[];
+  rare_plants: Plant[];
 }
 
-export interface TrendingPlant {
-  id: number;
-  plant_id: number;
-  week_start: string;
-  rank: number;
-  popularity_score: number;
-  growth_rate: number;
-  created_at: string;
+export interface QuickStats {
+  total_plants: number;
+  trending_plants: number;
+  rare_plants: number;
+  indoor_plants: number;
+  market_status: string;
+  last_updated: string;
 }
 
-export interface PlantPriceIndex {
-  id: number;
-  index_date: string;
-  overall_index: number;
-  philodendron_index: number;
-  monstera_index: number;
-  alocasia_index: number;
-  anthurium_index: number;
-  created_at: string;
-}
-
-// Plants API
+// API functions
 export const plantsApi = {
-  async getAll(params?: {
-    skip?: number;
-    limit?: number;
-    category?: string;
-    care_level?: string;
-    search?: string;
-    trending?: boolean;
-  }): Promise<Plant[]> {
-    const searchParams = new URLSearchParams();
-    if (params?.skip) searchParams.append('skip', params.skip.toString());
-    if (params?.limit) searchParams.append('limit', params.limit.toString());
-    if (params?.category) searchParams.append('category', params.category);
-    if (params?.care_level) searchParams.append('care_level', params.care_level);
-    if (params?.search) searchParams.append('search', params.search);
-    if (params?.trending !== undefined) searchParams.append('trending', params.trending.toString());
-
-    const response = await fetch(`${API_BASE_URL}/api/v1/plants/?${searchParams}`);
-    if (!response.ok) throw new Error('Failed to fetch plants');
+  // Advanced search with filters and pagination
+  async searchAdvanced(filters: SearchFilters, page: number = 1, limit: number = 20): Promise<SearchResponse> {
+    const params = new URLSearchParams({
+      q: filters.query,
+      page: page.toString(),
+      limit: limit.toString()
+    });
+    
+    if (filters.category) params.append('category', filters.category);
+    if (filters.care_level) params.append('care_level', filters.care_level);
+    
+    const response = await fetch(`${API_BASE_URL}/api/v1/plants/search/advanced?${params}`);
+    
+    if (!response.ok) {
+      throw new Error(`Search failed: ${response.status}`);
+    }
+    
     return response.json();
   },
 
-  async getById(id: number): Promise<Plant> {
-    const response = await fetch(`${API_BASE_URL}/api/v1/plants/${id}`);
-    if (!response.ok) throw new Error('Plant not found');
+  // Get market data and trends
+  async getMarketData(): Promise<MarketData> {
+    const response = await fetch(`${API_BASE_URL}/api/v1/plants/market-data`);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch market data: ${response.status}`);
+    }
+    
     return response.json();
   },
 
-  async getPrices(id: number): Promise<{
-    plant: Plant;
-    prices: PlantPrice[];
-    price_summary: {
-      min_price: number | null;
-      max_price: number | null;
-      avg_price: number | null;
-      total_sources: number;
-    };
-  }> {
-    const response = await fetch(`${API_BASE_URL}/api/v1/plants/${id}/prices`);
-    if (!response.ok) throw new Error('Failed to fetch plant prices');
+  // Get quick stats for homepage
+  async getQuickStats(): Promise<QuickStats> {
+    const response = await fetch(`${API_BASE_URL}/api/v1/plants/quick-stats`);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch quick stats: ${response.status}`);
+    }
+    
     return response.json();
   },
 
-  async getTrending(): Promise<{
-    trending_plants: Plant[];
-    total_count: number;
-  }> {
-    const response = await fetch(`${API_BASE_URL}/api/v1/plants/trending/list`);
-    if (!response.ok) throw new Error('Failed to fetch trending plants');
-    return response.json();
-  },
-
-  async getByCategory(category: string): Promise<Plant[]> {
-    const response = await fetch(`${API_BASE_URL}/api/v1/plants/categories/${category}`);
-    if (!response.ok) throw new Error('Failed to fetch plants by category');
-    return response.json();
-  },
-
-  async getSearchSuggestions(query: string, limit: number = 10): Promise<{ suggestions: string[] }> {
+  // Get search suggestions
+  async getSearchSuggestions(query: string, limit: number = 10): Promise<string[]> {
+    if (query.length < 2) return [];
+    
     const response = await fetch(`${API_BASE_URL}/api/v1/plants/search/suggestions?q=${encodeURIComponent(query)}&limit=${limit}`);
-    if (!response.ok) throw new Error('Failed to fetch search suggestions');
+    
+    if (!response.ok) {
+      return [];
+    }
+    
+         const data = await response.json();
+     return data.suggestions.map((s: { common_name_th: string }) => s.common_name_th);
+  },
+
+  // Get all plants with basic filtering
+  async getAll(skip: number = 0, limit: number = 100, category?: string, care_level?: string, search?: string): Promise<Plant[]> {
+    const params = new URLSearchParams({
+      skip: skip.toString(),
+      limit: limit.toString()
+    });
+    
+    if (category) params.append('category', category);
+    if (care_level) params.append('care_level', care_level);
+    if (search) params.append('search', search);
+    
+    const response = await fetch(`${API_BASE_URL}/api/v1/plants?${params}`);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch plants: ${response.status}`);
+    }
+    
     return response.json();
+  },
+
+  // Get trending plants
+  async getTrending(): Promise<Plant[]> {
+    const response = await fetch(`${API_BASE_URL}/api/v1/plants/trending/list`);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch trending plants: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.trending_plants;
   }
 };
 
-// Market API
-export const marketApi = {
-  async getTrends(params?: {
-    week_start?: string;
-    plant_id?: number;
-    limit?: number;
-  }): Promise<{
-    trends: MarketTrend[];
-    total_count: number;
-  }> {
-    const searchParams = new URLSearchParams();
-    if (params?.week_start) searchParams.append('week_start', params.week_start);
-    if (params?.plant_id) searchParams.append('plant_id', params.plant_id.toString());
-    if (params?.limit) searchParams.append('limit', params.limit.toString());
-
-    const response = await fetch(`${API_BASE_URL}/api/v1/market/trends?${searchParams}`);
-    if (!response.ok) throw new Error('Failed to fetch market trends');
-    return response.json();
-  },
-
-  async getPriceIndex(params?: {
-    date_from?: string;
-    date_to?: string;
-  }): Promise<{
-    price_indices: PlantPriceIndex[];
-    total_count: number;
-  }> {
-    const searchParams = new URLSearchParams();
-    if (params?.date_from) searchParams.append('date_from', params.date_from);
-    if (params?.date_to) searchParams.append('date_to', params.date_to);
-
-    const response = await fetch(`${API_BASE_URL}/api/v1/market/price-index?${searchParams}`);
-    if (!response.ok) throw new Error('Failed to fetch price index');
-    return response.json();
-  },
-
-  async getTrendingPlants(params?: {
-    week_start?: string;
-    limit?: number;
-  }): Promise<{
-    week_start: string;
-    trending_plants: TrendingPlant[];
-    total_count: number;
-  }> {
-    const searchParams = new URLSearchParams();
-    if (params?.week_start) searchParams.append('week_start', params.week_start);
-    if (params?.limit) searchParams.append('limit', params.limit.toString());
-
-    const response = await fetch(`${API_BASE_URL}/api/v1/market/trending?${searchParams}`);
-    if (!response.ok) throw new Error('Failed to fetch trending plants');
-    return response.json();
-  },
-
-  async getPriceAnalysis(params?: {
-    plant_id?: number;
-    category?: string;
-    location?: string;
-  }): Promise<unknown> {
-    const searchParams = new URLSearchParams();
-    if (params?.plant_id) searchParams.append('plant_id', params.plant_id.toString());
-    if (params?.category) searchParams.append('category', params.category);
-    if (params?.location) searchParams.append('location', params.location);
-
-    const response = await fetch(`${API_BASE_URL}/api/v1/market/price-analysis?${searchParams}`);
-    if (!response.ok) throw new Error('Failed to fetch price analysis');
-    return response.json();
-  }
-};
-
-// Utility function to handle API errors
-export const handleApiError = (error: unknown): string => {
+// Error handling utility
+export function handleApiError(error: unknown): string {
   if (error instanceof Error) {
     return error.message;
   }
-  return 'An unexpected error occurred';
+  if (typeof error === 'string') {
+    return error;
+  }
+  return 'เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ';
+}
+
+// Mock data fallback (for development/testing)
+export const mockData = {
+  plants: [
+    {
+      id: 1,
+      scientific_name: 'Monstera deliciosa',
+      common_name_th: 'มอนสเตอร่า',
+      common_name_en: 'Swiss Cheese Plant',
+      category: 'indoor',
+      care_level: 'easy',
+      description_th: 'ต้นไม้ใบใหญ่ที่มีรูตามธรรมชาติ เป็นที่นิยมในการตกแต่งบ้าน',
+      description_en: 'Large-leafed plant with natural holes, popular for home decoration',
+      origin_country: 'Mexico',
+      water_needs: 'moderate',
+      light_needs: 'bright indirect',
+      humidity_needs: 'high',
+      temperature_min: 18,
+      temperature_max: 30,
+      growth_rate: 'fast',
+      max_height: 300,
+      max_width: 200,
+      is_poisonous: false,
+      is_rare: false,
+      is_trending: true,
+      investment_score: 85
+    }
+  ],
+  
+  marketData: {
+    market_summary: {
+      total_plants: 1247,
+      indoor_plants: 678,
+      outdoor_plants: 569,
+      market_health: 'healthy'
+    },
+    category_distribution: {
+      'indoor': 678,
+      'outdoor': 569
+    },
+    care_level_distribution: {
+      'easy': 456,
+      'moderate': 523,
+      'difficult': 268
+    },
+    trending_plants: [],
+    rare_plants: []
+  },
+  
+  quickStats: {
+    total_plants: 1247,
+    trending_plants: 89,
+    rare_plants: 156,
+    indoor_plants: 678,
+    market_status: 'active',
+    last_updated: '2025-01-27'
+  }
 }; 

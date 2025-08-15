@@ -1,196 +1,322 @@
-"use client";
+'use client';
 
-import { useLanguage } from "../lib/language-context";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Badge } from '../components/ui/badge';
+import MarketTicker from '../components/shared/MarketTicker';
+import PlantSearch, { SearchFilters } from '../components/shared/PlantSearch';
+import { Search, TrendingUp, Star, Leaf, Calculator, Bell, BarChart3 } from 'lucide-react';
 
 export default function HomePage() {
-  const { language, setLanguage, t } = useLanguage();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [emailSignup, setEmailSignup] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [lineId, setLineId] = useState('');
+
+  const handleSearch = (query: string, filters: SearchFilters) => {
+    console.log('Search:', query, filters);
+    // TODO: Navigate to plants page with search results
+  };
+
+  const handleEmailSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Email signup:', emailSignup);
+    // TODO: Send to backend
+    setEmailSignup('');
+  };
+
+  const handlePhoneSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Phone signup:', phoneNumber);
+    // TODO: Send to backend
+    setPhoneNumber('');
+  };
+
+  const handleLineSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('LINE signup:', lineId);
+    // TODO: Send to backend
+    setLineId('');
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-green-600/10 to-blue-600/10"></div>
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              {t('home.hero.title')}
+      <div className="bg-gradient-to-r from-blue-900 to-green-900 text-white">
+        <div className="container mx-auto px-6 py-16">
+          <div className="text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              🌱 PlantDex
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
-              {t('home.hero.subtitle')}
+            <p className="text-xl md:text-2xl mb-8 text-blue-100">
+              Thailand&apos;s Real-Time Plant Market Intelligence
+            </p>
+            <p className="text-lg md:text-xl mb-12 text-blue-200">
+              Make smarter plant investments with real data
             </p>
             
-            {/* Language Switcher */}
-            <div className="mb-10">
-              <Button 
-                onClick={() => setLanguage('en')}
-                variant={language === 'en' ? 'default' : 'outline'}
-                className="mr-3 px-6 py-2"
-              >
-                English
+            {/* Quick Search */}
+            <div className="max-w-2xl mx-auto mb-8">
+              <PlantSearch 
+                onSearch={handleSearch}
+                placeholder="ค้นหาต้นไม้ที่คุณสนใจ..."
+                className="bg-white/10 backdrop-blur-sm rounded-lg p-4"
+              />
+            </div>
+
+            {/* Quick Actions */}
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-semibold">
+                <Calculator className="w-5 h-5 mr-2" />
+                เครื่องคำนวณ ROI
               </Button>
-              <Button 
-                onClick={() => setLanguage('th')}
-                variant={language === 'th' ? 'default' : 'outline'}
-                className="px-6 py-2"
-              >
-                ไทย
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                <Bell className="w-5 h-5 mr-2" />
+                ตั้งการแจ้งเตือน
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                <BarChart3 className="w-5 h-5 mr-2" />
+                ดูรายงานตลาด
               </Button>
             </div>
-            
-            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <Link href="/market">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg">
-                  {t('home.hero.explore')}
+          </div>
+        </div>
+      </div>
+
+      {/* Market Intelligence Hub */}
+      <div className="container mx-auto px-6 py-12">
+        <MarketTicker className="mb-12" />
+
+        {/* Quick Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {/* Plant Price Checker */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Search className="w-5 h-5 text-blue-600" />
+                Plant Price Checker
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                ตรวจสอบราคาต้นไม้แบบ real-time พร้อม market analysis
+              </p>
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                ตรวจสอบราคา
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Market Alert Setup */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Bell className="w-5 h-5 text-green-600" />
+                Market Alert Setup
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                รับการแจ้งเตือนเมื่อราคาต้นไม้เปลี่ยนแปลง
+              </p>
+              <Button className="w-full bg-green-600 hover:bg-green-700">
+                ตั้งการแจ้งเตือน
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Investment Calculator */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calculator className="w-5 h-5 text-purple-600" />
+                Investment Calculator
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                คำนวณ ROI และความเสี่ยงของการลงทุนต้นไม้
+              </p>
+              <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                คำนวณ ROI
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Trend Analyzer */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-orange-600" />
+                Trend Analyzer
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                วิเคราะห์เทรนด์ตลาดต้นไม้และโอกาสการลงทุน
+              </p>
+              <Button className="w-full bg-orange-600 hover:bg-orange-700">
+                วิเคราะห์เทรนด์
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Plant Database */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Leaf className="w-5 h-5 text-emerald-600" />
+                Plant Database
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                ฐานข้อมูลต้นไม้ครบถ้วนพร้อมข้อมูลการดูแล
+              </p>
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                ดูฐานข้อมูล
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Expert Network */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Star className="w-5 h-5 text-yellow-600" />
+                Expert Network
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                เชื่อมต่อกับผู้เชี่ยวชาญด้านต้นไม้และการลงทุน
+              </p>
+              <Button className="w-full bg-yellow-600 hover:bg-yellow-700">
+                หาผู้เชี่ยวชาญ
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Lead Magnets Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {/* Weekly Plant Market Report */}
+          <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+            <CardHeader>
+              <CardTitle className="text-blue-800">📊 Weekly Plant Market Report</CardTitle>
+              <p className="text-blue-600 text-sm">
+                รายงานตลาดต้นไม้รายสัปดาห์ พร้อม insights และโอกาสการลงทุน
+              </p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleEmailSignup} className="space-y-3">
+                <Input
+                  type="email"
+                  placeholder="อีเมลของคุณ"
+                  value={emailSignup}
+                  onChange={(e) => setEmailSignup(e.target.value)}
+                  className="border-blue-300 focus:border-blue-500"
+                  required
+                />
+                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+                  สมัครรับรายงานฟรี
                 </Button>
-              </Link>
-              <Button variant="outline" size="lg" className="px-8 py-3 text-lg border-2">
-                {t('home.hero.demo')}
-              </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Top 10 Plants to Watch 2025 */}
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+            <CardHeader>
+              <CardTitle className="text-green-800">🔥 Top 10 Plants to Watch 2025</CardTitle>
+              <p className="text-green-600 text-sm">
+                ต้นไม้ที่ควรจับตามองในปี 2025 พร้อมการวิเคราะห์และคำแนะนำ
+              </p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handlePhoneSignup} className="space-y-3">
+                <Input
+                  type="tel"
+                  placeholder="เบอร์โทรศัพท์"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  className="border-green-300 focus:border-green-500"
+                  required
+                />
+                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
+                  รับรายงานฟรี
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Plant Investment ROI Calculator */}
+          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
+            <CardHeader>
+              <CardTitle className="text-purple-800">💰 Plant Investment ROI Calculator</CardTitle>
+              <p className="text-purple-600 text-sm">
+                เครื่องมือคำนวณ ROI การลงทุนต้นไม้ พร้อมการวิเคราะห์ความเสี่ยง
+              </p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleLineSignup} className="space-y-3">
+                <Input
+                  type="text"
+                  placeholder="LINE ID ของคุณ"
+                  value={lineId}
+                  onChange={(e) => setLineId(e.target.value)}
+                  className="border-purple-300 focus:border-purple-500"
+                  required
+                />
+                <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700">
+                  รับเครื่องมือฟรี
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Trust Signals */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-gray-800 mb-8">ทำไมต้องเลือก PlantDex?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="text-4xl mb-2">📊</div>
+              <h3 className="text-lg font-semibold mb-2">ข้อมูล Real-time</h3>
+              <p className="text-gray-600">ข้อมูลตลาดอัปเดตแบบ real-time</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-2">🤖</div>
+              <h3 className="text-lg font-semibold mb-2">AI-Powered</h3>
+              <p className="text-gray-600">ใช้ AI วิเคราะห์และแนะนำการลงทุน</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-2">👨‍🌾</div>
+              <h3 className="text-lg font-semibold mb-2">ผู้เชี่ยวชาญ</h3>
+              <p className="text-gray-600">ทีมผู้เชี่ยวชาญด้านต้นไม้และการลงทุน</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-2">🔒</div>
+              <h3 className="text-lg font-semibold mb-2">ปลอดภัย</h3>
+              <p className="text-gray-600">ข้อมูลและธุรกรรมปลอดภัย 100%</p>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Features Section */}
-      <div className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              {t('home.features.title')}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('home.features.subtitle')}
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-50 to-blue-50 hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {t('home.features.marketData.title')}
-              </h3>
-              <p className="text-gray-600">
-                {t('home.features.marketData.description')}
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {t('home.features.plantDatabase.title')}
-              </h3>
-              <p className="text-gray-600">
-                {t('home.features.plantDatabase.description')}
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {t('home.features.trends.title')}
-              </h3>
-              <p className="text-gray-600">
-                {t('home.features.trends.description')}
-              </p>
-            </div>
-
-            {/* Pricing feature temporarily hidden - will be available in future updates */}
-            {/* <div className="text-center p-6 rounded-xl bg-gradient-to-br from-pink-50 to-red-50 hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {t('home.features.pricing.title')}
-              </h3>
-              <p className="text-gray-600">
-                {t('home.features.pricing.description')}
-              </p>
-            </div> */}
-          </div>
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
-              {t('home.stats.title')}
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                {t('home.stats.plants')}
-              </div>
-              <div className="text-lg opacity-90">
-                {t('home.stats.plantsLabel')}
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                {t('home.stats.sellers')}
-              </div>
-              <div className="text-lg opacity-90">
-                {t('home.stats.sellersLabel')}
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                {t('home.stats.provinces')}
-              </div>
-              <div className="text-lg opacity-90">
-                {t('home.stats.provincesLabel')}
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                {t('home.stats.accuracy')}
-              </div>
-              <div className="text-lg opacity-90">
-                {t('home.stats.accuracyLabel')}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="py-20 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            {t('home.cta.title')}
-          </h2>
-          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            {t('home.cta.subtitle')}
+        {/* CTA Section */}
+        <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-2xl p-12 text-center">
+          <h2 className="text-3xl font-bold mb-4">พร้อมเริ่มต้นการลงทุนต้นไม้แล้วหรือยัง?</h2>
+          <p className="text-xl mb-8 text-blue-100">
+            เข้าร่วมชุมชนนักลงทุนต้นไม้ที่ใหญ่ที่สุดในประเทศไทย
           </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg">
-              {t('home.cta.primary')}
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+              เริ่มต้นใช้งานฟรี
             </Button>
-            <Button variant="outline" size="lg" className="px-8 py-3 text-lg border-2">
-              {t('home.cta.secondary')}
+            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+              ดูตัวอย่างรายงาน
             </Button>
           </div>
         </div>

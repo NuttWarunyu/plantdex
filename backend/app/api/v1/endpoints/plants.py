@@ -136,6 +136,95 @@ async def get_quick_stats(db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get quick stats: {str(e)}")
 
+@router.get("/search/advanced")
+async def search_plants_advanced(
+    q: str = Query("", description="Search query"),
+    category: Optional[str] = Query(None, description="Plant category"),
+    care_level: Optional[str] = Query(None, description="Care level"),
+    page: int = Query(1, ge=1, description="Page number"),
+    limit: int = Query(20, ge=1, le=100, description="Items per page"),
+    db: Session = Depends(get_db)
+):
+    """Advanced search plants with filters and pagination"""
+    try:
+        query = db.query(Plant)
+        
+        # Text search
+        if q:
+            search_filter = f"%{q}%"
+            query = query.filter(
+                (Plant.common_name_th.ilike(search_filter)) |
+                (Plant.common_name_en.ilike(search_filter)) |
+                (Plant.scientific_name.ilike(search_filter)) |
+                (Plant.description_th.ilike(search_filter)) |
+                (Plant.description_en.ilike(search_filter))
+            )
+        
+        # Category filter
+        if category:
+            query = query.filter(Plant.category == category)
+        
+        # Care level filter
+        if care_level:
+            query = query.filter(Plant.care_level == care_level)
+        
+        # Calculate total count for pagination
+        total_count = query.count()
+        
+        # Apply pagination
+        offset = (page - 1) * limit
+        plants = query.offset(offset).limit(limit).all()
+        
+        # Calculate investment scores
+        for plant in plants:
+            plant.investment_score = calculate_investment_score(plant)
+        
+        return {
+            "plants": plants,
+            "pagination": {
+                "page": page,
+                "limit": limit,
+                "total_count": total_count,
+                "total_pages": (total_count + limit - 1) // limit
+            },
+            "filters": {
+                "query": q,
+                "category": category,
+                "care_level": care_level
+            }
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Advanced search failed: {str(e)}")
+
+def calculate_investment_score(plant):
+    """Calculate investment score based on plant attributes"""
+    score = 50  # Base score
+    
+    # Rarity bonus
+    if plant.is_rare:
+        score += 20
+    
+    # Trending bonus
+    if plant.is_trending:
+        score += 15
+    
+    # Category bonus
+    if plant.category == PlantCategory.INDOOR:
+        score += 10
+    
+    # Care level bonus (easier = higher score)
+    if plant.care_level == CareLevel.EASY:
+        score += 10
+    elif plant.care_level == CareLevel.MODERATE:
+        score += 5
+    
+    # Size bonus (larger = higher score)
+    if plant.max_height and plant.max_height > 100:
+        score += 5
+    
+    return min(score, 100)  # Cap at 100
+
 @router.get("/{plant_id}", response_model=PlantResponse)
 def get_plant(plant_id: int, db: Session = Depends(get_db)):
     """Get a specific plant by ID"""

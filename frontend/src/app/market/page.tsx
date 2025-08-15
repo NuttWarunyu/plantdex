@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "../../lib/language-context";
-import { marketApi, PlantPriceIndex, handleApiError } from "../../lib/api";
+// import { marketApi, PlantPriceIndex, handleApiError } from "../../lib/api";
 import { useState, useEffect } from "react";
 
 import { 
@@ -18,7 +18,7 @@ import {
 
 export default function MarketPage() {
   const { t } = useLanguage();
-  const [priceIndices, setPriceIndices] = useState<PlantPriceIndex[]>([]);
+  const [priceIndices, setPriceIndices] = useState<unknown[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,11 +27,13 @@ export default function MarketPage() {
     const fetchPriceIndices = async () => {
       try {
         setLoading(true);
-        const response = await marketApi.getPriceIndex();
-        setPriceIndices(response.price_indices);
+        // const response = await marketApi.getPriceIndex();
+        // setPriceIndices(response.price_indices);
+        // Mock data for now
+        setPriceIndices([]);
       } catch (err) {
-        const errorMessage = handleApiError(err);
-        setError(errorMessage);
+        // const errorMessage = handleApiError(err);
+        setError('ไม่สามารถโหลดข้อมูลได้');
       } finally {
         setLoading(false);
       }

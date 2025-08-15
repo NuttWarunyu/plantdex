@@ -1,740 +1,303 @@
-"use client";
+'use client';
 
-import { useLanguage } from "../../lib/language-context";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Upload, 
-  Shield, 
-  CheckCircle, 
-  Clock, 
-  Star,
-  Camera,
-  Video,
-  UserCheck,
-  ClipboardCheck,
-  Lock,
-  Sparkles,
-  ShoppingCart,
-  Search,
-  Package,
-  Truck
-} from "lucide-react";
-import { useState } from "react";
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
+import { Badge } from '../../components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
+import { Textarea } from '../../components/ui/textarea';
+import { DollarSign, Upload, CheckCircle } from 'lucide-react';
 
-type UserRole = 'seller' | 'buyer';
+interface SellRequest {
+  plantName: string;
+  category: string;
+  size: string;
+  condition: string;
+  description: string;
+  estimatedValue: number;
+  contactName: string;
+  contactPhone: string;
+  location: string;
+}
 
 export default function PlantExchangePage() {
-  const { t } = useLanguage();
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // TODO: Replace with actual auth state
-  const [userRole, setUserRole] = useState<UserRole>('seller');
+  const [sellRequest, setSellRequest] = useState<SellRequest>({
+    plantName: '',
+    category: '',
+    size: '',
+    condition: '',
+    description: '',
+    estimatedValue: 0,
+    contactName: '',
+    contactPhone: '',
+    location: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+
+  const handleInputChange = (field: keyof SellRequest, value: string | number) => {
+    setSellRequest(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // TODO: Send to backend API
+      console.log('Submitting sell request:', sellRequest);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setSubmissionSuccess(true);
+      setIsSubmitting(false);
+    } catch (error) {
+      console.error('Failed to submit:', error);
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submissionSuccess) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+        <Card className="max-w-md mx-auto text-center p-8">
+          <div className="text-green-500 text-6xl mb-4">✅</div>
+          <CardTitle className="text-2xl font-bold text-gray-800 mb-4">
+            ส่งคำขอขายต้นไม้สำเร็จ!
+          </CardTitle>
+          <CardContent>
+            <p className="text-gray-600 mb-6">
+              เราได้รับคำขอขายต้นไม้ของคุณแล้ว ทีมงานจะติดต่อกลับภายใน 24-48 ชั่วโมง
+            </p>
+            <Button 
+              onClick={() => {
+                setSubmissionSuccess(false);
+                setSellRequest({
+                  plantName: '',
+                  category: '',
+                  size: '',
+                  condition: '',
+                  description: '',
+                  estimatedValue: 0,
+                  contactName: '',
+                  contactPhone: '',
+                  location: ''
+                });
+              }}
+              className="w-full"
+            >
+              ส่งคำขอใหม่
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
-      {/* Hero Section */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-16 text-center">
-          <div className="flex items-center justify-center mb-4">
-            <Sparkles className="w-12 h-12 text-green-600 mr-3" />
-            <h1 className="text-4xl font-bold text-gray-900">
-              Plant Exchange
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white">
+        <div className="container mx-auto px-6 py-16">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              💰 InstantBuy Portal
             </h1>
-          </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            แพลตฟอร์มแลกเปลี่ยนพืชคุณภาพ - ขายพืชให้เรา หรือให้เราหาพืชที่คุณต้องการ
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Badge variant="secondary" className="text-sm px-4 py-2">
-              <CheckCircle className="w-4 h-4 mr-2" />
-              Premium Quality
-            </Badge>
-            <Badge variant="secondary" className="text-sm px-4 py-2">
-              <Clock className="w-4 h-4 mr-2" />
-              Fast Response
-            </Badge>
-            <Badge variant="secondary" className="text-sm px-4 py-2">
-              <Star className="w-4 h-4 mr-2" />
-              Expert Curation
-            </Badge>
-          </div>
-        </div>
-      </div>
-
-      {/* Role Selection Tabs */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-2 border">
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={() => setUserRole('seller')}
-                className={`flex items-center justify-center space-x-3 p-6 rounded-xl transition-all duration-300 ${
-                  userRole === 'seller'
-                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg transform scale-105'
-                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <Upload className={`w-8 h-8 ${userRole === 'seller' ? 'text-white' : 'text-green-600'}`} />
-                <div className="text-left">
-                  <h3 className="font-semibold text-lg">ขายพืชให้เรา</h3>
-                  <p className="text-sm opacity-90">Sell Your Plants</p>
-                </div>
-              </button>
-              
-              <button
-                onClick={() => setUserRole('buyer')}
-                className={`flex items-center justify-center space-x-3 p-6 rounded-xl transition-all duration-300 ${
-                  userRole === 'buyer'
-                    ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg transform scale-105'
-                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <ShoppingCart className={`w-8 h-8 ${userRole === 'buyer' ? 'text-white' : 'text-blue-600'}`} />
-                <div className="text-left">
-                  <h3 className="font-semibold text-lg">ให้เราหาพืชให้</h3>
-                  <p className="text-sm opacity-90">ให้เราหาพืชให้</p>
-                </div>
-              </button>
+            <p className="text-xl md:text-2xl mb-8 text-green-100">
+              ขายต้นไม้ให้เรา รับเงินทันที!
+            </p>
+            
+            {/* Benefits */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+              <div className="text-center">
+                <div className="text-3xl mb-2">💵</div>
+                <h3 className="font-semibold mb-2">รับเงินทันที</h3>
+                <p className="text-sm text-green-200">จ่ายเงินสดหลังรับต้นไม้</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl mb-2">🚚</div>
+                <h3 className="font-semibold mb-2">รับฟรีถึงบ้าน</h3>
+                <p className="text-sm text-green-200">ไม่ต้องเสียค่าเดินทาง</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl mb-2">⚡</div>
+                <h3 className="font-semibold mb-2">ประเมินเร็ว</h3>
+                <p className="text-sm text-green-200">ภายใน 24-48 ชั่วโมง</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-3 gap-8">
-          
-          {/* Left Column - Main Form */}
-          <div className="lg:col-span-2">
-            <Card className="shadow-lg">
-              <CardHeader className={`${
-                userRole === 'seller' 
-                  ? 'bg-gradient-to-r from-green-600 to-emerald-600' 
-                  : 'bg-gradient-to-r from-blue-600 to-indigo-600'
-              } text-white`}>
-                <CardTitle className="flex items-center">
-                  {userRole === 'seller' ? (
-                    <>
-                      <Upload className="w-6 h-6 mr-2" />
-                      Submit Your Plant
-                    </>
-                  ) : (
-                    <>
-                      <Search className="w-6 h-6 mr-2" />
-                      Request Your Plant
-                    </>
-                  )}
-                </CardTitle>
-                <CardDescription className="text-white/80">
-                  {userRole === 'seller' 
-                    ? 'Tell us about your plant and upload photos'
-                    : 'Tell us what plant you\'re looking for and we\'ll find it for you'
-                  }
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-6">
-                
-                {!isLoggedIn ? (
-                  /* Blur Preview for Non-Logged Users */
-                  <div className="relative">
-                    <div className="blur-sm pointer-events-none">
-                      {userRole === 'seller' ? (
-                        /* Seller Form Preview */
-                        <div className="space-y-6">
-                          {/* Plant Photos */}
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Plant Photos
-                            </label>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                                <Camera className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                                <p className="text-sm text-gray-500">Before Cutting</p>
-                              </div>
-                              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                                <Camera className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                                <p className="text-sm text-gray-500">After Cutting</p>
-                              </div>
-                              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                                <Camera className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                                <p className="text-sm text-gray-500">Roots & Soil</p>
-                              </div>
-                              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                                <Video className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                                <p className="text-sm text-gray-500">Short Video</p>
-                              </div>
-                            </div>
-                          </div>
+      <div className="container mx-auto px-6 py-12">
+        <div className="max-w-2xl mx-auto">
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <DollarSign className="w-6 h-6 text-green-600" />
+                ขอขายต้นไม้
+              </CardTitle>
+              <p className="text-gray-600">
+                กรอกข้อมูลต้นไม้ที่ต้องการขาย เราจะติดต่อกลับภายใน 24-48 ชั่วโมง
+              </p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Plant Information */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                    📋 ข้อมูลต้นไม้
+                  </h3>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      ชื่อต้นไม้ (ภาษาไทย) *
+                    </label>
+                    <Input
+                      value={sellRequest.plantName}
+                      onChange={(e) => handleInputChange('plantName', e.target.value)}
+                      placeholder="เช่น มอนสเตอร่า, ฟิโลเดนดรอน"
+                      required
+                    />
+                  </div>
 
-                          {/* Plant Details */}
-                          <div className="grid md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Plant Species
-                              </label>
-                              <input 
-                                type="text" 
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                                placeholder="e.g., Monstera Albo, Philodendron Pink Princess"
-                                disabled
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Plant Size
-                              </label>
-                              <input 
-                                type="text" 
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                                placeholder="e.g., 6 inches, 15cm"
-                                disabled
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Plant Age
-                              </label>
-                              <input 
-                                type="text" 
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                                placeholder="e.g., 1 year, 6 months"
-                                disabled
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Plant Health
-                              </label>
-                              <select className="w-full px-3 py-2 border border-gray-300 rounded-md" disabled>
-                                <option>Excellent - Perfect condition</option>
-                                <option>Good - Minor imperfections</option>
-                                <option>Fair - Some issues</option>
-                              </select>
-                            </div>
-                          </div>
-
-                          {/* Description */}
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Additional Details
-                            </label>
-                            <textarea 
-                              rows={4}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                              placeholder="Tell us more about your plant, any special features, or care requirements..."
-                              disabled
-                            />
-                          </div>
-
-                          {/* Submit Button */}
-                          <Button className="w-full bg-gray-400 text-white py-3 text-lg" disabled>
-                            <Upload className="w-5 h-5 mr-2" />
-                            Submit for Review
-                          </Button>
-                        </div>
-                      ) : (
-                        /* Buyer Form Preview */
-                        <div className="space-y-6">
-                          {/* Plant Request */}
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Plant Species
-                            </label>
-                            <input 
-                              type="text" 
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                              placeholder="e.g., Monstera Albo, Philodendron Pink Princess"
-                              disabled
-                            />
-                          </div>
-
-                          {/* Plant Details */}
-                          <div className="grid md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Preferred Size
-                              </label>
-                              <select className="w-full px-3 py-2 border border-gray-300 rounded-md" disabled>
-                                <option>Small (4-6 inches)</option>
-                                <option>Medium (8-12 inches)</option>
-                                <option>Large (14+ inches)</option>
-                                <option>Any size</option>
-                              </select>
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Budget Range
-                              </label>
-                              <select className="w-full px-3 py-2 border border-gray-300 rounded-md" disabled>
-                                <option>฿500 - ฿2,000</option>
-                                <option>฿2,000 - ฿8,000</option>
-                                <option>฿8,000 - ฿25,000</option>
-                                <option>No budget limit</option>
-                              </select>
-                            </div>
-                          </div>
-
-                          {/* Delivery Preferences */}
-                          <div className="grid md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Delivery Location
-                              </label>
-                              <input 
-                                type="text" 
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                                placeholder="e.g., Bangkok, Chiang Mai"
-                                disabled
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Urgency
-                              </label>
-                              <select className="w-full px-3 py-2 border border-gray-300 rounded-md" disabled>
-                                <option>Not urgent - Take your time</option>
-                                <option>Within 1-2 weeks</option>
-                                <option>Within 3-5 days</option>
-                                <option>ASAP - Need it now</option>
-                              </select>
-                            </div>
-                          </div>
-
-                          {/* Description */}
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Additional Requirements
-                            </label>
-                            <textarea 
-                              rows={4}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                              placeholder="Any specific requirements, special features, or notes..."
-                              disabled
-                            />
-                          </div>
-
-                          {/* Submit Button */}
-                          <Button className="w-full bg-gray-400 text-white py-3 text-lg" disabled>
-                            <Search className="w-5 h-5 mr-2" />
-                            Submit Request
-                          </Button>
-                        </div>
-                      )}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        หมวดหมู่ *
+                      </label>
+                      <Select value={sellRequest.category} onValueChange={(value) => handleInputChange('category', value)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="เลือกหมวดหมู่" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="indoor">ไม้ในร่ม</SelectItem>
+                          <SelectItem value="outdoor">ไม้นอกบ้าน</SelectItem>
+                          <SelectItem value="tropical">ไม้เมืองร้อน</SelectItem>
+                          <SelectItem value="succulent">ไม้อวบน้ำ</SelectItem>
+                          <SelectItem value="other">อื่นๆ</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
-
-                    {/* Login Overlay */}
-                    <div className="absolute inset-0 bg-white/80 flex items-center justify-center rounded-lg">
-                      <div className="text-center p-8">
-                        <Lock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                          Login Required
-                        </h3>
-                        <p className="text-gray-600 mb-6 max-w-md">
-                          เพื่อความปลอดภัยและความโปร่งใส เราต้องการให้คุณลงทะเบียนก่อนใช้งานฟีเจอร์นี้
-                        </p>
-                        <div className="space-y-3">
-                          <Button className="w-full bg-green-600 hover:bg-green-700">
-                            <UserCheck className="w-4 h-4 mr-2" />
-                            Login to Continue
-                          </Button>
-                          <Button variant="outline" className="w-full">
-                            Create Account
-                          </Button>
-                        </div>
-                      </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        ขนาดต้นไม้ *
+                      </label>
+                      <Select value={sellRequest.size} onValueChange={(value) => handleInputChange('size', value)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="เลือกขนาด" />
+                        </SelectTrigger>
+                        <SelectContent>
+                                                  <SelectItem value="small">เล็ก (สูงน้อยกว่า 30cm)</SelectItem>
+                        <SelectItem value="medium">กลาง (สูง 30-100cm)</SelectItem>
+                        <SelectItem value="large">ใหญ่ (สูงมากกว่า 100cm)</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
-                ) : (
-                  /* Full Form for Logged Users */
-                  <div className="space-y-6">
-                    {userRole === 'seller' ? (
-                      /* Seller Form */
-                      <>
-                        {/* Plant Photos */}
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Plant Photos
-                          </label>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-green-400 transition-colors">
-                              <Camera className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                              <p className="text-sm text-gray-500">Before Cutting</p>
-                            </div>
-                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-green-400 transition-colors">
-                              <Camera className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                              <p className="text-sm text-gray-500">After Cutting</p>
-                            </div>
-                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-green-400 transition-colors">
-                              <Camera className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                              <p className="text-sm text-gray-500">Roots & Soil</p>
-                            </div>
-                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-green-400 transition-colors">
-                              <Video className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                              <p className="text-sm text-gray-500">Short Video</p>
-                            </div>
-                          </div>
-                        </div>
 
-                        {/* Plant Details */}
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Plant Species
-                            </label>
-                            <input 
-                              type="text" 
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                              placeholder="e.g., Monstera Albo, Philodendron Pink Princess"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Plant Size
-                            </label>
-                            <input 
-                              type="text" 
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                              placeholder="e.g., 6 inches, 15cm"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Plant Age
-                            </label>
-                            <input 
-                              type="text" 
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                              placeholder="e.g., 1 year, 6 months"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Plant Health
-                            </label>
-                            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-                              <option>Excellent - Perfect condition</option>
-                              <option>Good - Minor imperfections</option>
-                              <option>Fair - Some issues</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        {/* Description */}
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Additional Details
-                          </label>
-                          <textarea 
-                            rows={4}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                            placeholder="Tell us more about your plant, any special features, or care requirements..."
-                          />
-                        </div>
-
-                        {/* Submit Button */}
-                        <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg">
-                          <Upload className="w-5 h-5 mr-2" />
-                          Submit for Review
-                        </Button>
-                      </>
-                    ) : (
-                      /* Buyer Form */
-                      <>
-                        {/* Plant Request */}
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Plant Species
-                          </label>
-                          <input 
-                            type="text" 
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="e.g., Monstera Albo, Philodendron Pink Princess"
-                          />
-                        </div>
-
-                        {/* Plant Details */}
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Preferred Size
-                            </label>
-                            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                              <option>Small (4-6 inches)</option>
-                              <option>Medium (8-12 inches)</option>
-                              <option>Large (14+ inches)</option>
-                              <option>Any size</option>
-                            </select>
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Budget Range
-                            </label>
-                            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                              <option>฿500 - ฿2,000</option>
-                              <option>฿2,000 - ฿8,000</option>
-                              <option>฿8,000 - ฿25,000</option>
-                              <option>No budget limit</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        {/* Delivery Preferences */}
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Delivery Location
-                            </label>
-                            <input 
-                              type="text" 
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                              placeholder="e.g., Bangkok, Chiang Mai"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Urgency
-                            </label>
-                            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                              <option>Not urgent - Take your time</option>
-                              <option>Within 1-2 weeks</option>
-                              <option>Within 3-5 days</option>
-                              <option>ASAP - Need it now</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        {/* Description */}
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Additional Requirements
-                          </label>
-                          <textarea 
-                            rows={4}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Any specific requirements, special features, or notes..."
-                          />
-                        </div>
-
-                        {/* Submit Button */}
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg">
-                          <Search className="w-5 h-5 mr-2" />
-                          Submit Request
-                        </Button>
-                      </>
-                    )}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      สภาพต้นไม้ *
+                    </label>
+                    <Select value={sellRequest.condition} onValueChange={(value) => handleInputChange('condition', value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="เลือกสภาพ" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="excellent">ยอดเยี่ยม (ไม่มีปัญหา)</SelectItem>
+                        <SelectItem value="good">ดี (มีปัญหาเล็กน้อย)</SelectItem>
+                        <SelectItem value="fair">ปานกลาง (มีปัญหาบางส่วน)</SelectItem>
+                        <SelectItem value="poor">แย่ (มีปัญหาหลายจุด)</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
 
-          {/* Right Column - Info & Process */}
-          <div className="space-y-6">
-            
-            {userRole === 'seller' ? (
-              /* Seller Info */
-              <>
-                {/* Quality Standards */}
-                <Card className="shadow-lg">
-                  <CardHeader className="bg-blue-50">
-                    <CardTitle className="flex items-center text-blue-800">
-                      <Star className="w-5 h-5 mr-2" />
-                      Quality Standards
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                        Rare and in-demand varieties
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                        100% healthy condition
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                        Market-appropriate size
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                        Seasonal market demand
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      รายละเอียดเพิ่มเติม
+                    </label>
+                    <Textarea
+                      value={sellRequest.description}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleInputChange('description', e.target.value)}
+                      placeholder="อธิบายเพิ่มเติมเกี่ยวกับต้นไม้ เช่น อายุ, การดูแล, ปัญหาที่พบ, ฯลฯ"
+                      rows={3}
+                    />
+                  </div>
 
-                {/* Process Steps */}
-                <Card className="shadow-lg">
-                  <CardHeader className="bg-emerald-50">
-                    <CardTitle className="flex items-center text-emerald-800">
-                      <ClipboardCheck className="w-5 h-5 mr-2" />
-                      How It Works
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <div className="space-y-4">
-                      <div className="flex items-start">
-                        <div className="bg-emerald-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          1
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">Submit Plant</p>
-                          <p className="text-xs text-gray-600">Upload photos and details</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <div className="bg-emerald-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          2
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">Expert Review</p>
-                          <p className="text-xs text-gray-600">Our experts evaluate</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <div className="bg-emerald-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          3
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">Get Offer</p>
-                          <p className="text-xs text-gray-600">Receive fair price offer</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <div className="bg-emerald-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          4
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">Ship & Get Paid</p>
-                          <p className="text-xs text-gray-600">Send plant, get money</p>
-                        </div>
-                      </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      มูลค่าที่คาดหวัง (บาท)
+                    </label>
+                    <Input
+                      type="number"
+                      value={sellRequest.estimatedValue}
+                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('estimatedValue', parseInt(e.target.value) || 0)}
+                      placeholder="เช่น 5000"
+                      min="0"
+                    />
+                  </div>
+                </div>
+
+                {/* Contact Information */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                    📞 ข้อมูลติดต่อ
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        ชื่อ-นามสกุล *
+                      </label>
+                      <Input
+                        value={sellRequest.contactName}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('contactName', e.target.value)}
+                        placeholder="ชื่อของคุณ"
+                        required
+                      />
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Security Notice */}
-                <Card className="shadow-lg border-orange-200">
-                  <CardHeader className="bg-orange-50">
-                    <CardTitle className="flex items-center text-orange-800">
-                      <Shield className="w-5 h-5 mr-2" />
-                      Security Notice
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <div className="space-y-2 text-sm text-orange-700">
-                      <p>We only buy plants that meet our quality standards</p>
-                      <p>Photos must match the actual plant received</p>
-                      <p>Payment made after quality verification</p>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        เบอร์โทรศัพท์ *
+                      </label>
+                      <Input
+                        value={sellRequest.contactPhone}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('contactPhone', e.target.value)}
+                        placeholder="081-234-5678"
+                        required
+                      />
                     </div>
-                  </CardContent>
-                </Card>
-              </>
-            ) : (
-              /* Buyer Info */
-              <>
-                {/* How It Works */}
-                <Card className="shadow-lg">
-                  <CardHeader className="bg-blue-50">
-                    <CardTitle className="flex items-center text-blue-800">
-                      <Package className="w-5 h-5 mr-2" />
-                      How It Works
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <div className="space-y-4">
-                      <div className="flex items-start">
-                        <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          1
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">Submit Request</p>
-                          <p className="text-xs text-gray-600">Tell us what you want</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          2
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">We Find It</p>
-                          <p className="text-xs text-gray-600">Search our network</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          3
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">Quality Check</p>
-                          <p className="text-xs text-gray-600">Verify plant quality</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          4
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">Deliver to You</p>
-                          <p className="text-xs text-gray-600">Safe delivery</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
 
-                {/* Benefits */}
-                <Card className="shadow-lg">
-                  <CardHeader className="bg-green-50">
-                    <CardTitle className="flex items-center text-green-800">
-                      <Star className="w-5 h-5 mr-2" />
-                      Why Choose Us
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                        Quality guaranteed plants
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                        Competitive prices
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                        Safe delivery
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                        Expert support
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      ที่อยู่ *
+                    </label>
+                    <Input
+                      value={sellRequest.location}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('location', e.target.value)}
+                      placeholder="จังหวัด, เขต/อำเภอ"
+                      required
+                    />
+                  </div>
+                </div>
 
-                {/* Delivery Info */}
-                <Card className="shadow-lg">
-                  <CardHeader className="bg-purple-50">
-                    <CardTitle className="flex items-center text-purple-800">
-                      <Truck className="w-5 h-5 mr-2" />
-                      Delivery Information
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <div className="space-y-2 text-sm text-purple-700">
-                      <p>• Free delivery in Bangkok</p>
-                      <p>• 2-3 days for other provinces</p>
-                      <p>• Special packaging for plants</p>
-                      <p>• Tracking number provided</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </>
-            )}
-
-          </div>
+                {/* Submit Button */}
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-green-600 hover:bg-green-700"
+                >
+                  {isSubmitting ? 'กำลังส่ง...' : 'ส่งคำขอขายต้นไม้'}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

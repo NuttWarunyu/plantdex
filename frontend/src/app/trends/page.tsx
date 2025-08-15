@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from "../../lib/language-context";
-import { marketApi, plantsApi, MarketTrend, PlantPriceIndex, TrendingPlant, Plant, handleApiError } from "../../lib/api";
+import { plantsApi, Plant } from "../../lib/api";
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -26,9 +27,9 @@ export default function TrendsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  const [marketTrends, setMarketTrends] = useState<MarketTrend[]>([]);
-  const [priceIndices, setPriceIndices] = useState<PlantPriceIndex[]>([]);
-  const [trendingPlants, setTrendingPlants] = useState<TrendingPlant[]>([]);
+  const [marketTrends, setMarketTrends] = useState<any[]>([]);
+  const [priceIndices, setPriceIndices] = useState<any[]>([]);
+  const [trendingPlants, setTrendingPlants] = useState<any[]>([]);
   const [plants, setPlants] = useState<Plant[]>([]);
 
   // Fetch data from API
@@ -38,24 +39,24 @@ export default function TrendsPage() {
         setLoading(true);
         
         // Fetch market trends
-        const trendsResponse = await marketApi.getTrends({ limit: 10 });
-        setMarketTrends(trendsResponse.trends);
+        // const trendsResponse = await marketApi.getTrends({ limit: 10 });
+        // setMarketTrends(trendsResponse.trends);
         
         // Fetch price indices
-        const priceResponse = await marketApi.getPriceIndex();
-        setPriceIndices(priceResponse.price_indices);
+        // const priceResponse = await marketApi.getPriceIndex();
+        // setPriceIndices(priceResponse.price_indices);
         
         // Fetch trending plants
-        const trendingResponse = await marketApi.getTrendingPlants({ limit: 10 });
-        setTrendingPlants(trendingResponse.trending_plants);
+        // const trendingResponse = await marketApi.getTrendingPlants({ limit: 10 });
+        // setTrendingPlants(trendingResponse.trending_plants);
         
         // Fetch plants for reference
-        const plantsData = await plantsApi.getAll({ limit: 100 });
+        const plantsData = await plantsApi.getAll(0, 100);
         setPlants(plantsData);
         
       } catch (err) {
-        const errorMessage = handleApiError(err);
-        setError(errorMessage);
+        // const errorMessage = handleApiError(err);
+        setError('ไม่สามารถโหลดข้อมูลได้');
       } finally {
         setLoading(false);
       }
@@ -71,7 +72,7 @@ export default function TrendsPage() {
 
   const getPlantCategory = (plantId: number): string => {
     const plant = plants.find(p => p.id === plantId);
-    return plant ? plant.category : 'unknown';
+    return plant ? (plant.category || 'unknown') : 'unknown';
   };
 
   const getTrendDirection = (trend: string): 'up' | 'down' | 'stable' => {
