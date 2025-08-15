@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import PlantSearch, { SearchFilters } from '../../components/shared/PlantSearch';
 import PlantCard from '../../components/shared/PlantCard';
 import MarketTicker from '../../components/shared/MarketTicker';
-import { Filter, TrendingUp, Star, Leaf, DollarSign, BarChart3 } from 'lucide-react';
+import { TrendingUp, Star, Leaf, DollarSign, BarChart3 } from 'lucide-react';
 import { plantsApi } from '../../lib/api';
 
 interface Plant {

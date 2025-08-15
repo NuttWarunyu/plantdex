@@ -5,7 +5,7 @@ import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 
 export default function TestAPIPage() {
-  const [results, setResults] = useState<Record<string, { status: number; data: any }>>({});
+  const [results, setResults] = useState<Record<string, { status: number; data: unknown }>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -82,7 +82,7 @@ export default function TestAPIPage() {
         )}
 
         <div className="space-y-4">
-          {Object.entries(results).map(([endpoint, result]: [string, any]) => (
+          {Object.entries(results).map(([endpoint, result]: [string, { status: number; data: unknown }]) => (
             <Card key={endpoint}>
               <CardHeader>
                 <CardTitle className="text-sm font-mono">
@@ -109,7 +109,7 @@ export default function TestAPIPage() {
         {Object.keys(results).length === 0 && (
           <Card className="text-center py-12">
             <CardContent>
-              <p className="text-gray-500">Click "Test All APIs" to start testing</p>
+                                        <p className="text-gray-500">Click &quot;Test All APIs&quot; to start testing</p>
             </CardContent>
           </Card>
         )}
