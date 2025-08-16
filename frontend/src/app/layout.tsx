@@ -1,36 +1,36 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
-import { LanguageProvider } from "../lib/language-context";
+import { Footer } from "@/components/layout/Footer";
+import { LanguageProvider } from "@/lib/language-context";
+import { UserProvider } from "@/lib/user-context";
 
-const notoSans = Noto_Sans({ 
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-noto-sans"
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PlantDex - Plant Market Intelligence Platform",
-  description: "The Stock Market for Plants - Real-time pricing, trends, and market intelligence for Thailand's plant industry",
+  title: "PlantDex - ปล่อยต้นไม้หาบ้านใหม่",
+  description: "แพลตฟอร์มปล่อยต้นไม้หาบ้านใหม่ เชื่อมต่อคนรักต้นไม้",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="th" data-lang="th">
-      <body className={`${notoSans.className} ${notoSans.variable}`}>
+    <html lang="th">
+      <body className={inter.className}>
         <LanguageProvider>
-          <div className="min-h-screen bg-background">
-            <Header />
-            <main className="flex-1">
-              {children}
-            </main>
-          </div>
+          <UserProvider>
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </UserProvider>
         </LanguageProvider>
       </body>
     </html>

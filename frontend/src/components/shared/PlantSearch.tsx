@@ -4,7 +4,7 @@ import { Search, Filter, X } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Badge } from '../../components/ui/badge';
-import { plantsApi, mockData } from '../../lib/api';
+import { plantsApi } from '../../lib/api';
 
 interface PlantSearchProps {
   onSearch: (query: string, filters: SearchFilters) => void;
@@ -20,6 +20,17 @@ export interface SearchFilters {
   price_min?: number;
   price_max?: number;
 }
+
+// Local mock data
+const mockData = {
+  plants: [
+    { common_name_th: 'Monstera', scientific_name: 'Monstera deliciosa' },
+    { common_name_th: 'Philodendron', scientific_name: 'Philodendron' },
+    { common_name_th: 'Fiddle Leaf Fig', scientific_name: 'Ficus lyrata' },
+    { common_name_th: 'Snake Plant', scientific_name: 'Sansevieria' },
+    { common_name_th: 'ZZ Plant', scientific_name: 'Zamioculcas' }
+  ]
+};
 
 const PlantSearch: React.FC<PlantSearchProps> = ({
   onSearch,
@@ -46,17 +57,17 @@ const PlantSearch: React.FC<PlantSearchProps> = ({
 
     try {
       setIsLoading(true);
-      const apiSuggestions = await plantsApi.getSearchSuggestions(searchQuery, 8);
+      const apiSuggestions = await plantsApi.getSearchSuggestions(searchQuery);
       setSuggestions(apiSuggestions);
     } catch (error) {
       console.error('Failed to fetch suggestions:', error);
       // Fallback to mock suggestions
       const mockSuggestions = mockData.plants
-        .filter(plant => 
+        .filter((plant: any) => 
           plant.common_name_th.toLowerCase().includes(searchQuery.toLowerCase()) ||
           plant.scientific_name.toLowerCase().includes(searchQuery.toLowerCase())
         )
-        .map(plant => plant.common_name_th)
+        .map((plant: any) => plant.common_name_th)
         .slice(0, 8);
       setSuggestions(mockSuggestions);
     } finally {

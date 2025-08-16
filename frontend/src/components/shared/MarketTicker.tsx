@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, Minus, BarChart3, Activity } from 'lucide-react';
 import { Badge } from '../../components/ui/badge';
-import { plantsApi, mockData, handleApiError } from '../../lib/api';
+import { plantsApi } from '../../lib/api';
 
 interface MarketTickerProps {
   className?: string;
@@ -16,6 +16,18 @@ interface MarketData {
   market_status: string;
   last_updated: string;
 }
+
+// Local mock data
+const mockData = {
+  quickStats: {
+    total_plants: 1250,
+    trending_plants: 89,
+    rare_plants: 45,
+    indoor_plants: 567,
+    market_status: 'active',
+    last_updated: '2 นาทีที่แล้ว'
+  }
+};
 
 const MarketTicker: React.FC<MarketTickerProps> = ({ className = "" }) => {
   const [marketData, setMarketData] = useState<MarketData | null>(null);
