@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { evaluationId: string } }
+  params: Promise<{ params: { evaluationId: string } }>
 ) {
   try {
-    const { evaluationId } = params;
+    const { params: resolvedParams } = await params;
+    const { evaluationId } = resolvedParams;
     
     // Mock offer data for now
     const mockOffer = {
