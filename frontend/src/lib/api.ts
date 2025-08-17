@@ -50,8 +50,8 @@ export interface SearchResponse {
 }
 
 export interface MarketData {
-  price_indices: any[];
-  market_trends: any[];
+  price_indices: unknown[];
+  market_trends: unknown[];
 }
 
 export interface QuickStats {
@@ -64,8 +64,8 @@ export interface QuickStats {
 }
 
 export interface MarketIntelligenceData {
-  price_indices: any[];
-  market_trends: any[];
+  price_indices: unknown[];
+  market_trends: unknown[];
 }
 
 // API error handler
@@ -229,7 +229,12 @@ export const shopeeApi = {
   },
 
   // Get product statistics
-  async getStats(): Promise<any> {
+  async getStats(): Promise<{
+    total_products: number;
+    category_count: number;
+    shop_count: number;
+    price_stats: { min: number; max: number; average: number; count: number };
+  }> {
     try {
       const response = await fetch(`${API_BASE_URL}/api/v1/shopee/products/stats`);
       if (!response.ok) throw new Error('Failed to fetch stats');
