@@ -224,8 +224,9 @@ export default function InstantBuyPortal() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 พร้อมขายต้นไม้แล้วหรือยัง?
               </h3>
-              <p className="text-gray-600 mb-6">
-                เริ่มต้นได้ทันที เพียงถ่ายรูปต้นไม้ของคุณ
+              <p className="text-gray-600 mb-4">
+                ระบบจะประเมินราคาต้นไม้จากรูปภาพและข้อมูลที่คุณให้มา
+                เพื่อให้ได้ราคาที่เป็นธรรมและเหมาะสมกับตลาด
               </p>
               
               <Link href="/instant-buy/upload">

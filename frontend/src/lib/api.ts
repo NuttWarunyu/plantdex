@@ -64,12 +64,9 @@ export interface QuickStats {
 }
 
 // API error handler
-const handleApiError = (error: any): string => {
+export const handleApiError = (error: Error): string => {
   console.error('API Error:', error);
-  if (error.response?.data?.detail) {
-    return error.response.data.detail;
-  }
-  return 'เกิดข้อผิดพลาดในการเชื่อมต่อ API';
+  return error.message || 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์';
 };
 
 // Mock data fallback

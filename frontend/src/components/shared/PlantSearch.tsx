@@ -63,11 +63,11 @@ const PlantSearch: React.FC<PlantSearchProps> = ({
       console.error('Failed to fetch suggestions:', error);
       // Fallback to mock suggestions
       const mockSuggestions = mockData.plants
-        .filter((plant: any) => 
+        .filter((plant: { common_name_th: string; scientific_name: string }) => 
           plant.common_name_th.toLowerCase().includes(searchQuery.toLowerCase()) ||
           plant.scientific_name.toLowerCase().includes(searchQuery.toLowerCase())
         )
-        .map((plant: any) => plant.common_name_th)
+        .map((plant: { common_name_th: string; scientific_name: string }) => plant.common_name_th)
         .slice(0, 8);
       setSuggestions(mockSuggestions);
     } finally {
