@@ -209,7 +209,7 @@ export default function InstantBuyPortal() {
                   </div>
                   
                   <p className="text-sm text-gray-600 italic">
-                    "{transaction.comment}"
+                    &ldquo;{transaction.comment}&rdquo;
                   </p>
                 </CardContent>
               </Card>

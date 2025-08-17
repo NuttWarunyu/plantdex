@@ -63,6 +63,11 @@ export interface QuickStats {
   last_updated: string;
 }
 
+export interface MarketIntelligenceData {
+  price_indices: any[];
+  market_trends: any[];
+}
+
 // API error handler
 export const handleApiError = (error: Error): string => {
   console.error('API Error:', error);
@@ -257,5 +262,17 @@ export const shopeeApi = {
 export const marketApi = {
   getTrends: async () => ({ trends: [] }),
   getPriceIndex: async () => ({ price_indices: [] }),
-  getTrendingPlants: async () => ({ trending_plants: [] })
+  getTrendingPlants: async () => ({ trending_plants: [] }),
+  getMarketIntelligence: async (): Promise<MarketIntelligenceData> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/v1/market-intelligence/index`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch market intelligence data');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching market intelligence:', error);
+      throw error;
+    }
+  }
 }; 
