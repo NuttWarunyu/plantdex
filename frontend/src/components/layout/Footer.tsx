@@ -22,8 +22,8 @@ export function Footer() {
               <span className="text-xl font-bold text-white">PlantDex</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
-              The Stock Market for Plants - Real-time pricing, trends, and market intelligence 
-              for Thailand&apos;s plant industry. Making informed decisions in the plant market.
+              แพลตฟอร์มปล่อยต้นไม้ใหม่ - เชื่อมต่อผู้คนที่รักต้นไม้ ให้ต้นไม้ได้บ้านใหม่ที่ดีกว่า 
+              ฟรี 100% ปลอดภัยและน่าเชื่อถือ
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -43,26 +43,25 @@ export function Footer() {
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/market" className="text-gray-400 hover:text-white transition-colors">
-                  Market Data
+                <Link href="/give-plant" className="text-gray-400 hover:text-white transition-colors">
+                  ปล่อยต้นไม้
                 </Link>
               </li>
               <li>
-                <Link href="/plants" className="text-gray-400 hover:text-white transition-colors">
-                  Plant Database
+                <Link href="/adopt-plant" className="text-gray-400 hover:text-white transition-colors">
+                  รับเลี้ยงต้นไม้
                 </Link>
               </li>
               <li>
-                <Link href="/trends" className="text-gray-400 hover:text-white transition-colors">
-                  Market Trends
+                <Link href="/instant-buy" className="text-gray-400 hover:text-white transition-colors">
+                  InstantBuy
                 </Link>
               </li>
-              {/* Pricing temporarily hidden - will be available in future updates */}
-              {/* <li>
-                <Link href="/pricing" className="text-gray-400 hover:text-white transition-colors">
-                  Pricing Plans
+              <li>
+                <Link href="/my-plants" className="text-gray-400 hover:text-white transition-colors">
+                  ต้นไม้ของฉัน
                 </Link>
-              </li> */}
+              </li>
             </ul>
           </div>
 

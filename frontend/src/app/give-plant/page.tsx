@@ -212,7 +212,7 @@ export default function GivePlantPage() {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     สภาพต้นไม้ *
@@ -247,12 +247,15 @@ export default function GivePlantPage() {
                     </SelectContent>
                   </Select>
                 </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     อายุต้นไม้
                   </label>
                   <Input
-                    placeholder="เช่น 2 ปี, 6 เดือน"
+                    placeholder="เช่น 2 ปี, 6 เดือน (ไม่บังคับ)"
                     value={formData.age}
                     onChange={(e) => handleInputChange("age", e.target.value)}
                   />
@@ -266,8 +269,8 @@ export default function GivePlantPage() {
                 </label>
                 <Textarea
                   required
-                  placeholder="บอกเหตุผลที่ต้องการปล่อยต้นไม้ เช่น ย้ายบ้าน, ต้นไม้โตเกินไป, ไม่มีเวลาดูแล"
-                  rows={3}
+                  placeholder="บอกเหตุผลสั้นๆ เช่น ย้ายบ้าน, ต้นไม้โตเกินไป, ไม่มีเวลาดูแล"
+                  rows={2}
                   value={formData.reason}
                   onChange={(e) => handleInputChange("reason", e.target.value)}
                 />
